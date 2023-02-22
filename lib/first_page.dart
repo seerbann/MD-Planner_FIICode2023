@@ -32,6 +32,7 @@ class _FirstPageState extends State<FirstPage> {
                 foregroundColor: Colors.white,
               ),
             ),
+            //change
             TextButton(
               onPressed: () {},
               child: const Text('Contact'),
