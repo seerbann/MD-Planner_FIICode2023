@@ -22,7 +22,7 @@ GoRouter router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => FirstPage(),
+      builder: (context, state) => const FirstPage(),
     ),
   ],
 );
