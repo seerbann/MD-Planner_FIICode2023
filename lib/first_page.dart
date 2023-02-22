@@ -136,14 +136,36 @@ class _FirstPageState extends State<FirstPage> {
             color: Colors.black,
             child: Center(
               child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
                         flex: 5,
-                        child: Image.asset('assets/images/bigLogo.png')),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/images/logo2.png',
+                              scale: 2,
+                            ),
+                            Text("MD Planner",
+                                style: GoogleFonts.audiowide(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  letterSpacing: 2,
+                                  fontSize: 32,
+                                )),
+                            Text("Stay healthy.\nStay connected.",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.electrolize(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                )),
+                          ],
+                        )),
                     Expanded(
-                      flex: 5,
+                      flex: 3,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -152,7 +174,7 @@ class _FirstPageState extends State<FirstPage> {
                             child: Text(
                               "MD Planner este facut pentru a ajuta oameni de pretutindeni sa isi menegerieze programarile la medic intr-o maniera cat mai usoara. Cu MD Planner poti face programari la medicul de familie si sa primesti remindere pentru a nu uita de acestea. Totodata, aplicatia noastra iti tine minte si istoricul medical. ",
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 25),
+                                  TextStyle(color: Colors.white, fontSize: 20),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -163,7 +185,7 @@ class _FirstPageState extends State<FirstPage> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF284EA6),
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 70, vertical: 30),
+                                  horizontal: 50, vertical: 20),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50)),
                             ),
@@ -255,7 +277,26 @@ class _FirstPageState extends State<FirstPage> {
                     ),
                     Expanded(
                         flex: 5,
-                        child: Image.asset('assets/images/bigLogo.png'))
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/images/logo2.png'),
+                            Text("MD Planner",
+                                style: GoogleFonts.audiowide(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  letterSpacing: 2,
+                                  fontSize: 32,
+                                )),
+                            Text("Stay healthy.\nStay connected.",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.electrolize(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                )),
+                          ],
+                        ))
                   ]),
             ),
           ),
