@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:health_hub/responsive.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:go_router/go_router.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -15,7 +17,93 @@ class _FirstPageState extends State<FirstPage> {
   Widget build(BuildContext context) {
     return Responsive(
         mobile: Scaffold(
-          appBar: AppBar(),
+          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          body: SafeArea(
+            child: Stack(
+              alignment: Alignment.topCenter, // defult topLeft
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            gradient: RadialGradient(
+                                center: Alignment.topLeft,
+                                radius: 0.8,
+                                colors: [
+                              Color.fromRGBO(51, 112, 255, 0.75),
+                              Color.fromARGB(255, 0, 0, 0),
+                            ],
+                                stops: [
+                              0.1,
+                              1,
+                            ])),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            gradient: RadialGradient(
+                                center: Alignment.topRight,
+                                radius: 0.8,
+                                colors: [
+                              Color.fromRGBO(51, 112, 255, 0.75),
+                              Color.fromARGB(255, 0, 0, 0),
+                            ],
+                                stops: [
+                              0.1,
+                              1,
+                            ])),
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 200,
+                    ),
+                    Image.asset(
+                      'assets/images/logo2.png',
+                      scale: 2.5,
+                    ),
+                    Text("HealthFinder",
+                        style: GoogleFonts.inknutAntiqua(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 32,
+                        )),
+                    Text("Stay healthy.\nStay connected.",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.outfit(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 16,
+                        )),
+                    SizedBox(
+                      height: 200,
+                    ),
+                    ElevatedButton(
+                      child: Text('Login',
+                          style: GoogleFonts.roboto(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 26,
+                          )),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromRGBO(51, 112, 255, 0.75),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 85, vertical: 20),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                      ),
+                      onPressed: (() => context.push('/')),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ),
         tablet: Scaffold(
           appBar: AppBar(
