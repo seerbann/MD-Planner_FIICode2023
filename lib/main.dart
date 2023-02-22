@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:health_hub/first_page.dart';
+import 'package:health_hub/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +27,7 @@ GoRouter router = GoRouter(
     ),
     GoRoute(
       path: '/login',
-      builder: (context, state) => const FirstPage(),
+      builder: (context, state) => const LoginPage(),
     )
   ],
 );

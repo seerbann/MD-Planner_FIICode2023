@@ -3,19 +3,24 @@ import 'package:health_hub/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
 
-class FirstPage extends StatefulWidget {
-  const FirstPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<FirstPage> createState() => _FirstPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _FirstPageState extends State<FirstPage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Responsive(
         mobile: Scaffold(
           backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+          resizeToAvoidBottomInset: false,
+          appBar: AppBar(
+            backgroundColor: Color.fromARGB(255, 0, 0, 0),
+            elevation: 0,
+          ),
           body: SafeArea(
             child: Stack(
               alignment: Alignment.topCenter, // defult topLeft
@@ -74,7 +79,7 @@ class _FirstPageState extends State<FirstPage> {
                           fontSize: 32,
                         )),
                     const SizedBox(height: 25),
-                    Text("Stay healthy.\nStay connected.",
+                    Text("Stay healthy.\nStay connected...",
                         textAlign: TextAlign.center,
                         style: GoogleFonts.electrolize(
                           fontWeight: FontWeight.bold,
@@ -93,7 +98,7 @@ class _FirstPageState extends State<FirstPage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50)),
                       ),
-                      onPressed: (() => context.push('/login')),
+                      onPressed: (() => context.push('/')),
                       child: Text('Login',
                           style: GoogleFonts.roboto(
                             fontWeight: FontWeight.bold,
@@ -108,101 +113,8 @@ class _FirstPageState extends State<FirstPage> {
           ),
         ),
         tablet: Scaffold(
-          appBar: AppBar(actions: <Widget>[
-            TextButton(
-              onPressed: () {},
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.white,
-              ),
-              child: const Text('About'),
-            ),
-            //change
-            TextButton(
-              onPressed: () {},
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.white,
-              ),
-              child: const Text('Contact'),
-            ),
-            TextButton(
-              onPressed: () {},
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.white,
-              ),
-              child: const Text('Policy'),
-            )
-          ], backgroundColor: Colors.black),
-          body: Container(
-            color: Colors.black,
-            child: Center(
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                        flex: 5,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/images/logo2.png',
-                              scale: 2,
-                            ),
-                            Text("MD Planner",
-                                style: GoogleFonts.audiowide(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  letterSpacing: 2,
-                                  fontSize: 32,
-                                )),
-                            Text("Stay healthy.\nStay connected.",
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.electrolize(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                )),
-                          ],
-                        )),
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const SizedBox(
-                            width: 600,
-                            child: Text(
-                              "MD Planner este facut pentru a ajuta oameni de pretutindeni sa isi menegerieze programarile la medic intr-o maniera cat mai usoara. Cu MD Planner poti face programari la medicul de familie si sa primesti remindere pentru a nu uita de acestea. Totodata, aplicatia noastra iti tine minte si istoricul medical. ",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF284EA6),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 50, vertical: 20),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)),
-                            ),
-                            onPressed: (() => context.go('/login')),
-                            child: Text('Login',
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.roboto(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 24,
-                                )),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ]),
-            ),
+          appBar: AppBar(
+            backgroundColor: Colors.red,
           ),
         ),
         //committ
@@ -244,7 +156,7 @@ class _FirstPageState extends State<FirstPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const SizedBox(
-                            width: 600,
+                            width: 500,
                             child: Text(
                               "MD Planner este facut pentru a ajuta oameni de pretutindeni sa isi menegerieze programarile la medic intr-o maniera cat mai usoara. Cu MD Planner poti face programari la medicul de familie si sa primesti remindere pentru a nu uita de acestea. Totodata, aplicatia noastra iti tine minte si istoricul medical. ",
                               style:
@@ -257,14 +169,14 @@ class _FirstPageState extends State<FirstPage> {
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF284EA6),
+                              backgroundColor: const Color(0xFF310F62),
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 70, vertical: 30),
+                                  horizontal: 50, vertical: 20),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50)),
                             ),
-                            onPressed: (() => context.go('/login')),
-                            child: Text('Login',
+                            onPressed: (() => context.go('/serviceAccount')),
+                            child: Text('Sign In',
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.roboto(
                                   fontWeight: FontWeight.bold,
@@ -277,26 +189,7 @@ class _FirstPageState extends State<FirstPage> {
                     ),
                     Expanded(
                         flex: 5,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset('assets/images/logo2.png'),
-                            Text("MD Planner",
-                                style: GoogleFonts.audiowide(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  letterSpacing: 2,
-                                  fontSize: 32,
-                                )),
-                            Text("Stay healthy.\nStay connected.",
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.electrolize(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                )),
-                          ],
-                        ))
+                        child: Image.asset('assets/images/bigLogo.png'))
                   ]),
             ),
           ),
