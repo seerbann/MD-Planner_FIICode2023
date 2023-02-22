@@ -149,7 +149,7 @@ class _FirstPageState extends State<FirstPage> {
                         children: [
                           const SizedBox(
                             width: 500,
-                            child: const Text(
+                            child: Text(
                               "MD Planner este facut pentru a ajuta oameni de pretutindeni sa isi menegerieze programarile la medic intr-o maniera cat mai usoara. Cu MD Planner poti face programari la medicul de familie si sa primesti remindere pentru a nu uita de acestea. Totodata, aplicatia noastra iti tine minte si istoricul medical. ",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 25),
@@ -160,6 +160,14 @@ class _FirstPageState extends State<FirstPage> {
                             height: 20,
                           ),
                           ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF310F62),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 50, vertical: 20),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50)),
+                            ),
+                            onPressed: (() => context.go('/serviceAccount')),
                             child: Text('Sign In',
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.roboto(
@@ -167,14 +175,6 @@ class _FirstPageState extends State<FirstPage> {
                                   color: Colors.white,
                                   fontSize: 24,
                                 )),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFF310F62),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 50, vertical: 20),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)),
-                            ),
-                            onPressed: (() => context.go('/serviceAccount')),
                           ),
                         ],
                       ),
