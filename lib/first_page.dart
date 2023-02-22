@@ -65,21 +65,24 @@ class _FirstPageState extends State<FirstPage> {
                       'assets/images/logo2.png',
                       scale: 2.5,
                     ),
-                    Text("HealthFinder",
-                        style: GoogleFonts.inknutAntiqua(
+                    SizedBox(height: 25),
+                    Text("MD Planner",
+                        style: GoogleFonts.audiowide(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
+                          letterSpacing: 2,
                           fontSize: 32,
                         )),
+                    const SizedBox(height: 25),
                     Text("Stay healthy.\nStay connected.",
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.outfit(
+                        style: GoogleFonts.electrolize(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 20,
                         )),
                     const SizedBox(
-                      height: 200,
+                      height: 100,
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
