@@ -144,55 +144,42 @@ class _LoginPageState extends State<LoginPage> {
             )
           ], backgroundColor: Colors.black),
           body: Container(
-            color: Colors.black,
-            child: Center(
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      flex: 5,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const SizedBox(
-                            width: 500,
-                            child: Text(
-                              "MD Planner este facut pentru a ajuta oameni de pretutindeni sa isi menegerieze programarile la medic intr-o maniera cat mai usoara. Cu MD Planner poti face programari la medicul de familie si sa primesti remindere pentru a nu uita de acestea. Totodata, aplicatia noastra iti tine minte si istoricul medical. ",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 25),
+              color: Colors.black,
+              child: Center(
+                child: Container(
+                  color: Colors.blue,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('Login'),
+                        Text(
+                            'Hey, enter your details to login to your account'),
+                        Form(
+                            child: Column(children: [
+                          Text('Email'),
+                          Text('Password'),
+                        ])),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF284EA6),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 40, vertical: 20),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50)),
+                          ),
+                          onPressed: (() => context.go('/login')),
+                          child: Text('Login',
                               textAlign: TextAlign.center,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF310F62),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 50, vertical: 20),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)),
-                            ),
-                            onPressed: (() => context.go('/serviceAccount')),
-                            child: Text('Sign In',
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.roboto(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 24,
-                                )),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                        flex: 5,
-                        child: Image.asset('assets/images/bigLogo.png'))
-                  ]),
-            ),
-          ),
+                              style: GoogleFonts.roboto(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 24,
+                              )),
+                        ),
+                      ]),
+                ),
+              )),
         ));
   }
 }
