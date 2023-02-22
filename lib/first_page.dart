@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:health_hub/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
@@ -17,7 +15,7 @@ class _FirstPageState extends State<FirstPage> {
   Widget build(BuildContext context) {
     return Responsive(
         mobile: Scaffold(
-          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
           body: SafeArea(
             child: Stack(
               alignment: Alignment.topCenter, // defult topLeft
@@ -26,7 +24,7 @@ class _FirstPageState extends State<FirstPage> {
                   children: [
                     Expanded(
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             gradient: RadialGradient(
                                 center: Alignment.topLeft,
                                 radius: 0.8,
@@ -42,7 +40,7 @@ class _FirstPageState extends State<FirstPage> {
                     ),
                     Expanded(
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             gradient: RadialGradient(
                                 center: Alignment.topRight,
                                 radius: 0.8,
@@ -60,7 +58,7 @@ class _FirstPageState extends State<FirstPage> {
                 ),
                 Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 200,
                     ),
                     Image.asset(
@@ -80,24 +78,25 @@ class _FirstPageState extends State<FirstPage> {
                           color: Colors.white,
                           fontSize: 16,
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 200,
                     ),
                     ElevatedButton(
-                      child: Text('Login',
-                          style: GoogleFonts.roboto(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 26,
-                          )),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(51, 112, 255, 0.75),
+                        backgroundColor:
+                            const Color.fromRGBO(51, 112, 255, 0.75),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 85, vertical: 20),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50)),
                       ),
                       onPressed: (() => context.push('/')),
+                      child: Text('Login',
+                          style: GoogleFonts.roboto(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 26,
+                          )),
                     ),
                   ],
                 ),
@@ -115,25 +114,25 @@ class _FirstPageState extends State<FirstPage> {
           appBar: AppBar(actions: <Widget>[
             TextButton(
               onPressed: () {},
-              child: const Text('About'),
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
               ),
+              child: const Text('About'),
             ),
             //change
             TextButton(
               onPressed: () {},
-              child: const Text('Contact'),
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
               ),
+              child: const Text('Contact'),
             ),
             TextButton(
               onPressed: () {},
-              child: const Text('Policy'),
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
               ),
+              child: const Text('Policy'),
             )
           ], backgroundColor: Colors.black),
           body: Container(
@@ -150,8 +149,8 @@ class _FirstPageState extends State<FirstPage> {
                         children: [
                           Container(
                             width: 500,
-                            child: Text(
-                              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and ",
+                            child: const Text(
+                              "MD Planner este facut pentru a ajuta oameni de pretutindeni sa isi menegerieze programarile la medic intr-o maniera cat mai usoara. Cu MD Planner poti face programari la medicul de familie si sa primesti remindere pentru a nu uita de acestea. Totodata, aplicatia noastra iti tine minte si istoricul medical. ",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 25),
                               textAlign: TextAlign.center,
@@ -162,12 +161,12 @@ class _FirstPageState extends State<FirstPage> {
                           ),
                           TextButton(
                             onPressed: () {},
+                            style: TextButton.styleFrom(
+                              foregroundColor: Colors.white,
+                            ),
                             child: const Text(
                               'Login',
                               style: TextStyle(fontSize: 30),
-                            ),
-                            style: TextButton.styleFrom(
-                              foregroundColor: Colors.white,
                             ),
                           )
                         ],
