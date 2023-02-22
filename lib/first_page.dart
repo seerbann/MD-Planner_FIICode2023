@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:health_hub/responsive.dart';
 
 class FirstPage extends StatefulWidget {
@@ -27,25 +25,25 @@ class _FirstPageState extends State<FirstPage> {
           appBar: AppBar(actions: <Widget>[
             TextButton(
               onPressed: () {},
-              child: const Text('About'),
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
               ),
+              child: const Text('About'),
             ),
             //change
             TextButton(
               onPressed: () {},
-              child: const Text('Contact'),
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
               ),
+              child: const Text('Contact'),
             ),
             TextButton(
               onPressed: () {},
-              child: const Text('Policy'),
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
               ),
+              child: const Text('Policy'),
             )
           ], backgroundColor: Colors.black),
           body: Container(
@@ -60,7 +58,7 @@ class _FirstPageState extends State<FirstPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
+                          const SizedBox(
                             width: 500,
                             child: Text(
                               "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and ",
@@ -69,17 +67,17 @@ class _FirstPageState extends State<FirstPage> {
                               textAlign: TextAlign.center,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           TextButton(
                             onPressed: () {},
+                            style: TextButton.styleFrom(
+                              foregroundColor: Colors.white,
+                            ),
                             child: const Text(
                               'Login',
                               style: TextStyle(fontSize: 30),
-                            ),
-                            style: TextButton.styleFrom(
-                              foregroundColor: Colors.white,
                             ),
                           )
                         ],
