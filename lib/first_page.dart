@@ -159,16 +159,23 @@ class _FirstPageState extends State<FirstPage> {
                           const SizedBox(
                             height: 20,
                           ),
-                          TextButton(
-                            onPressed: () {},
-                            style: TextButton.styleFrom(
-                              foregroundColor: Colors.white,
+                          ElevatedButton(
+                            child: Text('Sign In',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.roboto(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                )),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFF310F62),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 50, vertical: 20),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50)),
                             ),
-                            child: const Text(
-                              'Login',
-                              style: TextStyle(fontSize: 30),
-                            ),
-                          )
+                            onPressed: (() => context.go('/serviceAccount')),
+                          ),
                         ],
                       ),
                     ),
