@@ -24,5 +24,9 @@ GoRouter router = GoRouter(
       path: '/',
       builder: (context, state) => const FirstPage(),
     ),
+    GoRoute(
+      path: '/login',
+      builder: (context, state) => const FirstPage(),
+    )
   ],
 );
