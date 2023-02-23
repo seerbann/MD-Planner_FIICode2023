@@ -255,22 +255,56 @@ class _FirstPageState extends State<FirstPage> {
                           const SizedBox(
                             height: 20,
                           ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF284EA6),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 70, vertical: 30),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)),
-                            ),
-                            onPressed: (() => context.go('/login')),
-                            child: Text('Login',
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.roboto(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 24,
-                                )),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFF284EA6),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 70, vertical: 30),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50)),
+                                ),
+                                onPressed: (() => context.go('/login')),
+                                child: Text('Login',
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.roboto(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                    )),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text('sau',
+                                  style: GoogleFonts.roboto(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white.withOpacity(0.5),
+                                    fontSize: 24,
+                                  )),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFF284EA6),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 30, vertical: 30),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50)),
+                                ),
+                                onPressed: (() => context.go('/signin/medic')),
+                                child: Text('Inregistreaza-te ca medic',
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.roboto(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                    )),
+                              ),
+                            ],
                           ),
                         ],
                       ),
