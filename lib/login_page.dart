@@ -12,6 +12,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   @override
+  final _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Responsive(
         mobile: Scaffold(
@@ -174,37 +175,121 @@ class _LoginPageState extends State<LoginPage> {
               color: Colors.black,
               child: Center(
                 child: Container(
-                  color: Colors.blue,
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Text('Login'),
-                        const Text(
-                            'Hey, enter your details to login to your account'),
-                        Form(
-                            child: Column(children: const [
-                          Text('Email'),
-                          Text('Password'),
-                        ])),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF284EA6),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 40, vertical: 20),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50)),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color(0xFF405380)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Login',
+                            style: GoogleFonts.roboto(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 34,
+                            ),
                           ),
-                          onPressed: (() => context.go('/login')),
-                          child: Text('Login',
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.roboto(
-                                fontWeight: FontWeight.bold,
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                              'Hey, enter your details to login to your account',
+                              style: GoogleFonts.outfit(
                                 color: Colors.white,
-                                fontSize: 24,
+                                fontSize: 15,
                               )),
-                        ),
-                      ]),
+                          SizedBox(
+                            height: 50,
+                          ),
+                          Form(
+                              key: _formKey,
+                              child: Column(children: [
+                                Container(
+                                  width: 400,
+                                  child: TextFormField(
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter some text';
+                                      }
+                                      return null;
+                                    },
+                                    style: TextStyle(color: Colors.white),
+                                    decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                        borderSide: BorderSide(
+                                            width: 2, color: Color(0xFF202A42)),
+                                      ),
+                                      hintText: 'Email',
+                                      hintStyle: TextStyle(
+                                        color:
+                                            Color.fromRGBO(255, 255, 255, 0.4),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  width: 400,
+                                  child: TextFormField(
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter your password';
+                                      }
+                                      return null;
+                                    },
+                                    style: TextStyle(color: Colors.white),
+                                    decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                        borderSide: BorderSide(
+                                            width: 2, color: Color(0xFF202A42)),
+                                      ),
+                                      hintText: 'Password',
+                                      hintStyle: TextStyle(
+                                        color:
+                                            Color.fromRGBO(255, 255, 255, 0.4),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ])),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF284EA6),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 40, vertical: 20),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50)),
+                            ),
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                context.go('/');
+                              }
+                            },
+                            child: Text('Login',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.roboto(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                )),
+                          ),
+                        ]),
+                  ),
                 ),
               )),
         ));
