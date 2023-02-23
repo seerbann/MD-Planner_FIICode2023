@@ -65,7 +65,7 @@ class _FirstPageState extends State<FirstPage> {
                       'assets/images/logo2.png',
                       scale: 2.5,
                     ),
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
                     Text("MD Planner",
                         style: GoogleFonts.audiowide(
                           fontWeight: FontWeight.bold,
