@@ -12,8 +12,23 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   @override
+  //variabiles
+  bool isChecked = false;
   final _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
+    //pentru checkbox
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.white;
+    }
+
     return Responsive(
         mobile: Scaffold(
           backgroundColor: const Color.fromARGB(255, 0, 0, 0),
@@ -124,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(50)),
                           ),
-                          onPressed: (() => context.push('/')),
+                          onPressed: (() => context.go('/')),
                           child: Text('Login',
                               style: GoogleFonts.roboto(
                                 fontWeight: FontWeight.bold,
@@ -197,7 +212,7 @@ class _LoginPageState extends State<LoginPage> {
                             height: 20,
                           ),
                           Text(
-                              'Hey, enter your details to login to your account',
+                              'Hey, introdu datele pentru a te putea autentifica.',
                               style: GoogleFonts.outfit(
                                 color: Colors.white,
                                 fontSize: 15,
@@ -217,19 +232,28 @@ class _LoginPageState extends State<LoginPage> {
                                       }
                                       return null;
                                     },
-                                    style: TextStyle(color: Colors.white),
+                                    style: const TextStyle(color: Colors.white),
                                     decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor:
+                                          const Color.fromRGBO(32, 42, 66, 1),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                        borderSide: const BorderSide(
+                                            color: Color.fromARGB(
+                                                255, 59, 85, 255),
+                                            width: 2.0),
+                                      ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10)),
-                                        borderSide: BorderSide(
-                                            width: 2, color: Color(0xFF202A42)),
+                                        borderRadius: BorderRadius.circular(20),
+                                        borderSide: const BorderSide(
+                                            color: Color.fromARGB(255, 0, 0, 0),
+                                            width: 2.0),
                                       ),
                                       hintText: 'Email',
-                                      hintStyle: TextStyle(
-                                        color:
-                                            Color.fromRGBO(255, 255, 255, 0.4),
-                                        fontWeight: FontWeight.bold,
+                                      hintStyle: const TextStyle(
+                                        color: Color.fromRGBO(255, 255, 255, 1),
+                                        // fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ),
@@ -242,23 +266,32 @@ class _LoginPageState extends State<LoginPage> {
                                   child: TextFormField(
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
-                                        return 'Please enter your password';
+                                        return 'Please enter some text';
                                       }
                                       return null;
                                     },
-                                    style: TextStyle(color: Colors.white),
+                                    style: const TextStyle(color: Colors.white),
                                     decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor:
+                                          const Color.fromRGBO(32, 42, 66, 1),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                        borderSide: const BorderSide(
+                                            color: Color.fromARGB(
+                                                255, 59, 85, 255),
+                                            width: 2.0),
+                                      ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10)),
-                                        borderSide: BorderSide(
-                                            width: 2, color: Color(0xFF202A42)),
+                                        borderRadius: BorderRadius.circular(20),
+                                        borderSide: const BorderSide(
+                                            color: Color.fromARGB(255, 0, 0, 0),
+                                            width: 2.0),
                                       ),
                                       hintText: 'Password',
-                                      hintStyle: TextStyle(
-                                        color:
-                                            Color.fromRGBO(255, 255, 255, 0.4),
-                                        fontWeight: FontWeight.bold,
+                                      hintStyle: const TextStyle(
+                                        color: Color.fromRGBO(255, 255, 255, 1),
+                                        // fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ),
@@ -267,13 +300,36 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: 20,
                           ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Checkbox(
+                                checkColor: Colors.white,
+                                fillColor:
+                                    MaterialStateProperty.resolveWith(getColor),
+                                value: isChecked,
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    isChecked = value!;
+                                  });
+                                },
+                              ),
+                              Text(
+                                'Remember me',
+                                style: TextStyle(color: Colors.white),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF284EA6),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 40, vertical: 20),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)),
+                                  borderRadius: BorderRadius.circular(10)),
                             ),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
