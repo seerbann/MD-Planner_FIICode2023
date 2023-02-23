@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:health_hub/first_page.dart';
-import 'package:health_hub/login_page.dart';
+import 'package:health_hub/login/login_page.dart';
 
 void main() {
   runApp(const MyApp());
