@@ -18,125 +18,155 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Responsive(
         mobile: Scaffold(
-          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-          resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            backgroundColor: const Color.fromARGB(255, 0, 0, 0),
             elevation: 0,
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Color.fromRGBO(51, 122, 255, 1),
+                    Color.fromRGBO(122, 162, 255, 1),
+                  ],
+                ),
+              ),
+            ),
           ),
-          body: SafeArea(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(45, 58, 90, 1),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  height: 600,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
+          body: Center(
+            child: Container(
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                    Color.fromRGBO(51, 122, 255, 1),
+                    Color.fromRGBO(122, 162, 255, 1),
+                  ])),
+              child: Center(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 20),
+                    Row(
                       children: [
-                        const SizedBox(height: 25),
-                        Text("Login",
-                            style: GoogleFonts.roboto(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              letterSpacing: 2,
-                              fontSize: 32,
-                            )),
-                        const SizedBox(height: 25),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 60),
-                          child: Text(
-                              "Hey, enter your details to login to your account",
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.outfit(
-                                color: Colors.white,
-                                fontSize: 20,
-                              )),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 20, top: 30),
-                          child: TextField(
-                            style: const TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: const Color.fromRGBO(32, 42, 66, 1),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide: const BorderSide(
-                                    color: Color.fromARGB(255, 59, 85, 255),
-                                    width: 2.0),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide: const BorderSide(
-                                    color: Color.fromARGB(255, 0, 0, 0),
-                                    width: 2.0),
-                              ),
-                              hintText: 'Email',
-                              hintStyle: const TextStyle(
-                                color: Color.fromRGBO(255, 255, 255, 1),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 20),
-                          child: TextField(
-                            obscureText: true,
-                            style: const TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: const Color.fromRGBO(32, 42, 66, 1),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide: const BorderSide(
-                                    color: Color.fromARGB(255, 59, 85, 255),
-                                    width: 2.0),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide: const BorderSide(
-                                    color: Color.fromARGB(255, 0, 0, 0),
-                                    width: 2.0),
-                              ),
-                              hintText: 'Password',
-                              hintStyle: const TextStyle(
-                                color: Color.fromRGBO(255, 255, 255, 1),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 100,
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromRGBO(51, 112, 255, 0.75),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 85, vertical: 20),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50)),
-                          ),
-                          onPressed: (() => context.go('/')),
-                          child: Text('Login',
+                          padding: const EdgeInsets.only(left: 30),
+                          child: Text("Autentificare",
                               style: GoogleFonts.roboto(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 26,
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                                letterSpacing: 2,
+                                fontSize: 30,
+                                fontWeight: FontWeight.w500,
                               )),
                         ),
                       ],
                     ),
-                  ),
+                    const SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 30),
+                          child: Text("Bine ai revenit",
+                              style: GoogleFonts.outfit(
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                                //letterSpacing: 2,
+                                fontSize: 18,
+                              )),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 40),
+                    Expanded(
+                        child: Container(
+                      decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(60),
+                              topRight: Radius.circular(60))),
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.all(30),
+                          child: Column(
+                            children: <Widget>[
+                              const SizedBox(
+                                height: 80,
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Color.fromRGBO(
+                                              122, 162, 255, 0.5),
+                                          blurRadius: 20,
+                                          offset: Offset(0, 10))
+                                    ]),
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: const BoxDecoration(
+                                          border: Border(
+                                              bottom: BorderSide(
+                                                  color: Color.fromRGBO(
+                                                      240, 240, 240, 1)))),
+                                      child: const TextField(
+                                        decoration: InputDecoration(
+                                            hintText: "Email",
+                                            hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                            border: InputBorder.none),
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.all(10),
+                                      child: const TextField(
+                                        obscureText: true,
+                                        decoration: InputDecoration(
+                                            hintText: "Parola",
+                                            hintStyle:
+                                                TextStyle(color: Colors.grey),
+                                            border: InputBorder.none),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 40,
+                              ),
+                              const Text(
+                                "Ai uitat parola?",
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                              const SizedBox(
+                                height: 40,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      const Color.fromRGBO(67, 123, 255, 1),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 25, vertical: 20),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50)),
+                                ),
+                                onPressed: (() => context.push('/login')),
+                                child: Text('Autentificare',
+                                    style: GoogleFonts.roboto(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      letterSpacing: 2,
+                                      fontSize: 20,
+                                    )),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ))
+                  ],
                 ),
               ),
             ),
