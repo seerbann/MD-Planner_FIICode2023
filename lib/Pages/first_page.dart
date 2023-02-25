@@ -15,95 +15,96 @@ class _FirstPageState extends State<FirstPage> {
   Widget build(BuildContext context) {
     return Responsive(
         mobile: Scaffold(
-          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-          body: SafeArea(
-            child: Stack(
-              alignment: Alignment.topCenter, // defult topLeft
-              children: [
-                Row(
+          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+          body: SingleChildScrollView(
+            child: SafeArea(
+              child: Center(
+                child: Column(
                   children: [
-                    Expanded(
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            gradient: RadialGradient(
-                                center: Alignment.topLeft,
-                                radius: 0.8,
-                                colors: [
-                              Color.fromRGBO(51, 112, 255, 0.75),
-                              Color.fromARGB(255, 0, 0, 0),
-                            ],
-                                stops: [
-                              0.1,
-                              1,
-                            ])),
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Image.asset(
+                          'assets/images/topRight.png',
+                          scale: 0.75,
+                        ),
+                      ],
                     ),
-                    Expanded(
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            gradient: RadialGradient(
-                                center: Alignment.topRight,
-                                radius: 0.8,
-                                colors: [
-                              Color.fromRGBO(51, 112, 255, 0.75),
-                              Color.fromARGB(255, 0, 0, 0),
-                            ],
-                                stops: [
-                              0.1,
-                              1,
-                            ])),
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    const SizedBox(
-                      height: 200,
-                    ),
+                    const SizedBox(height: 25),
                     Image.asset(
                       'assets/images/logo2.png',
-                      scale: 2.5,
+                      scale: 3.75,
                     ),
                     const SizedBox(height: 25),
                     Text("MD Planner",
-                        style: GoogleFonts.audiowide(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          letterSpacing: 2,
-                          fontSize: 32,
+                        style: GoogleFonts.roboto(
+                          color: const Color.fromRGBO(40, 78, 166, 1),
+                          letterSpacing: 5,
+                          fontSize: 38,
+                          fontWeight: FontWeight.w500,
                         )),
-                    const SizedBox(height: 25),
+                    const SizedBox(height: 35),
                     Text("Stay healthy.\nStay connected.",
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.electrolize(
+                        style: GoogleFonts.roboto(
+                          color: const Color.fromRGBO(0, 0, 0, 1),
+                          letterSpacing: 1,
+                          fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontSize: 20,
                         )),
-                    const SizedBox(
-                      height: 100,
-                    ),
+                    const SizedBox(height: 75),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            const Color.fromRGBO(51, 112, 255, 0.75),
+                        backgroundColor: const Color.fromRGBO(67, 123, 255, 1),
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 85, vertical: 20),
+                            horizontal: 25, vertical: 20),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50)),
                       ),
                       onPressed: (() => context.push('/login')),
-                      child: Text('Login',
+                      child: Text('Autentificare',
                           style: GoogleFonts.roboto(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
-                            fontSize: 26,
+                            letterSpacing: 2,
+                            fontSize: 20,
+                          )),
+                    ),
+                    const SizedBox(height: 10),
+                    Text("sau",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.roboto(
+                          color: const Color.fromRGBO(186, 186, 186, 1),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2,
+                        )),
+                    const SizedBox(height: 10),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          side: const BorderSide(
+                              width: 5, color: Color.fromRGBO(67, 123, 255, 1)),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50)),
+                          backgroundColor:
+                              const Color.fromARGB(255, 255, 255, 255),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 15, horizontal: 30)),
+                      onPressed: () {
+                        return context.push('/login');
+                      },
+                      child: Text('Inregistreaza-te\nca medic',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.roboto(
+                            fontWeight: FontWeight.bold,
+                            color: const Color.fromARGB(255, 0, 0, 0),
+                            fontSize: 16,
+                            letterSpacing: 1,
                           )),
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
@@ -275,7 +276,7 @@ class _FirstPageState extends State<FirstPage> {
                                       fontSize: 24,
                                     )),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               Text('sau',
@@ -284,7 +285,7 @@ class _FirstPageState extends State<FirstPage> {
                                     color: Colors.white.withOpacity(0.5),
                                     fontSize: 24,
                                   )),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               ElevatedButton(
