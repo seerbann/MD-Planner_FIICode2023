@@ -361,67 +361,137 @@ class _FirstPageState extends State<FirstPage> {
                     ],
                   ),
                   SizedBox(
-                    height: 150,
+                    height: 250,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 300, right: 300),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xFF437BFF)),
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          color: Color(0xFF437BFF)),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  'assets/images/check.png',
-                                  scale: 6,
-                                ),
-                                Container(
-                                  width: 200,
-                                  child: Column(
+                  Row(
+                    children: [
+                      Spacer(
+                        flex: 1,
+                      ),
+                      Expanded(
+                        flex: 6,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Color(0xFF437BFF)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              color: Color(0xFF437BFF)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 8, bottom: 8),
+                                child: Container(
+                                  child: Row(
                                     children: [
-                                      Text('Programare online',
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.roboto(
-                                            fontWeight: FontWeight.bold,
-                                            color: const Color(0xFFFFFFFF),
-                                            fontSize: 20,
-                                          )),
-                                      Text(
-                                          'Un sistem simpu de programari pe care oricine il poate folosi',
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.roboto(
-                                            fontWeight: FontWeight.bold,
-                                            color: const Color(0xFFFFFFFF),
-                                            fontSize: 15,
-                                          )),
+                                      Image.asset(
+                                        'assets/images/check.png',
+                                        scale: 8,
+                                      ),
+                                      Container(
+                                        width: 200,
+                                        child: Column(
+                                          children: [
+                                            Text('Programare online',
+                                                textAlign: TextAlign.center,
+                                                style: GoogleFonts.roboto(
+                                                  fontWeight: FontWeight.bold,
+                                                  color:
+                                                      const Color(0xFFFFFFFF),
+                                                  fontSize: 20,
+                                                )),
+                                            Text(
+                                                'Un sistem simpu de programari pe care oricine il poate folosi',
+                                                textAlign: TextAlign.center,
+                                                style: GoogleFonts.roboto(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: const Color(0xFFFFFFFF)
+                                                      .withOpacity(0.5),
+                                                  fontSize: 15,
+                                                )),
+                                          ],
+                                        ),
+                                      )
                                     ],
                                   ),
-                                )
-                              ],
-                            ),
+                                ),
+                              ),
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/check.png',
+                                      scale: 8,
+                                    ),
+                                    Container(
+                                      width: 200,
+                                      child: Column(
+                                        children: [
+                                          Text('Istoric medical',
+                                              textAlign: TextAlign.center,
+                                              style: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.bold,
+                                                color: const Color(0xFFFFFFFF),
+                                                fontSize: 20,
+                                              )),
+                                          Text(
+                                              'Retinerea fiecarei vizite medicale',
+                                              textAlign: TextAlign.center,
+                                              style: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.bold,
+                                                color: const Color(0xFFFFFFFF)
+                                                    .withOpacity(0.5),
+                                                fontSize: 15,
+                                              )),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/check.png',
+                                      scale: 8,
+                                    ),
+                                    Container(
+                                      width: 200,
+                                      child: Column(
+                                        children: [
+                                          Text('Pacienti & Medici',
+                                              textAlign: TextAlign.center,
+                                              style: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.bold,
+                                                color: const Color(0xFFFFFFFF),
+                                                fontSize: 20,
+                                              )),
+                                          Text(
+                                              'Atat medicii cat si pacientii pot folosi aplicatia',
+                                              textAlign: TextAlign.center,
+                                              style: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.bold,
+                                                color: const Color(0xFFFFFFFF)
+                                                    .withOpacity(0.5),
+                                                fontSize: 15,
+                                              )),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                          Container(
-                            child: Image.asset(
-                              'assets/images/check.png',
-                              scale: 6,
-                            ),
-                          ),
-                          Container(
-                            child: Image.asset(
-                              'assets/images/check.png',
-                              scale: 6,
-                            ),
-                          )
-                        ],
+                        ),
                       ),
-                    ),
-                  )
+                      Spacer(
+                        flex: 1,
+                      )
+                    ],
+                  ),
                 ]),
           ),
         ));
