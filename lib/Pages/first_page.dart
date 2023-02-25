@@ -359,6 +359,42 @@ class _FirstPageState extends State<FirstPage> {
                         'assets/images/logo2.png',
                       ),
                     ],
+                  ),
+                  SizedBox(
+                    height: 150,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 300, right: 300),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xFF437BFF)),
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          color: Color(0xFF437BFF)),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            child: Image.asset(
+                              'assets/images/check.png',
+                              scale: 6,
+                            ),
+                          ),
+                          Container(
+                            child: Image.asset(
+                              'assets/images/check.png',
+                              scale: 6,
+                            ),
+                          ),
+                          Container(
+                            child: Image.asset(
+                              'assets/images/check.png',
+                              scale: 6,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   )
                 ]),
           ),
