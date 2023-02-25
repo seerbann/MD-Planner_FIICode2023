@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_hub/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
+import 'firstpage_components.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -109,111 +110,12 @@ class _FirstPageState extends State<FirstPage> {
           ),
         ),
         tablet: Scaffold(
-          appBar: AppBar(actions: <Widget>[
-            TextButton(
-              onPressed: () {},
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.white,
-              ),
-              child: const Text('About'),
-            ),
-            //change
-            TextButton(
-              onPressed: () {},
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.white,
-              ),
-              child: const Text('Contact'),
-            ),
-            TextButton(
-              onPressed: () {},
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.white,
-              ),
-              child: const Text('Policy'),
-            )
-          ], backgroundColor: Colors.black),
-          body: Container(
-            color: Colors.black,
-            child: Center(
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                        flex: 5,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/images/logo2.png',
-                              scale: 2,
-                            ),
-                            Text("MD Planner",
-                                style: GoogleFonts.audiowide(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  letterSpacing: 2,
-                                  fontSize: 32,
-                                )),
-                            Text("Stay healthy.\nStay connected.",
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.electrolize(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                )),
-                          ],
-                        )),
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const SizedBox(
-                            width: 600,
-                            child: Text(
-                              "MD Planner este facut pentru a ajuta oameni de pretutindeni sa isi menegerieze programarile la medic intr-o maniera cat mai usoara. Cu MD Planner poti face programari la medicul de familie si sa primesti remindere pentru a nu uita de acestea. Totodata, aplicatia noastra iti tine minte si istoricul medical. ",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF284EA6),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 50, vertical: 20),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)),
-                            ),
-                            onPressed: (() => context.go('/login')),
-                            child: Text('Login',
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.roboto(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 24,
-                                )),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ]),
-            ),
-          ),
-        ),
-        //committ
-        desktop: Scaffold(
           appBar: AppBar(
             actions: <Widget>[
               TextButton(
                 onPressed: () {},
                 style: TextButton.styleFrom(
-                  foregroundColor: Color(0xFF4D4B4B),
+                  foregroundColor: const Color(0xFF4D4B4B),
                 ),
                 child: const Text('About'),
               ),
@@ -221,23 +123,24 @@ class _FirstPageState extends State<FirstPage> {
               TextButton(
                 onPressed: () {},
                 style: TextButton.styleFrom(
-                  foregroundColor: Color(0xFF4D4B4B),
+                  foregroundColor: const Color(0xFF4D4B4B),
                 ),
                 child: const Text('Contact'),
               ),
               TextButton(
                 onPressed: () {},
                 style: TextButton.styleFrom(
-                  foregroundColor: Color(0xFF4D4B4B),
+                  foregroundColor: const Color(0xFF4D4B4B),
                 ),
                 child: const Text('Policy'),
               )
             ],
             backgroundColor: Colors.white,
+            elevation: 0,
           ),
           body: Center(
             child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Row(
@@ -270,7 +173,7 @@ class _FirstPageState extends State<FirstPage> {
                                 fontSize: 40,
                                 fontWeight: FontWeight.bold,
                               )),
-                          SizedBox(
+                          const SizedBox(
                             height: 100,
                           ),
                           Column(
@@ -288,7 +191,7 @@ class _FirstPageState extends State<FirstPage> {
                                       fontWeight: FontWeight.bold,
                                     )),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               Row(
@@ -355,13 +258,7 @@ class _FirstPageState extends State<FirstPage> {
                           ),
                         ],
                       ),
-                      Image.asset(
-                        'assets/images/logo2.png',
-                      ),
                     ],
-                  ),
-                  SizedBox(
-                    height: 250,
                   ),
                   Row(
                     children: [
@@ -369,56 +266,56 @@ class _FirstPageState extends State<FirstPage> {
                         flex: 1,
                       ),
                       Expanded(
-                        flex: 6,
+                        flex: 2,
                         child: Container(
                           decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xFF437BFF)),
+                              border:
+                                  Border.all(color: const Color(0xFF437BFF)),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                              color: Color(0xFF437BFF)),
-                          child: Row(
+                                  const BorderRadius.all(Radius.circular(10)),
+                              color: const Color(0xFF437BFF)),
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 8, bottom: 8),
-                                child: Container(
-                                  child: Row(
-                                    children: [
-                                      Image.asset(
-                                        'assets/images/check.png',
-                                        scale: 8,
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/check.png',
+                                      scale: 8,
+                                    ),
+                                    Container(
+                                      width: 200,
+                                      child: Column(
+                                        children: [
+                                          Text('Programare online',
+                                              textAlign: TextAlign.center,
+                                              style: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.bold,
+                                                color: const Color(0xFFFFFFFF),
+                                                fontSize: 20,
+                                              )),
+                                          Text(
+                                              'Un sistem simpu de programari pe care oricine il poate folosi',
+                                              textAlign: TextAlign.center,
+                                              style: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.bold,
+                                                color: const Color(0xFFFFFFFF)
+                                                    .withOpacity(0.5),
+                                                fontSize: 15,
+                                              )),
+                                        ],
                                       ),
-                                      Container(
-                                        width: 200,
-                                        child: Column(
-                                          children: [
-                                            Text('Programare online',
-                                                textAlign: TextAlign.center,
-                                                style: GoogleFonts.roboto(
-                                                  fontWeight: FontWeight.bold,
-                                                  color:
-                                                      const Color(0xFFFFFFFF),
-                                                  fontSize: 20,
-                                                )),
-                                            Text(
-                                                'Un sistem simpu de programari pe care oricine il poate folosi',
-                                                textAlign: TextAlign.center,
-                                                style: GoogleFonts.roboto(
-                                                  fontWeight: FontWeight.bold,
-                                                  color: const Color(0xFFFFFFFF)
-                                                      .withOpacity(0.5),
-                                                  fontSize: 15,
-                                                )),
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
+                                    )
+                                  ],
                                 ),
                               ),
-                              Container(
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Image.asset(
                                       'assets/images/check.png',
@@ -450,8 +347,10 @@ class _FirstPageState extends State<FirstPage> {
                                   ],
                                 ),
                               ),
-                              Container(
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Image.asset(
                                       'assets/images/check.png',
@@ -494,6 +393,7 @@ class _FirstPageState extends State<FirstPage> {
                   ),
                 ]),
           ),
-        ));
+        ),
+        desktop: const FirstpageComponent());
   }
 }

@@ -172,8 +172,8 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         ),
-        tablet: loginComponent(),
+        tablet: const LoginComponent(),
         //committ
-        desktop: loginComponent());
+        desktop: const LoginComponent());
   }
 }
