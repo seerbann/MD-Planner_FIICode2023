@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class loginComponent extends StatefulWidget {
   const loginComponent({super.key});
@@ -75,7 +73,7 @@ class _loginComponentState extends State<loginComponent> {
                           fontSize: 34,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Text('Hey, introdu datele pentru a te putea autentifica.',
@@ -83,7 +81,7 @@ class _loginComponentState extends State<loginComponent> {
                             color: Colors.white,
                             fontSize: 15,
                           )),
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       ),
                       Form(
@@ -123,7 +121,7 @@ class _loginComponentState extends State<loginComponent> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Container(
@@ -161,7 +159,7 @@ class _loginComponentState extends State<loginComponent> {
                               ),
                             ),
                           ])),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Row(
@@ -178,13 +176,13 @@ class _loginComponentState extends State<loginComponent> {
                               });
                             },
                           ),
-                          Text(
+                          const Text(
                             'Remember me',
                             style: TextStyle(color: Colors.white),
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       ElevatedButton(
