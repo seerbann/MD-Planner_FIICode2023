@@ -1,21 +1,18 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
-class signinpagemedicComponent extends StatefulWidget {
-  const signinpagemedicComponent({super.key});
+class SigninpagemedicComponent extends StatefulWidget {
+  const SigninpagemedicComponent({super.key});
 
   @override
-  State<signinpagemedicComponent> createState() =>
-      _signinpagemedicComponentState();
+  State<SigninpagemedicComponent> createState() =>
+      _SigninpagemedicComponentState();
 }
 
-class _signinpagemedicComponentState extends State<signinpagemedicComponent> {
-  @override
+class _SigninpagemedicComponentState extends State<SigninpagemedicComponent> {
   final _formKey = GlobalKey<FormState>();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(actions: <Widget>[
@@ -64,7 +61,7 @@ class _signinpagemedicComponentState extends State<signinpagemedicComponent> {
                           fontSize: 34,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Text('Hey, introdu datele pentru a te putea autentifica.',
@@ -72,7 +69,7 @@ class _signinpagemedicComponentState extends State<signinpagemedicComponent> {
                             color: Colors.white,
                             fontSize: 15,
                           )),
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       ),
                       Form(
@@ -112,7 +109,7 @@ class _signinpagemedicComponentState extends State<signinpagemedicComponent> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Container(
@@ -150,13 +147,13 @@ class _signinpagemedicComponentState extends State<signinpagemedicComponent> {
                               ),
                             ),
                           ])),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(
+                          const Text(
                             'Remember me',
                             style: TextStyle(color: Colors.white),
                           )

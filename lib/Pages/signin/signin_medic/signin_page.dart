@@ -255,8 +255,8 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
             ),
           ),
         ),
-        tablet: signinpagemedicComponent(),
+        tablet: SigninpagemedicComponent(),
         //committ
-        desktop: signinpagemedicComponent());
+        desktop: SigninpagemedicComponent());
   }
 }

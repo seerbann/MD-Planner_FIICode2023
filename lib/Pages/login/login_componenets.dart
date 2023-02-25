@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class loginComponent extends StatefulWidget {
-  const loginComponent({super.key});
+class LoginComponent extends StatefulWidget {
+  const LoginComponent({super.key});
 
   @override
-  State<loginComponent> createState() => _loginComponentState();
+  State<LoginComponent> createState() => _LoginComponentState();
 }
 
-class _loginComponentState extends State<loginComponent> {
+class _LoginComponentState extends State<LoginComponent> {
   Color getColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{
       MaterialState.pressed,
