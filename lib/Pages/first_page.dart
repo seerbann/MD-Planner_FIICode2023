@@ -375,9 +375,35 @@ class _FirstPageState extends State<FirstPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            child: Image.asset(
-                              'assets/images/check.png',
-                              scale: 6,
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  'assets/images/check.png',
+                                  scale: 6,
+                                ),
+                                Container(
+                                  width: 200,
+                                  child: Column(
+                                    children: [
+                                      Text('Programare online',
+                                          textAlign: TextAlign.center,
+                                          style: GoogleFonts.roboto(
+                                            fontWeight: FontWeight.bold,
+                                            color: const Color(0xFFFFFFFF),
+                                            fontSize: 20,
+                                          )),
+                                      Text(
+                                          'Un sistem simpu de programari pe care oricine il poate folosi',
+                                          textAlign: TextAlign.center,
+                                          style: GoogleFonts.roboto(
+                                            fontWeight: FontWeight.bold,
+                                            color: const Color(0xFFFFFFFF),
+                                            fontSize: 15,
+                                          )),
+                                    ],
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                           Container(
