@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:health_hub/Pages/login/login_page.dart';
+import 'package:health_hub/Pages/paginaPacienti/pagina_pacienti.dart';
 import 'package:health_hub/Pages/signin/pending.dart';
 import 'package:health_hub/Pages/signin/signin_medic/signin_page.dart';
 import 'package:health_hub/Pages/firstpage/first_page.dart';
@@ -48,6 +49,10 @@ GoRouter router = GoRouter(
     GoRoute(
       path: '/signin/user/contCreat',
       builder: (context, state) => const ContCreat(),
+    ),
+    GoRoute(
+      path: '/pacienti',
+      builder: (context, state) => const PaginaPacienti(),
     ),
   ],
 );
