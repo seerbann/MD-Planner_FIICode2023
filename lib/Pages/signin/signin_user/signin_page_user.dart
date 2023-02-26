@@ -319,7 +319,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
                     const SizedBox(height: 5),
                     Padding(
                       padding: const EdgeInsets.only(left: 30),
-                      child: Text("Bine ai venit",
+                      child: Text("Ai fost invitat de catre numemedic",
                           style: GoogleFonts.outfit(
                             color: const Color.fromARGB(255, 255, 255, 255),
                             //letterSpacing: 2,
@@ -572,7 +572,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
                     const SizedBox(height: 5),
                     Padding(
                       padding: const EdgeInsets.only(left: 30),
-                      child: Text("Bine ai venit",
+                      child: Text("Ai fost invitat de catre numemedic",
                           style: GoogleFonts.outfit(
                             color: const Color.fromARGB(255, 255, 255, 255),
                             //letterSpacing: 2,
