@@ -152,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(50)),
                                 ),
-                                onPressed: (() => context.push('/login')),
+                                onPressed: (() => context.go('/pacienti')),
                                 child: Text('Autentificare',
                                     style: GoogleFonts.roboto(
                                       fontWeight: FontWeight.bold,
