@@ -237,7 +237,8 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                         borderRadius:
                                             BorderRadius.circular(50)),
                                   ),
-                                  onPressed: (() => context.push('/login')),
+                                  onPressed: (() =>
+                                      context.push('/signin/user/contCreat')),
                                   child: Text('Inregistrare',
                                       style: GoogleFonts.roboto(
                                         fontWeight: FontWeight.bold,
