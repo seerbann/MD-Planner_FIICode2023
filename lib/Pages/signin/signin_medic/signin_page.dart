@@ -31,57 +31,58 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
               ),
             ),
           ),
-          body: Center(
-            child: Container(
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                    Color.fromRGBO(51, 122, 255, 1),
-                    Color.fromRGBO(122, 162, 255, 1),
-                  ])),
-              child: Center(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 30),
-                          child: Text("Inregistrare",
-                              style: GoogleFonts.roboto(
-                                color: const Color.fromARGB(255, 255, 255, 255),
-                                letterSpacing: 2,
-                                fontSize: 30,
-                                fontWeight: FontWeight.w500,
-                              )),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 5),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 30),
-                          child: Text("Bine ai venit",
-                              style: GoogleFonts.outfit(
-                                color: const Color.fromARGB(255, 255, 255, 255),
-                                //letterSpacing: 2,
-                                fontSize: 18,
-                              )),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 40),
-                    Expanded(
-                        child: Container(
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(60),
-                              topRight: Radius.circular(60))),
-                      child: SingleChildScrollView(
+          body: SingleChildScrollView(
+            child: Center(
+              child: Container(
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                      Color.fromRGBO(51, 122, 255, 1),
+                      Color.fromRGBO(122, 162, 255, 1),
+                    ])),
+                child: Center(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 30),
+                            child: Text("Inregistrare",
+                                style: GoogleFonts.roboto(
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255),
+                                  letterSpacing: 2,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w500,
+                                )),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 30),
+                            child: Text("Bine ai venit",
+                                style: GoogleFonts.outfit(
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255),
+                                  //letterSpacing: 2,
+                                  fontSize: 18,
+                                )),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 40),
+                      Container(
+                        decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(60),
+                                topRight: Radius.circular(60))),
                         child: Padding(
                           padding: const EdgeInsets.all(30),
                           child: Column(
@@ -247,16 +248,16 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                             ],
                           ),
                         ),
-                      ),
-                    ))
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
         ),
-        tablet: SigninpagemedicComponent(),
+        tablet: const SigninpagemedicComponent(),
         //committ
-        desktop: SigninpagemedicComponent());
+        desktop: const SigninpagemedicComponent());
   }
 }

@@ -46,7 +46,7 @@ class _SigninpagemedicComponentState extends State<SigninpagemedicComponent> {
       ),
       body: Center(
           child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             gradient: LinearGradient(
           begin: Alignment.bottomRight,
           end: Alignment.topLeft,
@@ -88,7 +88,7 @@ class _SigninpagemedicComponentState extends State<SigninpagemedicComponent> {
                   border: Border.all(
                     color: Colors.white,
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                  borderRadius: const BorderRadius.all(Radius.circular(25)),
                   color: Colors.white,
                 ),
                 child: Padding(
@@ -255,6 +255,5 @@ class _SigninpagemedicComponentState extends State<SigninpagemedicComponent> {
         ),
       )),
     );
-    ;
   }
 }
