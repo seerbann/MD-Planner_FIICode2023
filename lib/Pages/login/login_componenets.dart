@@ -45,7 +45,7 @@ class _loginComponentState extends State<loginComponent> {
       ),
       body: Center(
           child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             gradient: LinearGradient(
           begin: Alignment.bottomRight,
           end: Alignment.topLeft,
@@ -87,7 +87,7 @@ class _loginComponentState extends State<loginComponent> {
                   border: Border.all(
                     color: Colors.white,
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                  borderRadius: const BorderRadius.all(Radius.circular(25)),
                   color: Colors.white,
                 ),
                 child: Padding(

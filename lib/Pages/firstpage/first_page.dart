@@ -92,7 +92,7 @@ class _FirstPageState extends State<FirstPage> {
                           padding: const EdgeInsets.symmetric(
                               vertical: 15, horizontal: 30)),
                       onPressed: () {
-                        return context.go('/signin/medic');
+                        return context.push('/signin/medic');
                       },
                       child: Text('Inregistreaza-te\nca medic',
                           textAlign: TextAlign.center,
@@ -262,7 +262,7 @@ class _FirstPageState extends State<FirstPage> {
                   ),
                   Row(
                     children: [
-                      Spacer(
+                      const Spacer(
                         flex: 1,
                       ),
                       Expanded(
@@ -386,7 +386,7 @@ class _FirstPageState extends State<FirstPage> {
                           ),
                         ),
                       ),
-                      Spacer(
+                      const Spacer(
                         flex: 1,
                       )
                     ],
