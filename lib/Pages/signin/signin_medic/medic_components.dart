@@ -15,178 +15,245 @@ class _SigninpagemedicComponentState extends State<SigninpagemedicComponent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(actions: <Widget>[
-        TextButton(
-          onPressed: () {},
-          style: TextButton.styleFrom(
-            foregroundColor: Colors.white,
+      appBar: AppBar(
+        leading: Image.asset('assets/images/logo2.png'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {},
+            style: TextButton.styleFrom(
+              foregroundColor: const Color(0xFF4D4B4B),
+            ),
+            child: const Text('About'),
           ),
-          child: const Text('About'),
-        ),
-        //change
-        TextButton(
-          onPressed: () {},
-          style: TextButton.styleFrom(
-            foregroundColor: Colors.white,
+          //change
+          TextButton(
+            onPressed: () {},
+            style: TextButton.styleFrom(
+              foregroundColor: const Color(0xFF4D4B4B),
+            ),
+            child: const Text('Contact'),
           ),
-          child: const Text('Contact'),
-        ),
-        TextButton(
-          onPressed: () {},
-          style: TextButton.styleFrom(
-            foregroundColor: Colors.white,
-          ),
-          child: const Text('Policy'),
-        )
-      ], backgroundColor: Colors.black),
-      body: Container(
-          color: Colors.black,
-          child: Center(
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: const Color.fromRGBO(45, 58, 90, 1)),
-              child: Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+          TextButton(
+            onPressed: () {},
+            style: TextButton.styleFrom(
+              foregroundColor: const Color(0xFF4D4B4B),
+            ),
+            child: const Text('Policy'),
+          )
+        ],
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
+      body: Center(
+          child: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+          begin: Alignment.bottomRight,
+          end: Alignment.topLeft,
+          colors: [
+            Color.fromRGBO(122, 162, 255, 1),
+            Color.fromRGBO(51, 112, 255, 1),
+          ],
+        )),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 30),
+                child: Text("Inregistrare",
+                    style: GoogleFonts.roboto(
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      letterSpacing: 2,
+                      fontSize: 30,
+                      fontWeight: FontWeight.w500,
+                    )),
+              ),
+              const SizedBox(height: 5),
+              Padding(
+                padding: const EdgeInsets.only(left: 30),
+                child: Text("Bine ai venit",
+                    style: GoogleFonts.outfit(
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      //letterSpacing: 2,
+                      fontSize: 18,
+                    )),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.white,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                  color: Colors.white,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 30, right: 30, top: 50, bottom: 30),
+                  child: Column(
                     children: [
-                      Text(
-                        'Login',
-                        style: GoogleFonts.roboto(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontSize: 34,
+                      Container(
+                        width: 500,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Color.fromRGBO(122, 162, 255, 0.5),
+                                  blurRadius: 20,
+                                  offset: Offset(0, 10))
+                            ]),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: const BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color: Color.fromRGBO(
+                                              240, 240, 240, 1)))),
+                              child: const TextField(
+                                decoration: InputDecoration(
+                                    hintText: "Prenume",
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    border: InputBorder.none),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              child: const TextField(
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                    hintText: "Parola",
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    border: InputBorder.none),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: const BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color: Color.fromRGBO(
+                                              240, 240, 240, 1)))),
+                              child: const TextField(
+                                decoration: InputDecoration(
+                                    hintText: "Email",
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    border: InputBorder.none),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: const BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color: Color.fromRGBO(
+                                              240, 240, 240, 1)))),
+                              child: const TextField(
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                    hintText: "Parola",
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    border: InputBorder.none),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: const BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color: Color.fromRGBO(
+                                              240, 240, 240, 1)))),
+                              child: const TextField(
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                    hintText: "Confirma Parola",
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    border: InputBorder.none),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: const BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color: Color.fromRGBO(
+                                              240, 240, 240, 1)))),
+                              child: const TextField(
+                                decoration: InputDecoration(
+                                    hintText: "Telefon",
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    border: InputBorder.none),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: const BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color: Color.fromRGBO(
+                                              240, 240, 240, 1)))),
+                              child: const TextField(
+                                decoration: InputDecoration(
+                                    hintText: "Oras",
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    border: InputBorder.none),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              child: const TextField(
+                                decoration: InputDecoration(
+                                    hintText:
+                                        "Poza ce certifica ca sunteti medic",
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    border: InputBorder.none),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 40,
                       ),
-                      Text('Hey, introdu datele pentru a te putea autentifica.',
-                          style: GoogleFonts.outfit(
-                            color: Colors.white,
-                            fontSize: 15,
-                          )),
+                      const Text(
+                        "Ai uitat parola?",
+                        style: TextStyle(color: Colors.grey),
+                      ),
                       const SizedBox(
-                        height: 50,
-                      ),
-                      Form(
-                          key: _formKey,
-                          child: Column(children: [
-                            Container(
-                              width: 400,
-                              child: TextFormField(
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter some text';
-                                  }
-                                  return null;
-                                },
-                                style: const TextStyle(color: Colors.white),
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor:
-                                      const Color.fromRGBO(32, 42, 66, 1),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    borderSide: const BorderSide(
-                                        color: Color.fromARGB(255, 59, 85, 255),
-                                        width: 2.0),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    borderSide: const BorderSide(
-                                        color: Color.fromARGB(255, 0, 0, 0),
-                                        width: 2.0),
-                                  ),
-                                  hintText: 'Email',
-                                  hintStyle: const TextStyle(
-                                    color: Color.fromRGBO(255, 255, 255, 1),
-                                    // fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Container(
-                              width: 400,
-                              child: TextFormField(
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter some text';
-                                  }
-                                  return null;
-                                },
-                                style: const TextStyle(color: Colors.white),
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor:
-                                      const Color.fromRGBO(32, 42, 66, 1),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    borderSide: const BorderSide(
-                                        color: Color.fromARGB(255, 59, 85, 255),
-                                        width: 2.0),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    borderSide: const BorderSide(
-                                        color: Color.fromARGB(255, 0, 0, 0),
-                                        width: 2.0),
-                                  ),
-                                  hintText: 'Password',
-                                  hintStyle: const TextStyle(
-                                    color: Color.fromRGBO(255, 255, 255, 1),
-                                    // fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ])),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Text(
-                            'Remember me',
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
+                        height: 40,
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF284EA6),
+                          backgroundColor:
+                              const Color.fromRGBO(67, 123, 255, 1),
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 20),
+                              horizontal: 25, vertical: 20),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
+                              borderRadius: BorderRadius.circular(50)),
                         ),
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            context.go('/');
-                          }
-                        },
-                        child: Text('Login',
-                            textAlign: TextAlign.center,
+                        onPressed: (() => context.push('/login')),
+                        child: Text('Autentificare',
                             style: GoogleFonts.roboto(
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
-                              fontSize: 24,
+                              letterSpacing: 2,
+                              fontSize: 20,
                             )),
                       ),
-                    ]),
+                    ],
+                  ),
+                ),
               ),
-            ),
-          )),
+            ],
+          ),
+        ),
+      )),
     );
     ;
   }

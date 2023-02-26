@@ -141,7 +141,7 @@ class _FirstpageComponentState extends State<FirstpageComponent> {
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 15, horizontal: 30)),
                                 onPressed: () {
-                                  return context.push('/login');
+                                  return context.push('/signin/medic');
                                 },
                                 child: Text('Inregistreaza-te\nca medic',
                                     textAlign: TextAlign.center,
