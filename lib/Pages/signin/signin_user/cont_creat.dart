@@ -44,92 +44,94 @@ class _ContCreatState extends State<ContCreat> {
                     Color.fromRGBO(122, 162, 255, 1),
                   ])),
               child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(60),
-                              topRight: Radius.circular(60),
-                              bottomLeft: Radius.circular(60),
-                              bottomRight: Radius.circular(60),
-                            )),
-                        child: Column(
-                          children: <Widget>[
-                            const SizedBox(
-                              height: 80,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color:
-                                            Color.fromRGBO(122, 162, 255, 0.5),
-                                        blurRadius: 20,
-                                        offset: Offset(0, 10))
-                                  ]),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Text("Contul a fost creat cu succes",
-                                  textAlign: TextAlign.center,
-                                  style: GoogleFonts.roboto(
-                                    color: const Color.fromRGBO(0, 0, 0, 1),
-                                    letterSpacing: 1,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ),
-                            const SizedBox(
-                              height: 40,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Text("Acum te poti autentifica",
-                                  textAlign: TextAlign.center,
-                                  style: GoogleFonts.outfit(
-                                    color: const Color.fromRGBO(0, 0, 0, 1),
-                                    letterSpacing: 1,
-                                    fontSize: 20,
-                                  )),
-                            ),
-                            const SizedBox(
-                              height: 80,
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    const Color.fromRGBO(67, 123, 255, 1),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 25, vertical: 20),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50)),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(60),
+                                topRight: Radius.circular(60),
+                                bottomLeft: Radius.circular(60),
+                                bottomRight: Radius.circular(60),
+                              )),
+                          child: Column(
+                            children: <Widget>[
+                              const SizedBox(
+                                height: 80,
                               ),
-                              onPressed: (() => context.push('/login')),
-                              child: Text('Autentificare',
-                                  style: GoogleFonts.roboto(
-                                    fontWeight: FontWeight.bold,
+                              Container(
+                                decoration: BoxDecoration(
                                     color: Colors.white,
-                                    letterSpacing: 2,
-                                    fontSize: 20,
-                                  )),
-                            ),
-                            const SizedBox(
-                              height: 80,
-                            ),
-                          ],
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Color.fromRGBO(
+                                              122, 162, 255, 0.5),
+                                          blurRadius: 20,
+                                          offset: Offset(0, 10))
+                                    ]),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Text("Contul a fost creat cu succes",
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.roboto(
+                                      color: const Color.fromRGBO(0, 0, 0, 1),
+                                      letterSpacing: 1,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                              ),
+                              const SizedBox(
+                                height: 40,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Text("Acum te poti autentifica",
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.outfit(
+                                      color: const Color.fromRGBO(0, 0, 0, 1),
+                                      letterSpacing: 1,
+                                      fontSize: 20,
+                                    )),
+                              ),
+                              const SizedBox(
+                                height: 80,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      const Color.fromRGBO(67, 123, 255, 1),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 25, vertical: 20),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50)),
+                                ),
+                                onPressed: (() => context.push('/login')),
+                                child: Text('Autentificare',
+                                    style: GoogleFonts.roboto(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      letterSpacing: 2,
+                                      fontSize: 20,
+                                    )),
+                              ),
+                              const SizedBox(
+                                height: 80,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
