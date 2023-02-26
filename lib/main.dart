@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:health_hub/Pages/login/login_page.dart';
+import 'package:health_hub/Pages/signin/pending.dart';
 import 'package:health_hub/Pages/signin/signin_medic/signin_page.dart';
 import 'package:health_hub/Pages/firstpage/first_page.dart';
 import 'Pages/signin/signin_user/signin_page_user.dart';
@@ -38,6 +39,10 @@ GoRouter router = GoRouter(
     GoRoute(
       path: '/signin/user',
       builder: (context, state) => const SignInPage_user(),
-    )
+    ),
+    GoRoute(
+      path: '/pending',
+      builder: (context, state) => const Pending(),
+    ),
   ],
 );

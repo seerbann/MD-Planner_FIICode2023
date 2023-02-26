@@ -91,9 +91,7 @@ class _FirstPageState extends State<FirstPage> {
                               const Color.fromARGB(255, 255, 255, 255),
                           padding: const EdgeInsets.symmetric(
                               vertical: 15, horizontal: 30)),
-                      onPressed: () {
-                        return context.push('/signin/medic');
-                      },
+                      onPressed: (() => context.push('/signin/medic')),
                       child: Text('Inregistreaza-te\nca medic',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.roboto(

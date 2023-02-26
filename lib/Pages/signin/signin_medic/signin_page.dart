@@ -236,7 +236,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(50)),
                                 ),
-                                onPressed: (() => context.push('/login')),
+                                onPressed: (() => context.push('/pending')),
                                 child: Text('Inregistrare',
                                     style: GoogleFonts.roboto(
                                       fontWeight: FontWeight.bold,
