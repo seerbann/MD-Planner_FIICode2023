@@ -44,137 +44,381 @@ class _PaginaPacientiState extends State<PaginaPacienti> {
           ),
           body: Center(
             child: Container(
-              decoration: const BoxDecoration(color: Colors.white),
+              decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255)),
               child: Center(
                 child: Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(60),
-                              topRight: Radius.circular(60),
-                              bottomLeft: Radius.circular(60),
-                              bottomRight: Radius.circular(60),
-                            )),
-                        child: Column(
-                          children: <Widget>[
-                            SizedBox(
-                              height: 50,
-                            ),
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20),
-                                  child: Text("Buna ziua, Dr. \$nume",
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.outfit(
-                                        color: const Color.fromRGBO(
-                                            40, 78, 166, 1),
-                                        letterSpacing: 1,
-                                        fontSize: 26,
-                                        fontWeight: FontWeight.bold,
-                                      )),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                    gradient: LinearGradient(
-                                      begin: Alignment.centerLeft,
-                                      end: Alignment.centerRight,
-                                      colors: [
-                                        Color.fromRGBO(51, 122, 255, 1),
-                                        Color.fromRGBO(122, 162, 255, 1),
-                                      ],
-                                    ),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(15),
-                                      topRight: Radius.circular(15),
-                                      bottomLeft: Radius.circular(15),
-                                      bottomRight: Radius.circular(15),
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: 50,
+                          ),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: Text("Buna ziua, Dr. \$nume",
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.outfit(
+                                      color:
+                                          const Color.fromRGBO(40, 78, 166, 1),
+                                      letterSpacing: 1,
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.bold,
                                     )),
-                                child: Column(
-                                  children: <Widget>[
-                                    const SizedBox(
-                                      height: 40,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 30),
-                                          child: Text("Pacienti",
-                                              textAlign: TextAlign.center,
-                                              style: GoogleFonts.roboto(
-                                                  color: Color.fromARGB(
-                                                      255, 255, 255, 255),
-                                                  letterSpacing: 1,
-                                                  fontSize: 28,
-                                                  fontWeight: FontWeight.w500)),
-                                        ),
-                                      ],
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                                color: Color.fromRGBO(
-                                                    122, 162, 255, 0.5),
-                                                blurRadius: 20,
-                                                offset: Offset(0, 10))
-                                          ]),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: Text(
-                                          "Datele au fost trimise spre verificare",
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.roboto(
-                                            color: const Color.fromRGBO(
-                                                0, 0, 0, 1),
-                                            letterSpacing: 1,
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.bold,
-                                          )),
-                                    ),
-                                    const SizedBox(
-                                      height: 40,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: Text(
-                                          "In maxim 3 zile lucratoare informatiile vor fi verificate de catre administratori si veti primi un email cand contul va fi creat",
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.outfit(
-                                            color: const Color.fromRGBO(
-                                                0, 0, 0, 1),
-                                            letterSpacing: 1,
-                                            fontSize: 20,
-                                          )),
-                                    ),
-                                    const SizedBox(
-                                      height: 80,
-                                    ),
-                                  ],
-                                ),
                               ),
-                            )
-                          ],
-                        ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
+                                    colors: [
+                                      Color.fromRGBO(51, 122, 255, 1),
+                                      Color.fromRGBO(122, 162, 255, 1),
+                                    ],
+                                  ),
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(15),
+                                    topRight: Radius.circular(15),
+                                    bottomLeft: Radius.circular(15),
+                                    bottomRight: Radius.circular(15),
+                                  )),
+                              child: Column(
+                                children: [
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 30),
+                                        child: Text("Pacienti",
+                                            textAlign: TextAlign.center,
+                                            style: GoogleFonts.roboto(
+                                                color: const Color.fromARGB(
+                                                    255, 255, 255, 255),
+                                                letterSpacing: 1,
+                                                fontSize: 28,
+                                                fontWeight: FontWeight.w500)),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 30),
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                const Color.fromRGBO(
+                                                    41, 90, 204, 1),
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 10, vertical: 0),
+                                          ),
+                                          onPressed: () {},
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text("Adauga",
+                                                  textAlign: TextAlign.center,
+                                                  style: GoogleFonts.roboto(
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              255,
+                                                              255,
+                                                              255,
+                                                              255),
+                                                      letterSpacing: 1,
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight
+                                                          .w500)), // <-- Text
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Image.asset(
+                                                'assets/images/addUser.png',
+                                                scale: 7,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 30),
+                                    child: Container(
+                                      height: 44,
+                                      decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color:
+                                                Colors.black.withOpacity(0.2),
+                                            spreadRadius: 4,
+                                            blurRadius: 10,
+                                            offset: Offset(0, 3),
+                                          )
+                                        ],
+                                        gradient: LinearGradient(
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                          colors: [
+                                            Color.fromRGBO(151, 182, 255, 1),
+                                            Color.fromRGBO(125, 164, 255, 1),
+                                          ],
+                                        ),
+                                      ),
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          side: BorderSide(
+                                              width: 0.5, color: Colors.white),
+                                          backgroundColor: Colors.transparent,
+                                          shadowColor: Colors.transparent,
+                                          minimumSize:
+                                              const Size.fromHeight(50),
+                                        ),
+                                        onPressed: () {},
+                                        child: Row(
+                                          //mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Image.asset(
+                                              'assets/images/user.png',
+                                              scale: 5,
+                                            ),
+
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text("Albu Dorian",
+                                                textAlign: TextAlign.center,
+                                                style: GoogleFonts.outfit(
+                                                    color: const Color.fromARGB(
+                                                        255, 255, 255, 255),
+                                                    //letterSpacing: 1,
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight
+                                                        .w500)), // <-- Text
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 30),
+                                    child: Container(
+                                      height: 44,
+                                      decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color:
+                                                Colors.black.withOpacity(0.2),
+                                            spreadRadius: 4,
+                                            blurRadius: 10,
+                                            offset: Offset(0, 3),
+                                          )
+                                        ],
+                                        gradient: LinearGradient(
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                          colors: [
+                                            Color.fromRGBO(100, 146, 255, 1),
+                                            Color.fromRGBO(125, 164, 255, 1),
+                                          ],
+                                        ),
+                                      ),
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          side: BorderSide(
+                                              width: 0.3, color: Colors.white),
+                                          backgroundColor: Colors.transparent,
+                                          shadowColor: Colors.transparent,
+                                          minimumSize:
+                                              const Size.fromHeight(50),
+                                        ),
+                                        onPressed: () {},
+                                        child: Row(
+                                          //mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Image.asset(
+                                              'assets/images/user.png',
+                                              scale: 5,
+                                            ),
+
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text("Deaconu Aurel",
+                                                textAlign: TextAlign.center,
+                                                style: GoogleFonts.outfit(
+                                                    color: const Color.fromARGB(
+                                                        255, 255, 255, 255),
+                                                    //letterSpacing: 1,
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight
+                                                        .w500)), // <-- Text
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 30),
+                                    child: Container(
+                                      height: 44,
+                                      decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color:
+                                                Colors.black.withOpacity(0.2),
+                                            spreadRadius: 4,
+                                            blurRadius: 10,
+                                            offset: Offset(0, 3),
+                                          )
+                                        ],
+                                        gradient: LinearGradient(
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                          colors: [
+                                            Color.fromRGBO(151, 182, 255, 1),
+                                            Color.fromRGBO(125, 164, 255, 1),
+                                          ],
+                                        ),
+                                      ),
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          side: BorderSide(
+                                              width: 0.5, color: Colors.white),
+                                          backgroundColor: Colors.transparent,
+                                          shadowColor: Colors.transparent,
+                                          minimumSize:
+                                              const Size.fromHeight(50),
+                                        ),
+                                        onPressed: () {},
+                                        child: Row(
+                                          //mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Image.asset(
+                                              'assets/images/user.png',
+                                              scale: 5,
+                                            ),
+
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text("Albu Dorian",
+                                                textAlign: TextAlign.center,
+                                                style: GoogleFonts.outfit(
+                                                    color: const Color.fromARGB(
+                                                        255, 255, 255, 255),
+                                                    //letterSpacing: 1,
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight
+                                                        .w500)), // <-- Text
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 30),
+                                    child: Container(
+                                      height: 44,
+                                      decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color:
+                                                Colors.black.withOpacity(0.2),
+                                            spreadRadius: 4,
+                                            blurRadius: 10,
+                                            offset: Offset(0, 3),
+                                          )
+                                        ],
+                                        gradient: LinearGradient(
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                          colors: [
+                                            Color.fromRGBO(100, 146, 255, 1),
+                                            Color.fromRGBO(125, 164, 255, 1),
+                                          ],
+                                        ),
+                                      ),
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          side: BorderSide(
+                                              width: 0.3, color: Colors.white),
+                                          backgroundColor: Colors.transparent,
+                                          shadowColor: Colors.transparent,
+                                          minimumSize:
+                                              const Size.fromHeight(50),
+                                        ),
+                                        onPressed: () {},
+                                        child: Row(
+                                          //mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Image.asset(
+                                              'assets/images/user.png',
+                                              scale: 5,
+                                            ),
+
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text("Deaconu Aurel",
+                                                textAlign: TextAlign.center,
+                                                style: GoogleFonts.outfit(
+                                                    color: const Color.fromARGB(
+                                                        255, 255, 255, 255),
+                                                    //letterSpacing: 1,
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight
+                                                        .w500)), // <-- Text
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 50,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
                       ),
                     )
                   ],
