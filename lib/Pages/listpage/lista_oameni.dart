@@ -4,14 +4,14 @@ import 'package:health_hub/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
 
-class PaginaPacienti extends StatefulWidget {
-  const PaginaPacienti({super.key});
+class ListaOameni extends StatefulWidget {
+  const ListaOameni({super.key});
 
   @override
-  State<PaginaPacienti> createState() => _PaginaPacientiState();
+  State<ListaOameni> createState() => _ListaOameniState();
 }
 
-class _PaginaPacientiState extends State<PaginaPacienti> {
+class _ListaOameniState extends State<ListaOameni> {
   @override
   //variabiles
 

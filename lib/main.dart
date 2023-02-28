@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:health_hub/Pages/login/login_page.dart';
-import 'package:health_hub/Pages/paginaPacienti/pagina_pacienti.dart';
 import 'package:health_hub/Pages/signin/pending.dart';
 import 'package:health_hub/Pages/signin/signin_medic/signin_page.dart';
 import 'package:health_hub/Pages/firstpage/first_page.dart';
 import 'package:health_hub/Pages/signin/signin_user/cont_creat.dart';
 import 'Pages/signin/signin_user/signin_page_user.dart';
+import 'Pages/listpage/main_listpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -52,7 +52,7 @@ GoRouter router = GoRouter(
     ),
     GoRoute(
       path: '/pacienti',
-      builder: (context, state) => const PaginaPacienti(),
+      builder: (context, state) => MainListPage(),
     ),
   ],
 );
