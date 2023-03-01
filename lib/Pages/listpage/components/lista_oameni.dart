@@ -1,7 +1,5 @@
-import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:health_hub/Pages/listpage/components/appbar.dart';
-
 import 'package:health_hub/Pages/login/login_componenets.dart';
 import 'package:health_hub/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,10 +31,6 @@ class _ListaOameniState extends State<ListaOameni> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: EasySearchBar(
-            title: const Text('Cauta'),
-            onSearch: (value) => setState(() => searchValue = value),
-            suggestions: _suggestions),
         body: Center(
           child: Column(
             children: [
