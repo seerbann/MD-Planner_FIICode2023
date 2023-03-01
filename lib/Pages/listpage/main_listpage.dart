@@ -19,13 +19,13 @@ class _MainListPageState extends State<MainListPage> {
       // Let's work on our mobile part
       mobile: Scaffold(
         appBar: CustomAppBar(),
-        body: ListaOameni(),
+        body: Searchable_Listview(),
       ),
       tablet: Scaffold(
         appBar: CustomAppBar(),
         body: Row(
           children: [
-            Expanded(flex: 6, child: ListaOameni()),
+            Expanded(flex: 6, child: Searchable_Listview()),
             Expanded(
               flex: 9,
               child: Placeholder(),

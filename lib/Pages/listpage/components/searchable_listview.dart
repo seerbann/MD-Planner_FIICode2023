@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'json.dart';
 import 'package:flutter/material.dart';
 import 'package:searchable_listview/searchable_listview.dart';
 
@@ -31,13 +31,13 @@ class ExampleApp extends StatefulWidget {
 }
 
 class _ExampleAppState extends State<ExampleApp> {
-  final List<Actor> actors = [
-    Actor(age: 47, name: 'Leonardo', lastName: 'DiCaprio'),
-    Actor(age: 58, name: 'Johnny', lastName: 'Depp'),
-    Actor(age: 78, name: 'Robert', lastName: 'De Niro'),
-    Actor(age: 44, name: 'Tom', lastName: 'Hardy'),
-    Actor(age: 66, name: 'Denzel', lastName: 'Washington'),
-    Actor(age: 49, name: 'Ben', lastName: 'Affleck'),
+  final List<Patient> patients = [
+    Patient(age: 47, name: 'Leonardo', lastName: 'DiCaprio'),
+    Patient(age: 58, name: 'Johnny', lastName: 'Depp'),
+    Patient(age: 78, name: 'Robert', lastName: 'De Niro'),
+    Patient(age: 44, name: 'Tom', lastName: 'Hardy'),
+    Patient(age: 66, name: 'Denzel', lastName: 'Washington'),
+    Patient(age: 49, name: 'Ben', lastName: 'Affleck'),
   ];
 
   @override
@@ -49,19 +49,19 @@ class _ExampleAppState extends State<ExampleApp> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(15),
-              child: SearchableList<Actor>(
+              child: SearchableList<Patient>(
                 style: const TextStyle(fontSize: 25),
                 onPaginate: () async {
                   await Future.delayed(const Duration(milliseconds: 1000));
                   setState(() {
-                    actors.addAll([
-                      Actor(age: 22, name: 'Fathi', lastName: 'Hadawi'),
-                      Actor(age: 22, name: 'Hichem', lastName: 'Rostom'),
-                      Actor(age: 22, name: 'Kamel', lastName: 'Twati'),
+                    patients.addAll([
+                      Patient(age: 22, name: 'Fathi', lastName: 'Hadawi'),
+                      Patient(age: 22, name: 'Hichem', lastName: 'Rostom'),
+                      Patient(age: 22, name: 'Kamel', lastName: 'Twati'),
                     ]);
                   });
                 },
-                builder: (Actor actor) => ActorItem(actor: actor),
+                builder: (Patient patient) => ActorItem(patient: patient),
                 loadingWidget: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
@@ -88,10 +88,10 @@ class _ExampleAppState extends State<ExampleApp> {
                 asyncListCallback: () async {
                   await Future.delayed(
                     const Duration(
-                      milliseconds: 10000,
+                      milliseconds: 1000,
                     ),
                   );
-                  return actors;
+                  return patients;
                 },
                 asyncListFilter: (q, list) {
                   return list
@@ -100,7 +100,11 @@ class _ExampleAppState extends State<ExampleApp> {
                 },
                 emptyWidget: const EmptyView(),
                 onRefresh: () async {},
-                onItemSelected: (Actor item) {},
+                onItemSelected: (Patient item) {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          Scaffold(body: PatientDetail(item))));
+                },
                 inputDecoration: InputDecoration(
                   labelText: "Cauta pacient",
                   fillColor: Colors.white,
@@ -128,7 +132,7 @@ class _ExampleAppState extends State<ExampleApp> {
   }
 
   void addActor() {
-    actors.add(Actor(
+    patients.add(Patient(
       age: 10,
       lastName: 'Ali',
       name: 'ALi',
@@ -138,11 +142,11 @@ class _ExampleAppState extends State<ExampleApp> {
 }
 
 class ActorItem extends StatelessWidget {
-  final Actor actor;
+  final Patient patient;
 
   const ActorItem({
     Key? key,
-    required this.actor,
+    required this.patient,
   }) : super(key: key);
 
   @override
@@ -172,21 +176,21 @@ class ActorItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Firstname: ${actor.name}',
+                  'Firstname: ${patient.name}',
                   style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  'Lastname: ${actor.lastName}',
+                  'Lastname: ${patient.lastName}',
                   style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  'Age: ${actor.age}',
+                  'Age: ${patient.age}',
                   style: const TextStyle(
                     color: Colors.black,
                   ),
@@ -218,14 +222,17 @@ class EmptyView extends StatelessWidget {
   }
 }
 
-class Actor {
-  int age;
-  String name;
-  String lastName;
+class PatientDetail extends StatelessWidget {
+  final Patient patient;
+  const PatientDetail(this.patient);
 
-  Actor({
-    required this.age,
-    required this.name,
-    required this.lastName,
-  });
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(patient.name),
+        Text(patient.lastName),
+      ],
+    );
+  }
 }
