@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_hub/Pages/listpage/components/lista_oameni.dart';
+import 'package:health_hub/Pages/listpage/components/searchable_listview.dart';
 import 'package:health_hub/responsive.dart';
 import 'components/appbar.dart';
 
@@ -42,7 +43,7 @@ class _MainListPageState extends State<MainListPage> {
           ),
           Expanded(
             flex: _size.width > 1340 ? 3 : 5,
-            child: ListaOameni(),
+            child: Searchable_Listview(),
           ),
           Expanded(
             flex: _size.width > 1340 ? 8 : 10,
