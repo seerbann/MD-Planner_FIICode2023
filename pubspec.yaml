@@ -38,6 +38,8 @@ dependencies:
   go_router: ^6.0.2
   google_fonts: ^4.0.3
   searchable_listview: ^2.2.2
+  firebase_auth: ^4.2.9
+  firebase_core: ^2.7.0
 
 dev_dependencies:
   flutter_test:

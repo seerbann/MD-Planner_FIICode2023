@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "296535404143",
+    "project_id": "my-notes-vlad-flutter",
+    "storage_bucket": "my-notes-vlad-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296535404143:android:6224624c551df55047a79a",
+        "android_client_info": {
+          "package_name": "com.example.health_hub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296535404143-lb7po0kjupa65s6c2klglds50scf3t0i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4GERCNDLrj33LPMKQEdbop6orVShOmkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296535404143-lb7po0kjupa65s6c2klglds50scf3t0i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
