@@ -20,28 +20,25 @@ class _MainListPageState extends State<MainListPage> {
         appBar: CustomAppBar(),
         body: ListaOameni(),
       ),
-      tablet: Row(
-        children: [
-          Expanded(
-            flex: 6,
-            child: Scaffold(
-              appBar: CustomAppBar(),
-              body: ListaOameni(),
+      tablet: Scaffold(
+        appBar: CustomAppBar(),
+        body: Row(
+          children: [
+            Expanded(flex: 6, child: ListaOameni()),
+            Expanded(
+              flex: 9,
+              child: Placeholder(),
             ),
-          ),
-          Expanded(
-            flex: 9,
-            child: Placeholder(),
-          ),
-        ],
+          ],
+        ),
       ),
       desktop: Row(
         children: [
           // Once our width is less then 1300 then it start showing errors
           // Now there is no error if our width is less then 1340
           Expanded(
-            flex: _size.width > 1340 ? 2 : 4,
-            child: Placeholder(),
+            flex: _size.width > 1340 ? 1 : 2,
+            child: Container(color: Colors.black),
           ),
           Expanded(
             flex: _size.width > 1340 ? 3 : 5,

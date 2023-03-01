@@ -51,7 +51,7 @@ GoRouter router = GoRouter(
       builder: (context, state) => const ContCreat(),
     ),
     GoRoute(
-      path: '/pacienti',
+      path: '/list',
       builder: (context, state) => MainListPage(),
     ),
   ],
