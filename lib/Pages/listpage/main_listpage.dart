@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_hub/Pages/listpage/components/lista_oameni.dart';
+import 'package:health_hub/Pages/listpage/components/patients.dart';
 import 'package:health_hub/Pages/listpage/components/searchable_listview.dart';
 import 'package:health_hub/responsive.dart';
 import 'components/appbar.dart';
+import 'components/json.dart';
 
 class MainListPage extends StatefulWidget {
   @override
@@ -19,16 +21,16 @@ class _MainListPageState extends State<MainListPage> {
       // Let's work on our mobile part
       mobile: Scaffold(
         appBar: CustomAppBar(),
-        body: Searchable_Listview(),
+        body: WideLayout(),
       ),
       tablet: Scaffold(
         appBar: CustomAppBar(),
         body: Row(
           children: [
-            Expanded(flex: 6, child: Searchable_Listview()),
+            Expanded(flex: 6, child: Placeholder()),
             Expanded(
               flex: 9,
-              child: Placeholder(),
+              child: MyHomePage(),
             ),
           ],
         ),
@@ -43,7 +45,7 @@ class _MainListPageState extends State<MainListPage> {
           ),
           Expanded(
             flex: _size.width > 1340 ? 3 : 5,
-            child: Searchable_Listview(),
+            child: Placeholder(),
           ),
           Expanded(
             flex: _size.width > 1340 ? 8 : 10,
