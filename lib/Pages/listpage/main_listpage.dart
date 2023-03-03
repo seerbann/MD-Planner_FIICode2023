@@ -21,17 +21,13 @@ class _MainListPageState extends State<MainListPage> {
       // Let's work on our mobile part
       mobile: Scaffold(
         appBar: CustomAppBar(),
-        body: WideLayout(),
+        body: MyHomePage(),
       ),
       tablet: Scaffold(
         appBar: CustomAppBar(),
         body: Row(
           children: [
-            Expanded(flex: 6, child: Placeholder()),
-            Expanded(
-              flex: 9,
-              child: MyHomePage(),
-            ),
+            Expanded(flex: 6, child: MyHomePage()),
           ],
         ),
       ),
@@ -40,16 +36,12 @@ class _MainListPageState extends State<MainListPage> {
           // Once our width is less then 1300 then it start showing errors
           // Now there is no error if our width is less then 1340
           Expanded(
-            flex: _size.width > 1340 ? 1 : 2,
+            flex: 1,
             child: Container(color: Colors.black),
           ),
           Expanded(
-            flex: _size.width > 1340 ? 3 : 5,
-            child: Placeholder(),
-          ),
-          Expanded(
-            flex: _size.width > 1340 ? 8 : 10,
-            child: Placeholder(),
+            flex: 12,
+            child: MyHomePage(),
           ),
         ],
       ),

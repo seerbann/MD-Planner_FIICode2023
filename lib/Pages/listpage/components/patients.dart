@@ -1,4 +1,3 @@
-import 'package:health_hub/Pages/listpage/components/json.dart';
 import 'package:health_hub/Pages/listpage/components/people.dart';
 import 'package:flutter/material.dart';
 
@@ -47,6 +46,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+Person _person = Person(name: 'default', phone: 'default', picture: 'default');
+
 class WideLayout extends StatefulWidget {
   @override
   _WideLayoutState createState() => _WideLayoutState();
@@ -54,19 +55,20 @@ class WideLayout extends StatefulWidget {
 
 class _WideLayoutState extends State<WideLayout> {
   @override
-  Person _person;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(
-          child: PeopleList(
-              onPersonTap: (person) => setState(() => _person = person)),
           flex: 2,
+          child: PeopleList(
+              onPersonTap: (person) => setState(() {
+                    _person = person;
+                  })),
         ),
         Expanded(
-          child: _person == null ? Placeholder() : PersonDetail(_person),
           flex: 3,
+          child: PersonDetail(_person),
         ),
       ],
     );

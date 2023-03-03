@@ -3,12 +3,18 @@ class Person {
   final String phone;
   final String picture;
 
-  const Person(this.name, this.phone, this.picture);
+  Person({
+    required this.name,
+    required this.phone,
+    required this.picture,
+  });
 }
 
 final List<Person> people = _people
     .map((e) => Person(
-        e['name'] as String, e['phone'] as String, e['picture'] as String))
+        name: e['name'] as String,
+        phone: e['phone'] as String,
+        picture: e['picture'] as String))
     .toList(growable: false);
 
 final List<Map<String, Object>> _people = [
