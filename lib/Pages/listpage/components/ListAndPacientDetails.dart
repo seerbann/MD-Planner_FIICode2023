@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:health_hub/Pages/listpage/components/people.dart';
 import 'package:flutter/material.dart';
 
@@ -89,36 +90,59 @@ class PeopleList extends StatelessWidget {
           Color.fromRGBO(51, 112, 255, 1),
         ],
       )),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(
-            height: 30,
+      child: Row(
+        children: [
+          Spacer(
+            flex: 1,
           ),
-          for (var person in people)
-            Container(
-              decoration:
-                  BoxDecoration(border: Border.all(color: Colors.black)),
-              child: TextButton(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/images/user.png',
-                      scale: 5,
-                    ),
-                    Text(
-                      person.name,
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: 'Outfit',
-                          color: Colors.black),
-                    )
-                  ],
+          Expanded(
+            flex: 5,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: 250,
                 ),
-                onPressed: () => onPersonTap(person),
-              ),
+                Text("Pacienti",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.roboto(
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        letterSpacing: 1,
+                        fontSize: 40,
+                        fontWeight: FontWeight.w500)),
+                SizedBox(
+                  height: 30,
+                ),
+                for (var person in people)
+                  Container(
+                    decoration:
+                        BoxDecoration(border: Border.all(color: Colors.black)),
+                    child: TextButton(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/user.png',
+                            scale: 5,
+                          ),
+                          Text(
+                            person.name,
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontFamily: 'Outfit',
+                                color: Colors.black),
+                          )
+                        ],
+                      ),
+                      onPressed: () => onPersonTap(person),
+                    ),
+                  ),
+              ],
             ),
+          ),
+          Spacer(
+            flex: 1,
+          )
         ],
       ),
     );

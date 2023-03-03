@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:health_hub/Pages/listpage/components/patients.dart';
+import 'package:health_hub/Pages/listpage/components/ListAndPacientDetails.dart';
 import 'package:health_hub/responsive.dart';
 import 'components/appbar.dart';
 
