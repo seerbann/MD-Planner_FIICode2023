@@ -1,38 +1,19 @@
 import 'package:health_hub/Pages/listpage/components/people.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({
+class ListAndPacientDetails extends StatefulWidget {
+  ListAndPacientDetails({
     Key? key,
   }) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _ListAndPacientDetailsState createState() => _ListAndPacientDetailsState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _ListAndPacientDetailsState extends State<ListAndPacientDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth > 600) {
@@ -82,7 +63,6 @@ class NarrowLayout extends StatelessWidget {
       onPersonTap: (person) => Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => Scaffold(
-            appBar: AppBar(),
             body: PersonDetail(person),
           ),
         ),
@@ -98,15 +78,49 @@ class PeopleList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        for (var person in people)
-          ListTile(
-            leading: Image.network(person.picture),
-            title: Text(person.name),
-            onTap: () => onPersonTap(person),
+    return Container(
+      height: double.infinity,
+      decoration: const BoxDecoration(
+          gradient: LinearGradient(
+        begin: Alignment.centerRight,
+        end: Alignment.centerLeft,
+        colors: [
+          Color.fromRGBO(122, 162, 255, 1),
+          Color.fromRGBO(51, 112, 255, 1),
+        ],
+      )),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(
+            height: 30,
           ),
-      ],
+          for (var person in people)
+            Container(
+              decoration:
+                  BoxDecoration(border: Border.all(color: Colors.black)),
+              child: TextButton(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/user.png',
+                      scale: 5,
+                    ),
+                    Text(
+                      person.name,
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: 'Outfit',
+                          color: Colors.black),
+                    )
+                  ],
+                ),
+                onPressed: () => onPersonTap(person),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

@@ -58,7 +58,7 @@ GoRouter router = GoRouter(
     ),
     GoRoute(
       path: '/hpage',
-      builder: (context, state) => MyHomePage(),
+      builder: (context, state) => ListAndPacientDetails(),
     ),
   ],
 );
