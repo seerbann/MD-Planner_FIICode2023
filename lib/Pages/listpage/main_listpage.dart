@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:health_hub/Pages/listpage/components/lista_oameni.dart';
 import 'package:health_hub/Pages/listpage/components/patients.dart';
-import 'package:health_hub/Pages/listpage/components/searchable_listview.dart';
 import 'package:health_hub/responsive.dart';
 import 'components/appbar.dart';
-import 'components/json.dart';
 
 class MainListPage extends StatefulWidget {
   @override
