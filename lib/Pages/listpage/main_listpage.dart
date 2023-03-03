@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:health_hub/Pages/listpage/components/patients.dart';
 import 'package:health_hub/responsive.dart';
 import 'components/appbar.dart';
@@ -18,13 +18,13 @@ class _MainListPageState extends State<MainListPage> {
       // Let's work on our mobile part
       mobile: Scaffold(
         appBar: CustomAppBar(),
-        body: MyHomePage(),
+        body: ListAndPacientDetails(),
       ),
       tablet: Scaffold(
         appBar: CustomAppBar(),
         body: Row(
           children: [
-            Expanded(flex: 6, child: MyHomePage()),
+            Expanded(flex: 6, child: ListAndPacientDetails()),
           ],
         ),
       ),
@@ -38,7 +38,7 @@ class _MainListPageState extends State<MainListPage> {
           ),
           Expanded(
             flex: 12,
-            child: MyHomePage(),
+            child: ListAndPacientDetails(),
           ),
         ],
       ),
