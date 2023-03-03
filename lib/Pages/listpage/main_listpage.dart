@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_hub/Pages/listpage/components/lista_oameni.dart';
+import 'package:health_hub/Pages/listpage/components/patients.dart';
 import 'package:health_hub/Pages/listpage/components/searchable_listview.dart';
 import 'package:health_hub/responsive.dart';
 import 'components/appbar.dart';
+import 'components/json.dart';
 
 class MainListPage extends StatefulWidget {
   @override
@@ -19,17 +21,13 @@ class _MainListPageState extends State<MainListPage> {
       // Let's work on our mobile part
       mobile: Scaffold(
         appBar: CustomAppBar(),
-        body: Searchable_Listview(),
+        body: MyHomePage(),
       ),
       tablet: Scaffold(
         appBar: CustomAppBar(),
         body: Row(
           children: [
-            Expanded(flex: 6, child: Searchable_Listview()),
-            Expanded(
-              flex: 9,
-              child: Placeholder(),
-            ),
+            Expanded(flex: 6, child: MyHomePage()),
           ],
         ),
       ),
@@ -38,16 +36,12 @@ class _MainListPageState extends State<MainListPage> {
           // Once our width is less then 1300 then it start showing errors
           // Now there is no error if our width is less then 1340
           Expanded(
-            flex: _size.width > 1340 ? 1 : 2,
+            flex: 1,
             child: Container(color: Colors.black),
           ),
           Expanded(
-            flex: _size.width > 1340 ? 3 : 5,
-            child: Searchable_Listview(),
-          ),
-          Expanded(
-            flex: _size.width > 1340 ? 8 : 10,
-            child: Placeholder(),
+            flex: 12,
+            child: MyHomePage(),
           ),
         ],
       ),
