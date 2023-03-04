@@ -1,8 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:health_hub/Pages/signin/signin_medic/medic_components.dart';
+import 'package:health_hub/firebase_options.dart';
 import 'package:health_hub/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInPage_user extends StatefulWidget {
   const SignInPage_user({super.key});
@@ -12,6 +15,23 @@ class SignInPage_user extends StatefulWidget {
 }
 
 class _SignInPage_userState extends State<SignInPage_user> {
+  late final TextEditingController _email;
+  late final TextEditingController _password;
+
+  @override
+  void initState() {
+    _email = TextEditingController();
+    _password = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Responsive(
@@ -141,7 +161,12 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                                 bottom: BorderSide(
                                                     color: Color.fromRGBO(
                                                         240, 240, 240, 1)))),
-                                        child: const TextField(
+                                        child: TextField(
+                                          controller: _email,
+                                          enableSuggestions: false,
+                                          autocorrect: false,
+                                          keyboardType:
+                                              TextInputType.emailAddress,
                                           decoration: InputDecoration(
                                               hintText: "Email",
                                               hintStyle:
@@ -156,8 +181,11 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                                 bottom: BorderSide(
                                                     color: Color.fromRGBO(
                                                         240, 240, 240, 1)))),
-                                        child: const TextField(
+                                        child: TextField(
+                                          controller: _password,
                                           obscureText: true,
+                                          enableSuggestions: false,
+                                          autocorrect: false,
                                           decoration: InputDecoration(
                                               hintText: "Parola",
                                               hintStyle:
@@ -237,8 +265,20 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                         borderRadius:
                                             BorderRadius.circular(50)),
                                   ),
-                                  onPressed: (() =>
-                                      context.push('/signin/user/contCreat')),
+                                  onPressed: () async {
+                                    /// TODO: Initializare la inceput + future builder
+                                    await Firebase.initializeApp(
+                                      options: DefaultFirebaseOptions
+                                          .currentPlatform,
+                                    );
+                                    final email = _email.text;
+                                    final password = _password.text;
+                                    final UserCredential = await FirebaseAuth
+                                        .instance
+                                        .createUserWithEmailAndPassword(
+                                            email: email, password: password);
+                                    print(UserCredential);
+                                  },
                                   child: Text('Inregistrare',
                                       style: GoogleFonts.roboto(
                                         fontWeight: FontWeight.bold,
