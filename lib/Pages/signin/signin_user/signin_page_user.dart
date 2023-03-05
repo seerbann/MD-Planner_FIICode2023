@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:textfield_search/textfield_search.dart';
 
 class SignInPage_user extends StatefulWidget {
   const SignInPage_user({super.key});
@@ -23,6 +24,9 @@ class _SignInPage_userState extends State<SignInPage_user> {
   late final TextEditingController _lastName;
   late final TextEditingController _phone;
   late final TextEditingController _cnp;
+  var label = "Some Label";
+
+  TextEditingController myController = TextEditingController();
 
   @override
   void initState() {
@@ -33,6 +37,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
     _lastName = TextEditingController();
     _phone = TextEditingController();
     _cnp = TextEditingController();
+    myController.addListener(_printLatestValue);
     super.initState();
   }
 
@@ -45,7 +50,12 @@ class _SignInPage_userState extends State<SignInPage_user> {
     _lastName.dispose();
     _phone.dispose();
     _cnp.dispose();
+    myController.dispose();
     super.dispose();
+  }
+
+  _printLatestValue() {
+    print("Textfield value: ${myController.text}");
   }
 
   bool passwordConfirmed() {
@@ -65,6 +75,22 @@ class _SignInPage_userState extends State<SignInPage_user> {
       'phone': phone,
       'cnp': cnp,
     });
+  }
+
+  /// document IDs
+  List<String> docIDs = [];
+  List<String> cities = [];
+
+  /// get doc IDs
+  Future getDocId() async {
+    await FirebaseFirestore.instance.collection('cities').get().then(
+          (snapshot) => snapshot.docs.forEach((document) {
+            print(document.reference.id);
+            Map<String, dynamic> data = document.data();
+            cities.add(data['nume']);
+            docIDs.add(document.reference.id);
+          }),
+        );
   }
 
   @override
@@ -263,21 +289,20 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                               border: InputBorder.none),
                                         ),
                                       ),
-                                      Container(
-                                        padding: const EdgeInsets.all(10),
-                                        decoration: const BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Color.fromRGBO(
-                                                        240, 240, 240, 1)))),
-                                        child: const TextField(
-                                          decoration: InputDecoration(
-                                              hintText: "Oras",
-                                              hintStyle:
-                                                  TextStyle(color: Colors.grey),
-                                              border: InputBorder.none),
-                                        ),
-                                      ),
+                                      FutureBuilder(
+                                          future: getDocId(),
+                                          builder: (context, snapshot) {
+                                            return TextFieldSearch(
+                                              initialList: cities,
+                                              label: 'label',
+                                              controller: myController,
+                                              decoration: InputDecoration(
+                                                  hintText: "Oras",
+                                                  hintStyle: TextStyle(
+                                                      color: Colors.grey),
+                                                  border: InputBorder.none),
+                                            );
+                                          }),
                                       Container(
                                         padding: const EdgeInsets.all(10),
                                         child: TextField(
@@ -306,13 +331,12 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                             BorderRadius.circular(50)),
                                   ),
                                   onPressed: () async {
+                                    print(cities);
+
                                     /// TODO: Initializare la inceput + future builder
                                     if (passwordConfirmed()) {
                                       /// initialize firebase
-                                      await Firebase.initializeApp(
-                                        options: DefaultFirebaseOptions
-                                            .currentPlatform,
-                                      );
+
                                       final email = _email.text;
                                       final password = _password.text;
 
