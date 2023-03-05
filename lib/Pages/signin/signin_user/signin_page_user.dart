@@ -6,6 +6,7 @@ import 'package:health_hub/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignInPage_user extends StatefulWidget {
   const SignInPage_user({super.key});
@@ -17,11 +18,21 @@ class SignInPage_user extends StatefulWidget {
 class _SignInPage_userState extends State<SignInPage_user> {
   late final TextEditingController _email;
   late final TextEditingController _password;
+  late final TextEditingController _confirmPassword;
+  late final TextEditingController _firstName;
+  late final TextEditingController _lastName;
+  late final TextEditingController _phone;
+  late final TextEditingController _cnp;
 
   @override
   void initState() {
     _email = TextEditingController();
     _password = TextEditingController();
+    _confirmPassword = TextEditingController();
+    _firstName = TextEditingController();
+    _lastName = TextEditingController();
+    _phone = TextEditingController();
+    _cnp = TextEditingController();
     super.initState();
   }
 
@@ -29,7 +40,31 @@ class _SignInPage_userState extends State<SignInPage_user> {
   void dispose() {
     _email.dispose();
     _password.dispose();
+    _confirmPassword.dispose();
+    _firstName.dispose();
+    _lastName.dispose();
+    _phone.dispose();
+    _cnp.dispose();
     super.dispose();
+  }
+
+  bool passwordConfirmed() {
+    if (_password.text.trim() == _confirmPassword.text.trim()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future addUserDetails(String firstName, String lastName, String email,
+      String phone, String cnp) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'first name': firstName,
+      'last name': lastName,
+      'email': email,
+      'phone': phone,
+      'cnp': cnp,
+    });
   }
 
   @override
@@ -131,7 +166,8 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                                 bottom: BorderSide(
                                                     color: Color.fromRGBO(
                                                         240, 240, 240, 1)))),
-                                        child: const TextField(
+                                        child: TextField(
+                                          controller: _firstName,
                                           decoration: InputDecoration(
                                               hintText: "Prenume",
                                               hintStyle:
@@ -146,7 +182,8 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                                 bottom: BorderSide(
                                                     color: Color.fromRGBO(
                                                         240, 240, 240, 1)))),
-                                        child: const TextField(
+                                        child: TextField(
+                                          controller: _lastName,
                                           decoration: InputDecoration(
                                               hintText: "Nume",
                                               hintStyle:
@@ -200,7 +237,8 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                                 bottom: BorderSide(
                                                     color: Color.fromRGBO(
                                                         240, 240, 240, 1)))),
-                                        child: const TextField(
+                                        child: TextField(
+                                          controller: _confirmPassword,
                                           obscureText: true,
                                           decoration: InputDecoration(
                                               hintText: "Confirma Parola",
@@ -216,7 +254,8 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                                 bottom: BorderSide(
                                                     color: Color.fromRGBO(
                                                         240, 240, 240, 1)))),
-                                        child: const TextField(
+                                        child: TextField(
+                                          controller: _phone,
                                           decoration: InputDecoration(
                                               hintText: "Telefon",
                                               hintStyle:
@@ -241,7 +280,8 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                       ),
                                       Container(
                                         padding: const EdgeInsets.all(10),
-                                        child: const TextField(
+                                        child: TextField(
+                                          controller: _cnp,
                                           decoration: InputDecoration(
                                               hintText: "Cod Numeric Personal",
                                               hintStyle:
@@ -267,17 +307,30 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                   ),
                                   onPressed: () async {
                                     /// TODO: Initializare la inceput + future builder
-                                    await Firebase.initializeApp(
-                                      options: DefaultFirebaseOptions
-                                          .currentPlatform,
-                                    );
-                                    final email = _email.text;
-                                    final password = _password.text;
-                                    final UserCredential = await FirebaseAuth
-                                        .instance
-                                        .createUserWithEmailAndPassword(
-                                            email: email, password: password);
-                                    print(UserCredential);
+                                    if (passwordConfirmed()) {
+                                      /// initialize firebase
+                                      await Firebase.initializeApp(
+                                        options: DefaultFirebaseOptions
+                                            .currentPlatform,
+                                      );
+                                      final email = _email.text;
+                                      final password = _password.text;
+
+                                      /// create user
+                                      final UserCredential = await FirebaseAuth
+                                          .instance
+                                          .createUserWithEmailAndPassword(
+                                              email: email, password: password);
+                                      print(UserCredential);
+                                    }
+
+                                    /// add user details
+                                    addUserDetails(
+                                        _firstName.text.trim(),
+                                        _lastName.text.trim(),
+                                        _email.text.trim(),
+                                        _phone.text.trim(),
+                                        _cnp.text.trim());
                                   },
                                   child: Text('Inregistrare',
                                       style: GoogleFonts.roboto(
