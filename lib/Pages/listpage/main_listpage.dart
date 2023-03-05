@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:health_hub/Pages/listpage/components/ListAndPacientDetails.dart';
+import 'package:health_hub/commonComponents/navBar_desktop.dart';
 import 'package:health_hub/responsive.dart';
 import 'components/appbar.dart';
+import '../../commonComponents/navBar_desktop.dart';
 
 class MainListPage extends StatefulWidget {
   @override
@@ -28,19 +30,13 @@ class _MainListPageState extends State<MainListPage> {
           ],
         ),
       ),
-      desktop: Row(
-        children: [
-          // Once our width is less then 1300 then it start showing errors
-          // Now there is no error if our width is less then 1340
-          Expanded(
-            flex: 1,
-            child: Container(color: Colors.black),
-          ),
-          Expanded(
-            flex: 12,
-            child: ListAndPacientDetails(),
-          ),
-        ],
+      desktop: SafeArea(
+        child: Row(
+          children: [
+            Expanded(flex: 1, child: CustomNavBar()),
+            Expanded(flex: 15, child: ListAndPacientDetails()),
+          ],
+        ),
       ),
     );
   }
