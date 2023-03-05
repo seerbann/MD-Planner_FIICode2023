@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:go_router/go_router.dart';
+import '../Pages/listpage/main_listpage.dart';
+import '../Pages/userprofile/main_userprofile.dart';
 
 int _selectedIndex = 0;
 
@@ -22,23 +22,29 @@ class _CustomNavBarState extends State<CustomNavBar> {
   @override
   Widget build(BuildContext context) {
     return NavigationRail(
-      selectedLabelTextStyle: TextStyle(color: Colors.lightBlue),
+      selectedLabelTextStyle: const TextStyle(color: Colors.lightBlue),
       backgroundColor: Colors.black,
       selectedIndex: _selectedIndex,
+      labelType: NavigationRailLabelType.all,
       // groupAlignment: groupAligment,
       onDestinationSelected: (int index) {
         setState(() {
           _selectedIndex = index;
+          if (index == 0) context.go('/profile');
+          if (index == 1) context.go('/list');
         });
       },
-      destinations: <NavigationRailDestination>[
+      destinations: [
         NavigationRailDestination(
           icon: Image.asset(
             'assets/images/user.png',
             scale: 5,
           ),
           //selectedIcon: Icon(Icons.favorite),
-          label: Text('First'),
+          label: Text(
+            'Profile',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
         NavigationRailDestination(
           icon: Image.asset(
@@ -46,7 +52,10 @@ class _CustomNavBarState extends State<CustomNavBar> {
             scale: 3,
           ),
           //selectedIcon: Icon(Icons.book),
-          label: Text('Second'),
+          label: Text(
+            'List',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
         NavigationRailDestination(
           icon: Image.asset(
@@ -54,7 +63,10 @@ class _CustomNavBarState extends State<CustomNavBar> {
             scale: 3,
           ),
           //selectedIcon: Icon(Icons.star),
-          label: Text('Third'),
+          label: Text(
+            'Calendar',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ],
     );
