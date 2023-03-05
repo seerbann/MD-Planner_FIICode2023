@@ -8,6 +8,9 @@ import 'package:health_hub/Pages/signin/signin_medic/signin_page.dart';
 import 'package:health_hub/Pages/firstpage/first_page.dart';
 import 'package:health_hub/Pages/signin/signin_user/cont_creat.dart';
 import 'package:health_hub/firebase_options.dart';
+
+
+
 import 'Pages/signin/signin_user/signin_page_user.dart';
 import 'Pages/listpage/main_listpage.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -61,8 +64,8 @@ GoRouter router = GoRouter(
       builder: (context, state) => MainListPage(),
     ),
     GoRoute(
-      path: '/hpage',
-      builder: (context, state) => ListAndPacientDetails(),
+      path: '/profile',
+      builder: (context, state) => MainProfile(),
     ),
   ],
 );

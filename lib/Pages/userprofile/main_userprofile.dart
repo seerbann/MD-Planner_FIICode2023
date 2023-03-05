@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-
-import 'package:health_hub/Pages/listpage/components/ListAndPacientDetails.dart';
+import 'package:health_hub/Pages/userprofile/components/profile.dart';
 import 'package:health_hub/commonComponents/navBar_desktop.dart';
 import 'package:health_hub/responsive.dart';
 import 'package:health_hub/commonComponents/appbar.dart';
 import '../../commonComponents/navBar_desktop.dart';
 
-class MainListPage extends StatefulWidget {
+class MainProfile extends StatefulWidget {
   @override
-  State<MainListPage> createState() => _MainListPageState();
+  State<MainProfile> createState() => _MainProfileState();
 }
 
-class _MainListPageState extends State<MainListPage> {
+class _MainProfileState extends State<MainProfile> {
   @override
   Widget build(BuildContext context) {
     // It provide us the width and height
@@ -20,13 +19,13 @@ class _MainListPageState extends State<MainListPage> {
       // Let's work on our mobile part
       mobile: Scaffold(
         appBar: CustomAppBar(),
-        body: ListAndPacientDetails(),
+        body: Profile(),
       ),
       tablet: Scaffold(
         appBar: CustomAppBar(),
         body: Row(
           children: [
-            Expanded(flex: 6, child: ListAndPacientDetails()),
+            Expanded(flex: 6, child: Profile()),
           ],
         ),
       ),
@@ -34,7 +33,7 @@ class _MainListPageState extends State<MainListPage> {
         child: Row(
           children: [
             Expanded(flex: 1, child: CustomNavBar()),
-            Expanded(flex: 15, child: ListAndPacientDetails()),
+            Expanded(flex: 15, child: Profile()),
           ],
         ),
       ),
