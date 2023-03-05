@@ -7,10 +7,14 @@ import 'package:health_hub/Pages/signin/pending.dart';
 import 'package:health_hub/Pages/signin/signin_medic/signin_page.dart';
 import 'package:health_hub/Pages/firstpage/first_page.dart';
 import 'package:health_hub/Pages/signin/signin_user/cont_creat.dart';
+import 'package:health_hub/firebase_options.dart';
 import 'Pages/signin/signin_user/signin_page_user.dart';
 import 'Pages/listpage/main_listpage.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
