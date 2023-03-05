@@ -11,6 +11,16 @@ class GetCitiesName extends StatelessWidget {
 
     CollectionReference cities =
         FirebaseFirestore.instance.collection('cities');
+    return FutureBuilder<DocumentSnapshot>(
+        future: cities.doc(documentId).get(),
+        builder: ((context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            Map<String, dynamic> data =
+                snapshot.data!.data() as Map<String, dynamic>;
+            return Text('${data['nume']}');
+          }
+          return Text('loading...');
+        }));
     return const Placeholder();
   }
 }

@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:textfield_search/textfield_search.dart';
+import 'package:searchfield/searchfield.dart';
 
 class SignInPage_user extends StatefulWidget {
   const SignInPage_user({super.key});
@@ -25,6 +26,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
   late final TextEditingController _phone;
   late final TextEditingController _cnp;
   var label = "Some Label";
+  var dummyList = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
 
   TextEditingController myController = TextEditingController();
 
@@ -79,7 +81,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
 
   /// document IDs
   List<String> docIDs = [];
-  List<String> cities = [];
+  late List<String> cities = [];
 
   /// get doc IDs
   Future getDocId() async {
@@ -290,19 +292,16 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                         ),
                                       ),
                                       FutureBuilder(
-                                          future: getDocId(),
-                                          builder: (context, snapshot) {
-                                            return TextFieldSearch(
-                                              initialList: cities,
-                                              label: 'label',
-                                              controller: myController,
-                                              decoration: InputDecoration(
-                                                  hintText: "Oras",
-                                                  hintStyle: TextStyle(
-                                                      color: Colors.grey),
-                                                  border: InputBorder.none),
-                                            );
-                                          }),
+                                        future: getDocId(),
+                                        builder: (context, snapshot) {
+                                          return SearchField(
+                                            suggestions: cities
+                                                .map((e) =>
+                                                    SearchFieldListItem(e))
+                                                .toList(),
+                                          );
+                                        },
+                                      ),
                                       Container(
                                         padding: const EdgeInsets.all(10),
                                         child: TextField(
