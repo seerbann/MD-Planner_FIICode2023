@@ -6,8 +6,7 @@ import '../Pages/userprofile/main_userprofile.dart';
 int _selectedIndex = 0;
 
 class CustomNavBar extends StatefulWidget {
-  const CustomNavBar({super.key, this.param});
-  final int? param;
+  const CustomNavBar({super.key});
 
   @override
   State<CustomNavBar> createState() => _CustomNavBarState();
@@ -22,11 +21,15 @@ class _CustomNavBarState extends State<CustomNavBar> {
   @override
   Widget build(BuildContext context) {
     return NavigationRail(
+      leading: Image.asset(
+        'assets/images/logo2.png',
+        scale: 5,
+      ),
       selectedLabelTextStyle: const TextStyle(color: Colors.lightBlue),
       backgroundColor: Colors.black,
       selectedIndex: _selectedIndex,
       labelType: NavigationRailLabelType.all,
-      // groupAlignment: groupAligment,
+      groupAlignment: groupAligment,
       onDestinationSelected: (int index) {
         setState(() {
           _selectedIndex = index;
