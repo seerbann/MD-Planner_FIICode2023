@@ -44,7 +44,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
             scale: 5,
           ),
           //selectedIcon: Icon(Icons.favorite),
-          label: Text(
+          label: const Text(
             'Profile',
             style: TextStyle(color: Colors.white),
           ),
@@ -55,7 +55,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
             scale: 3,
           ),
           //selectedIcon: Icon(Icons.book),
-          label: Text(
+          label: const Text(
             'List',
             style: TextStyle(color: Colors.white),
           ),
@@ -66,7 +66,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
             scale: 3,
           ),
           //selectedIcon: Icon(Icons.star),
-          label: Text(
+          label: const Text(
             'Calendar',
             style: TextStyle(color: Colors.white),
           ),

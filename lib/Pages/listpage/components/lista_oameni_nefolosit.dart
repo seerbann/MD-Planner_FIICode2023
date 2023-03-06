@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_hub/Pages/login/login_componenets.dart';
-import 'package:health_hub/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:go_router/go_router.dart';
 
 class ListaOameni extends StatefulWidget {
   const ListaOameni({super.key});
@@ -120,7 +117,7 @@ class _ListaOameniState extends State<ListaOameni> {
                                                     fontSize: 16,
                                                     fontWeight: FontWeight
                                                         .w500)), // <-- Text
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 5,
                                             ),
                                             Image.asset(
@@ -147,10 +144,10 @@ class _ListaOameniState extends State<ListaOameni> {
                                           color: Colors.black.withOpacity(0.2),
                                           spreadRadius: 4,
                                           blurRadius: 10,
-                                          offset: Offset(0, 3),
+                                          offset: const Offset(0, 3),
                                         )
                                       ],
-                                      gradient: LinearGradient(
+                                      gradient: const LinearGradient(
                                         begin: Alignment.centerLeft,
                                         end: Alignment.centerRight,
                                         colors: [
@@ -161,7 +158,7 @@ class _ListaOameniState extends State<ListaOameni> {
                                     ),
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        side: BorderSide(
+                                        side: const BorderSide(
                                             width: 0.5, color: Colors.white),
                                         backgroundColor: Colors.transparent,
                                         shadowColor: Colors.transparent,
@@ -184,7 +181,7 @@ class _ListaOameniState extends State<ListaOameni> {
                                           Text("Albu Dorian",
                                               textAlign: TextAlign.center,
                                               style: GoogleFonts.outfit(
-                                                  color: Color.fromARGB(
+                                                  color: const Color.fromARGB(
                                                       255, 0, 0, 0),
                                                   //letterSpacing: 1,
                                                   fontSize: 20,

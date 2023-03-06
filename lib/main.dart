@@ -10,6 +10,7 @@ import 'package:health_hub/Pages/signin/signin_user/cont_creat.dart';
 import 'package:health_hub/Pages/userprofile/main_userprofile.dart';
 import 'package:health_hub/firebase_options.dart';
 
+import 'Pages/medicprofile/main_medicprofile.dart';
 import 'Pages/signin/signin_user/signin_page_user.dart';
 import 'Pages/listpage/main_listpage.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -65,6 +66,10 @@ GoRouter router = GoRouter(
     GoRoute(
       path: '/profile',
       builder: (context, state) => MainProfile(),
+    ),
+    GoRoute(
+      path: '/medicprofile',
+      builder: (context, state) => MainMedicProfile(),
     ),
   ],
 );

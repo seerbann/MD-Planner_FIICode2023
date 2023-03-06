@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:health_hub/Pages/calendarpage/components/calendar.dart';
+import 'package:health_hub/Pages/medicprofile/components/medicProfile.dart';
 import 'package:health_hub/commonComponents/navBar_desktop.dart';
 import 'package:health_hub/responsive.dart';
 import 'package:health_hub/commonComponents/appbar.dart';
 
-class MainListPage extends StatefulWidget {
+class MainMedicProfile extends StatefulWidget {
   @override
-  State<MainListPage> createState() => _MainListPageState();
+  State<MainMedicProfile> createState() => _MainMedicProfileState();
 }
 
-class _MainListPageState extends State<MainListPage> {
+class _MainMedicProfileState extends State<MainMedicProfile> {
   @override
   Widget build(BuildContext context) {
     // It provide us the width and height
@@ -18,13 +18,13 @@ class _MainListPageState extends State<MainListPage> {
       // Let's work on our mobile part
       mobile: const Scaffold(
         appBar: CustomAppBar(),
-        body: Calendar(),
+        body: MedicProfile(),
       ),
       tablet: Scaffold(
         appBar: const CustomAppBar(),
         body: Row(
-          children: [
-            const Expanded(flex: 6, child: Calendar()),
+          children: const [
+            Expanded(flex: 6, child: MedicProfile()),
           ],
         ),
       ),
@@ -32,7 +32,7 @@ class _MainListPageState extends State<MainListPage> {
         child: Row(
           children: const [
             Expanded(flex: 1, child: CustomNavBar()),
-            Expanded(flex: 15, child: Calendar()),
+            Expanded(flex: 15, child: MedicProfile()),
           ],
         ),
       ),
