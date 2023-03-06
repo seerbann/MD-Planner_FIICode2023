@@ -25,6 +25,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
   late final TextEditingController _lastName;
   late final TextEditingController _phone;
   late final TextEditingController _cnp;
+  late final TextEditingController _city;
   var label = "Some Label";
   var dummyList = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
 
@@ -39,6 +40,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
     _lastName = TextEditingController();
     _phone = TextEditingController();
     _cnp = TextEditingController();
+    _city = TextEditingController();
     myController.addListener(_printLatestValue);
     super.initState();
   }
@@ -52,6 +54,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
     _lastName.dispose();
     _phone.dispose();
     _cnp.dispose();
+    _city.dispose();
     myController.dispose();
     super.dispose();
   }
@@ -69,13 +72,14 @@ class _SignInPage_userState extends State<SignInPage_user> {
   }
 
   Future addUserDetails(String firstName, String lastName, String email,
-      String phone, String cnp) async {
+      String phone, String cnp, String city) async {
     await FirebaseFirestore.instance.collection('users').add({
       'first name': firstName,
       'last name': lastName,
       'email': email,
       'phone': phone,
       'cnp': cnp,
+      'city': city,
     });
   }
 
@@ -295,6 +299,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                         future: getDocId(),
                                         builder: (context, snapshot) {
                                           return SearchField(
+                                            controller: _city,
                                             suggestions: cities
                                                 .map((e) =>
                                                     SearchFieldListItem(e))
@@ -353,7 +358,8 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                         _lastName.text.trim(),
                                         _email.text.trim(),
                                         _phone.text.trim(),
-                                        _cnp.text.trim());
+                                        _cnp.text.trim(),
+                                        _city.text.trim());
                                   },
                                   child: Text('Inregistrare',
                                       style: GoogleFonts.roboto(
