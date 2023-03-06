@@ -26,7 +26,7 @@ class _MainListPageState extends State<MainListPage> {
         appBar: CustomAppBar(),
         body: Row(
           children: [
-            Expanded(flex: 6, child: ListAndPacientDetails()),
+            Expanded(child: ListAndPacientDetails()),
           ],
         ),
       ),

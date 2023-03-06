@@ -17,7 +17,7 @@ class _ListAndPacientDetailsState extends State<ListAndPacientDetails> {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
-          if (constraints.maxWidth > 600) {
+          if (constraints.maxWidth > 800) {
             return WideLayout();
           } else {
             return NarrowLayout();
@@ -97,47 +97,62 @@ class PeopleList extends StatelessWidget {
           ),
           Expanded(
             flex: 5,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(
-                  height: 250,
-                ),
-                Text("Pacienti",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.roboto(
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                        letterSpacing: 1,
-                        fontSize: 40,
-                        fontWeight: FontWeight.w500)),
-                SizedBox(
-                  height: 30,
-                ),
-                for (var person in people)
-                  Container(
-                    decoration:
-                        BoxDecoration(border: Border.all(color: Colors.black)),
-                    child: TextButton(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/images/user.png',
-                            scale: 5,
-                          ),
-                          Text(
-                            person.name,
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontFamily: 'Outfit',
-                                color: Colors.black),
-                          )
-                        ],
-                      ),
-                      onPressed: () => onPersonTap(person),
-                    ),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    height: 250,
                   ),
-              ],
+                  Row(
+                    children: [
+                      Text("Pacienti",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.roboto(
+                              color: const Color.fromARGB(255, 255, 255, 255),
+                              letterSpacing: 1,
+                              fontSize: 40,
+                              fontWeight: FontWeight.w500)),
+                      SizedBox(
+                        width: 30,
+                      ),
+                      InkWell(child: Image.asset('assets/images/add.png'))
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  for (var person in people)
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: Color(0xFF9DBAFE),
+                            border: Border.all(color: Colors.black)),
+                        child: TextButton(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/user.png',
+                                scale: 5,
+                              ),
+                              Text(
+                                person.name,
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontFamily: 'Outfit',
+                                    color: Colors.black),
+                              )
+                            ],
+                          ),
+                          onPressed: () => onPersonTap(person),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
             ),
           ),
           Spacer(
