@@ -167,7 +167,7 @@ class _FirstpageComponentState extends State<FirstpageComponent> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 150,
                 ),
                 Row(

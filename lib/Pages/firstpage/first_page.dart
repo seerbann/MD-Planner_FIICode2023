@@ -177,7 +177,7 @@ class _FirstPageState extends State<FirstPage> {
                             ),
                             Column(
                               children: [
-                                Container(
+                                SizedBox(
                                   width: 545,
                                   child: Text(
                                       "MD Planner este facut pentru a ajuta oameni de pretutindeni sa isi menegerieze programarile la medic intr-o maniera cat mai usoara.",
@@ -259,7 +259,7 @@ class _FirstPageState extends State<FirstPage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 100,
                     ),
                     Row(
