@@ -50,7 +50,8 @@ class _WideLayoutState extends State<WideLayout> {
         ),
         Expanded(
           flex: 3,
-          child: PersonDetail(_person),
+          child:
+              _person.name == 'default' ? EmptyView() : PersonDetail(_person),
         ),
       ],
     );
@@ -102,7 +103,7 @@ class PeopleList extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(
-                    height: 250,
+                    height: 150,
                   ),
                   Row(
                     children: [
@@ -126,7 +127,7 @@ class PeopleList extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        height: 50,
+                        height: 70,
                         decoration: BoxDecoration(
                             color: Color(0xFF9DBAFE),
                             border: Border.all(color: Colors.black)),
@@ -134,9 +135,15 @@ class PeopleList extends StatelessWidget {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
+                              SizedBox(
+                                width: 10,
+                              ),
                               Image.asset(
                                 'assets/images/user.png',
                                 scale: 5,
+                              ),
+                              SizedBox(
+                                width: 15,
                               ),
                               Text(
                                 person.name,
@@ -172,12 +179,73 @@ class PersonDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(person.name),
-          Text(person.phone),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              color: Color(0xFFFAFBFF),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/defaultUser.png'),
+                      Column(
+                        children: [
+                          Text(
+                            person.name,
+                            style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontSize: 35,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(person.phone)
+                        ],
+                      ),
+                    ],
+                  ),
+                  Text(
+                    'trimite altui medic',
+                    style: TextStyle(fontWeight: FontWeight.w400),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 200,
+            ),
+            Container(
+              color: Color(0xFFFAFBFF),
+              child: Text('Fisa Medicala'),
+            ),
+            SizedBox(height: 400),
+            Container(
+              color: Color(0xFFFAFBFF),
+              child: Text('Istoric Medical'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class EmptyView extends StatelessWidget {
+  const EmptyView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: double.infinity,
+      color: Colors.white,
+      child: Center(
+        child: Text(
+          'Hei, momentan nu ai selectat niciun pacient.',
+          style: TextStyle(
+              fontFamily: 'Outfit', fontSize: 35, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
