@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:health_hub/Pages/listpage/components/ListAndPacientDetails.dart';
 
 import 'package:health_hub/Pages/login/login_page.dart';
+import 'package:health_hub/Pages/main_page.dart';
 import 'package:health_hub/Pages/signin/pending.dart';
 import 'package:health_hub/Pages/signin/signin_medic/signin_page.dart';
 import 'package:health_hub/Pages/firstpage/first_page.dart';
@@ -37,7 +38,7 @@ GoRouter router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const FirstPage(),
+      builder: (context, state) => const MainPage(),
     ),
     GoRoute(
       path: '/login',

@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MedicProfile extends StatefulWidget {
   const MedicProfile({super.key});
@@ -6,6 +8,8 @@ class MedicProfile extends StatefulWidget {
   @override
   State<MedicProfile> createState() => _MedicProfileState();
 }
+
+final user = FirebaseAuth.instance.currentUser;
 
 class _MedicProfileState extends State<MedicProfile> {
   @override
@@ -108,7 +112,34 @@ class _MedicProfileState extends State<MedicProfile> {
                   ),
                 ],
               ),
-            )
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text('signed in as: ${user?.email}',
+                style: GoogleFonts.roboto(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  letterSpacing: 2,
+                  fontSize: 20,
+                )),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromARGB(255, 255, 205, 67),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50)),
+              ),
+              onPressed: (() => FirebaseAuth.instance.signOut()),
+              child: Text('Sign Out',
+                  style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    letterSpacing: 2,
+                    fontSize: 20,
+                  )),
+            ),
           ],
         ),
       ),

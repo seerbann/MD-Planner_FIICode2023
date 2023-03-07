@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:health_hub/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,6 +15,22 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   //variabiles
+
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim());
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   Widget build(BuildContext context) {
     return Responsive(
@@ -111,7 +128,8 @@ class _LoginPageState extends State<LoginPage> {
                                               bottom: BorderSide(
                                                   color: Color.fromRGBO(
                                                       240, 240, 240, 1)))),
-                                      child: const TextField(
+                                      child: TextField(
+                                        controller: _emailController,
                                         decoration: InputDecoration(
                                             hintText: "Email",
                                             hintStyle:
@@ -121,7 +139,8 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                     Container(
                                       padding: const EdgeInsets.all(10),
-                                      child: const TextField(
+                                      child: TextField(
+                                        controller: _passwordController,
                                         obscureText: true,
                                         decoration: InputDecoration(
                                             hintText: "Parola",
@@ -152,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(50)),
                                 ),
-                                onPressed: (() => context.go('/pacienti')),
+                                onPressed: (() => signIn()),
                                 child: Text('Autentificare',
                                     style: GoogleFonts.roboto(
                                       fontWeight: FontWeight.bold,
