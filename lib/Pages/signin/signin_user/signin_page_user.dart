@@ -30,6 +30,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
   var dummyList = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
 
   TextEditingController myController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -189,136 +190,202 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                             blurRadius: 20,
                                             offset: Offset(0, 10))
                                       ]),
-                                  child: Column(
-                                    children: <Widget>[
-                                      Container(
-                                        padding: const EdgeInsets.all(10),
-                                        decoration: const BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Color.fromRGBO(
-                                                        240, 240, 240, 1)))),
-                                        child: TextField(
-                                          controller: _firstName,
-                                          decoration: InputDecoration(
-                                              hintText: "Prenume",
-                                              hintStyle:
-                                                  TextStyle(color: Colors.grey),
-                                              border: InputBorder.none),
+                                  child: Form(
+                                    key: formKey,
+                                    child: Column(
+                                      //form_mobile
+                                      children: <Widget>[
+                                        Container(
+                                          padding: const EdgeInsets.all(10),
+                                          decoration: const BoxDecoration(
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          240, 240, 240, 1)))),
+                                          child: TextFormField(
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return 'Please enter some text';
+                                              }
+                                              return null;
+                                            },
+                                            controller: _firstName,
+                                            decoration: InputDecoration(
+                                                hintText: "Prenume",
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey),
+                                                border: InputBorder.none),
+                                          ),
                                         ),
-                                      ),
-                                      Container(
-                                        padding: const EdgeInsets.all(10),
-                                        decoration: const BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Color.fromRGBO(
-                                                        240, 240, 240, 1)))),
-                                        child: TextField(
-                                          controller: _lastName,
-                                          decoration: InputDecoration(
-                                              hintText: "Nume",
-                                              hintStyle:
-                                                  TextStyle(color: Colors.grey),
-                                              border: InputBorder.none),
+                                        Container(
+                                          padding: const EdgeInsets.all(10),
+                                          decoration: const BoxDecoration(
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          240, 240, 240, 1)))),
+                                          child: TextFormField(
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return 'Ai uitat sa scrii aici.';
+                                              }
+                                              return null;
+                                            },
+                                            controller: _lastName,
+                                            decoration: InputDecoration(
+                                                hintText: "Nume",
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey),
+                                                border: InputBorder.none),
+                                          ),
                                         ),
-                                      ),
-                                      Container(
-                                        padding: const EdgeInsets.all(10),
-                                        decoration: const BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Color.fromRGBO(
-                                                        240, 240, 240, 1)))),
-                                        child: TextField(
-                                          controller: _email,
-                                          enableSuggestions: false,
-                                          autocorrect: false,
-                                          keyboardType:
-                                              TextInputType.emailAddress,
-                                          decoration: InputDecoration(
-                                              hintText: "Email",
-                                              hintStyle:
-                                                  TextStyle(color: Colors.grey),
-                                              border: InputBorder.none),
+                                        Container(
+                                          padding: const EdgeInsets.all(10),
+                                          decoration: const BoxDecoration(
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          240, 240, 240, 1)))),
+                                          child: TextFormField(
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return 'Ai uitat sa scrii aici.';
+                                              }
+                                              return null;
+                                            },
+                                            controller: _email,
+                                            enableSuggestions: false,
+                                            autocorrect: false,
+                                            keyboardType:
+                                                TextInputType.emailAddress,
+                                            decoration: InputDecoration(
+                                                hintText: "Email",
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey),
+                                                border: InputBorder.none),
+                                          ),
                                         ),
-                                      ),
-                                      Container(
-                                        padding: const EdgeInsets.all(10),
-                                        decoration: const BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Color.fromRGBO(
-                                                        240, 240, 240, 1)))),
-                                        child: TextField(
-                                          controller: _password,
-                                          obscureText: true,
-                                          enableSuggestions: false,
-                                          autocorrect: false,
-                                          decoration: InputDecoration(
-                                              hintText: "Parola",
-                                              hintStyle:
-                                                  TextStyle(color: Colors.grey),
-                                              border: InputBorder.none),
+                                        Container(
+                                          padding: const EdgeInsets.all(10),
+                                          decoration: const BoxDecoration(
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          240, 240, 240, 1)))),
+                                          child: TextFormField(
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return 'Ai uitat sa scrii aici.';
+                                              }
+                                              return null;
+                                            },
+                                            controller: _password,
+                                            obscureText: true,
+                                            enableSuggestions: false,
+                                            autocorrect: false,
+                                            decoration: InputDecoration(
+                                                hintText: "Parola",
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey),
+                                                border: InputBorder.none),
+                                          ),
                                         ),
-                                      ),
-                                      Container(
-                                        padding: const EdgeInsets.all(10),
-                                        decoration: const BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Color.fromRGBO(
-                                                        240, 240, 240, 1)))),
-                                        child: TextField(
-                                          controller: _confirmPassword,
-                                          obscureText: true,
-                                          decoration: InputDecoration(
-                                              hintText: "Confirma Parola",
-                                              hintStyle:
-                                                  TextStyle(color: Colors.grey),
-                                              border: InputBorder.none),
+                                        Container(
+                                          padding: const EdgeInsets.all(10),
+                                          decoration: const BoxDecoration(
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          240, 240, 240, 1)))),
+                                          child: TextFormField(
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return 'Ai uitat sa scrii aici.';
+                                              }
+                                              return null;
+                                            },
+                                            controller: _confirmPassword,
+                                            obscureText: true,
+                                            decoration: InputDecoration(
+                                                hintText: "Confirma Parola",
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey),
+                                                border: InputBorder.none),
+                                          ),
                                         ),
-                                      ),
-                                      Container(
-                                        padding: const EdgeInsets.all(10),
-                                        decoration: const BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Color.fromRGBO(
-                                                        240, 240, 240, 1)))),
-                                        child: TextField(
-                                          controller: _phone,
-                                          decoration: InputDecoration(
-                                              hintText: "Telefon",
-                                              hintStyle:
-                                                  TextStyle(color: Colors.grey),
-                                              border: InputBorder.none),
+                                        Container(
+                                          padding: const EdgeInsets.all(10),
+                                          decoration: const BoxDecoration(
+                                              border: Border(
+                                                  bottom: BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          240, 240, 240, 1)))),
+                                          child: TextFormField(
+                                            keyboardType: TextInputType.number,
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return "Ai uitat sa scrii aici.";
+                                              } else if (!RegExp(
+                                                      r'^(\+4|)?(07[0-8]{1}[0-9]{1}|02[0-9]{2}|03[0-9]{2}){1}?(\s|\.|\-)?([0-9]{3}(\s|\.|\-|)){2}$')
+                                                  .hasMatch(value)) {
+                                                return "Acest numar nu este valid.";
+                                              }
+                                            },
+                                            controller: _phone,
+                                            decoration: InputDecoration(
+                                                hintText: "Telefon",
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey),
+                                                border: InputBorder.none),
+                                          ),
                                         ),
-                                      ),
-                                      FutureBuilder(
-                                        future: getDocId(),
-                                        builder: (context, snapshot) {
-                                          return SearchField(
-                                            controller: _city,
-                                            suggestions: cities
-                                                .map((e) =>
-                                                    SearchFieldListItem(e))
-                                                .toList(),
-                                          );
-                                        },
-                                      ),
-                                      Container(
-                                        padding: const EdgeInsets.all(10),
-                                        child: TextField(
-                                          controller: _cnp,
-                                          decoration: InputDecoration(
-                                              hintText: "Cod Numeric Personal",
-                                              hintStyle:
-                                                  TextStyle(color: Colors.grey),
-                                              border: InputBorder.none),
+                                        FutureBuilder(
+                                          future: getDocId(),
+                                          builder: (context, snapshot) {
+                                            return SearchField(
+                                              validator: (value) {
+                                                if (value == null ||
+                                                    value.isEmpty) {
+                                                  return 'Ai uitat sa alegi un oras.';
+                                                }
+                                              },
+                                              hint: 'Oras',
+                                              controller: _city,
+                                              suggestions: cities
+                                                  .map((e) =>
+                                                      SearchFieldListItem(e))
+                                                  .toList(),
+                                            );
+                                          },
                                         ),
-                                      ),
-                                    ],
+                                        Container(
+                                          padding: const EdgeInsets.all(10),
+                                          child: TextFormField(
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return "Ai uitat sa scrii aici.";
+                                              } else if (!RegExp(
+                                                      r'^[1-9]\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])(0[1-9]|[1-4]\d|5[0-2]|99)(00[1-9]|0[1-9]\d|[1-9]\d\d)\d$')
+                                                  .hasMatch(value)) {
+                                                return "Acest CNP nu este valid.";
+                                              }
+                                            },
+                                            controller: _cnp,
+                                            decoration: InputDecoration(
+                                                hintText:
+                                                    "Cod Numeric Personal",
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey),
+                                                border: InputBorder.none),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(
@@ -335,10 +402,11 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                             BorderRadius.circular(50)),
                                   ),
                                   onPressed: () async {
-                                    print(cities);
+                                    // print(cities);
 
                                     /// TODO: Initializare la inceput + future builder
-                                    if (passwordConfirmed()) {
+                                    if (passwordConfirmed() &&
+                                        formKey.currentState!.validate()) {
                                       /// initialize firebase
 
                                       final email = _email.text;
@@ -349,17 +417,23 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                           .instance
                                           .createUserWithEmailAndPassword(
                                               email: email, password: password);
-                                      print(UserCredential);
-                                    }
 
-                                    /// add user details
-                                    addUserDetails(
-                                        _firstName.text.trim(),
-                                        _lastName.text.trim(),
-                                        _email.text.trim(),
-                                        _phone.text.trim(),
-                                        _cnp.text.trim(),
-                                        _city.text.trim());
+                                      /// add user details
+                                      addUserDetails(
+                                          _firstName.text.trim(),
+                                          _lastName.text.trim(),
+                                          _email.text.trim(),
+                                          _phone.text.trim(),
+                                          _cnp.text.trim(),
+                                          _city.text.trim());
+
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(const SnackBar(
+                                              content: Text(
+                                                  'Ai fost inregistrat.')));
+
+                                      context.go('/login');
+                                    }
                                   },
                                   child: Text('Inregistrare',
                                       style: GoogleFonts.roboto(
@@ -887,4 +961,12 @@ class _SignInPage_userState extends State<SignInPage_user> {
           )),
         ));
   }
+}
+
+String? validateMobile(String value) {
+// Indian Mobile number are of 10 digit only
+  if (value.length != 10)
+    return 'Mobile Number must be of 10 digit';
+  else
+    return null;
 }
