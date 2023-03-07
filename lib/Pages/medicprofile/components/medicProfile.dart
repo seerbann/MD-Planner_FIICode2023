@@ -87,7 +87,7 @@ class _MedicProfileState extends State<MedicProfile> {
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                         color: Colors.white,
                       ),
-                      child: Text('Pacienti'),
+                      child: const Text('Pacienti'),
                     ),
                   ),
                   Expanded(
