@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:health_hub/Pages/listpage/components/ListAndPacientDetails.dart';
 import 'package:health_hub/commonComponents/navBar_desktop.dart';
@@ -22,12 +23,12 @@ class _MainListPageState extends State<MainListPage> {
       // Let's work on our mobile part
       mobile: Scaffold(
         appBar: CustomAppBar(),
-        drawer: customDrawer(),
+        drawer: CustomDrawer(),
         body: ListAndPacientDetails(),
       ),
       tablet: Scaffold(
         appBar: CustomAppBar(),
-        drawer: customDrawer(),
+        drawer: CustomDrawer(),
         body: Row(
           children: [
             Expanded(child: ListAndPacientDetails()),
