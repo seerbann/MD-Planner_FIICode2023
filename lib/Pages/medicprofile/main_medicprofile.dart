@@ -18,12 +18,12 @@ class _MainMedicProfileState extends State<MainMedicProfile> {
       // Let's work on our mobile part
       mobile: Scaffold(
         appBar: CustomAppBar(),
-        drawer: customDrawer(),
+        drawer: CustomDrawer(),
         body: MedicProfile(),
       ),
       tablet: Scaffold(
         appBar: CustomAppBar(),
-        drawer: customDrawer(),
+        drawer: CustomDrawer(),
         body: Row(
           children: const [
             Expanded(flex: 6, child: MedicProfile()),

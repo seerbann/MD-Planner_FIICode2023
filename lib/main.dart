@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:health_hub/Pages/calendarpage/components/calendar.dart';
 import 'package:health_hub/Pages/listpage/components/ListAndPacientDetails.dart';
 
 import 'package:health_hub/Pages/login/login_page.dart';
@@ -72,5 +73,9 @@ GoRouter router = GoRouter(
       path: '/medicprofile',
       builder: (context, state) => MainMedicProfile(),
     ),
+    GoRoute(
+      path: '/calendar',
+      builder: (context, state) => Calendar(),
+    )
   ],
 );

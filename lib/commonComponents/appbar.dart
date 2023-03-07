@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
@@ -28,59 +29,81 @@ class _CustomAppBarState extends State<CustomAppBar> {
   }
 }
 
-Widget customDrawer() {
-  return Drawer(
-    backgroundColor: Colors.black,
-    child: SingleChildScrollView(
-        child: Container(
-            margin: EdgeInsets.only(top: 50),
-            child: Column(
-              children: <Widget>[
-                ListTile(
-                    leading: Image.asset(
-                      'assets/images/user.png',
-                      scale: 5,
-                    ),
-                    title: Text(
-                      "Profil",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onTap: () {}),
+class CustomDrawer extends StatefulWidget {
+  const CustomDrawer({super.key});
 
-                ListTile(
-                    leading: Image.asset(
-                      'assets/images/list.png',
-                      scale: 3,
-                    ),
-                    title: Text("Lista", style: TextStyle(color: Colors.white)),
-                    onTap: () {
-                      // My Pfofile button action
-                    }),
+  @override
+  State<CustomDrawer> createState() => _CustomDrawerState();
+}
 
-                ListTile(
-                    leading: Image.asset(
-                      'assets/images/calendar.png',
-                      scale: 3,
-                    ),
-                    title:
-                        Text("Calendar", style: TextStyle(color: Colors.white)),
-                    onTap: () {
-                      // Find peoples button action
-                    }),
+class _CustomDrawerState extends State<CustomDrawer> {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      backgroundColor: Colors.black,
+      child: SingleChildScrollView(
+          child: Container(
+              margin: EdgeInsets.only(top: 50),
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                      leading: Image.asset(
+                        'assets/images/user.png',
+                        scale: 5,
+                      ),
+                      title: Text(
+                        "Profil",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        setState(() {
+                          context.go('/profile');
+                        });
+                      }),
 
-                ListTile(
-                    leading: Image.asset(
-                      'assets/images/logout.png',
-                      scale: 5,
-                    ),
-                    title:
-                        Text("Logout", style: TextStyle(color: Colors.white)),
-                    onTap: () {
-                      // Find peoples button action
-                    })
+                  ListTile(
+                      leading: Image.asset(
+                        'assets/images/list.png',
+                        scale: 3,
+                      ),
+                      title:
+                          Text("Lista", style: TextStyle(color: Colors.white)),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        setState(() {
+                          context.go('/list');
+                        });
+                      }),
 
-                //add more drawer menu here
-              ],
-            ))),
-  );
+                  ListTile(
+                      leading: Image.asset(
+                        'assets/images/calendar.png',
+                        scale: 3,
+                      ),
+                      title: Text("Calendar",
+                          style: TextStyle(color: Colors.white)),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        setState(() {
+                          context.go('/calendar');
+                        });
+                      }),
+
+                  ListTile(
+                      leading: Image.asset(
+                        'assets/images/logout.png',
+                        scale: 5,
+                      ),
+                      title:
+                          Text("Logout", style: TextStyle(color: Colors.white)),
+                      onTap: () {
+                        // Find peoples button action
+                      })
+
+                  //add more drawer menu here
+                ],
+              ))),
+    );
+  }
 }
