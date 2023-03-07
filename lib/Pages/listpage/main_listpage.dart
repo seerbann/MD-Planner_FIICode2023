@@ -16,14 +16,18 @@ class _MainListPageState extends State<MainListPage> {
   Widget build(BuildContext context) {
     // It provide us the width and height
     Size _size = MediaQuery.of(context).size;
+    final GlobalKey<ScaffoldState> _scaffoldKey =
+        new GlobalKey<ScaffoldState>();
     return Responsive(
       // Let's work on our mobile part
       mobile: Scaffold(
         appBar: CustomAppBar(),
+        drawer: customDrawer(),
         body: ListAndPacientDetails(),
       ),
       tablet: Scaffold(
         appBar: CustomAppBar(),
+        drawer: customDrawer(),
         body: Row(
           children: [
             Expanded(child: ListAndPacientDetails()),

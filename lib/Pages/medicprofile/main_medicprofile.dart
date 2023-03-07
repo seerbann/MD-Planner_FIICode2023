@@ -16,12 +16,14 @@ class _MainMedicProfileState extends State<MainMedicProfile> {
     Size _size = MediaQuery.of(context).size;
     return Responsive(
       // Let's work on our mobile part
-      mobile: const Scaffold(
+      mobile: Scaffold(
         appBar: CustomAppBar(),
+        drawer: customDrawer(),
         body: MedicProfile(),
       ),
       tablet: Scaffold(
-        appBar: const CustomAppBar(),
+        appBar: CustomAppBar(),
+        drawer: customDrawer(),
         body: Row(
           children: const [
             Expanded(flex: 6, child: MedicProfile()),

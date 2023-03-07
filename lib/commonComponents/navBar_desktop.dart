@@ -71,6 +71,17 @@ class _CustomNavBarState extends State<CustomNavBar> {
             style: TextStyle(color: Colors.white),
           ),
         ),
+        NavigationRailDestination(
+          icon: Image.asset(
+            'assets/images/logout.png',
+            scale: 5,
+          ),
+          //selectedIcon: Icon(Icons.star),
+          label: const Text(
+            'Logout',
+            style: TextStyle(color: Colors.white),
+          ),
+        )
       ],
     );
   }
