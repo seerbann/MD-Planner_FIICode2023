@@ -19,10 +19,12 @@ class _MainProfileState extends State<MainProfile> {
       // Let's work on our mobile part
       mobile: Scaffold(
         appBar: CustomAppBar(),
+        drawer: customDrawer(),
         body: Profile(),
       ),
       tablet: Scaffold(
         appBar: CustomAppBar(),
+        drawer: customDrawer(),
         body: Row(
           children: [
             Expanded(flex: 6, child: Profile()),

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,19 +15,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      actions: const [
-        Padding(
-          padding: EdgeInsets.only(right: 10),
-          child: Icon(Icons.menu, size: 35),
-        ),
-      ],
-      leading: Padding(
-        padding: const EdgeInsets.only(left: 10),
-        child: Image.asset(
-          'assets/images/logo2.png',
-          scale: 0.15,
-        ),
-      ),
       centerTitle: true,
       title: Text("MD Planner",
           style: GoogleFonts.roboto(
@@ -37,7 +23,64 @@ class _CustomAppBarState extends State<CustomAppBar> {
             fontSize: 24,
           )),
       elevation: 0,
-      backgroundColor: const Color.fromRGBO(51, 112, 255, 1),
+      backgroundColor: Colors.black,
     );
   }
+}
+
+Widget customDrawer() {
+  return Drawer(
+    backgroundColor: Colors.black,
+    child: SingleChildScrollView(
+        child: Container(
+            margin: EdgeInsets.only(top: 50),
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                    leading: Image.asset(
+                      'assets/images/user.png',
+                      scale: 5,
+                    ),
+                    title: Text(
+                      "Profil",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onTap: () {}),
+
+                ListTile(
+                    leading: Image.asset(
+                      'assets/images/list.png',
+                      scale: 3,
+                    ),
+                    title: Text("Lista", style: TextStyle(color: Colors.white)),
+                    onTap: () {
+                      // My Pfofile button action
+                    }),
+
+                ListTile(
+                    leading: Image.asset(
+                      'assets/images/calendar.png',
+                      scale: 3,
+                    ),
+                    title:
+                        Text("Calendar", style: TextStyle(color: Colors.white)),
+                    onTap: () {
+                      // Find peoples button action
+                    }),
+
+                ListTile(
+                    leading: Image.asset(
+                      'assets/images/logout.png',
+                      scale: 5,
+                    ),
+                    title:
+                        Text("Logout", style: TextStyle(color: Colors.white)),
+                    onTap: () {
+                      // Find peoples button action
+                    })
+
+                //add more drawer menu here
+              ],
+            ))),
+  );
 }
