@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+final kToday = DateTime.now();
+final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
+final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
+
 class MedicProfile extends StatefulWidget {
   const MedicProfile({super.key});
 
@@ -10,6 +14,9 @@ class MedicProfile extends StatefulWidget {
   State<MedicProfile> createState() => _MedicProfileState();
 }
 
+CalendarFormat _calendarFormat = CalendarFormat.month;
+DateTime _focusedDay = DateTime.now();
+DateTime? _selectedDay;
 final user = FirebaseAuth.instance.currentUser;
 
 class _MedicProfileState extends State<MedicProfile> {
@@ -44,7 +51,7 @@ class _MedicProfileState extends State<MedicProfile> {
                         Column(
                           children: [
                             const Text(
-                              'Prof. Dr. Daniel Leon',
+                              'Prof. Dr. Daniel Leon ',
                               style: TextStyle(
                                   fontFamily: 'Roboto',
                                   fontWeight: FontWeight.bold,
@@ -68,48 +75,89 @@ class _MedicProfileState extends State<MedicProfile> {
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                     color: Colors.white,
                   ),
-                  child: const Text('Calendar',
-                      style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.black,
-                      )),
+                  child: Column(
+                    children: [
+                      const Text('Calendar',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black,
+                          )),
+                      Container(
+                        width: 300,
+                        child: TableCalendar(
+                          firstDay: kFirstDay,
+                          lastDay: kLastDay,
+                          focusedDay: _focusedDay,
+                          calendarFormat: _calendarFormat,
+                          selectedDayPredicate: (day) {
+                            // Use `selectedDayPredicate` to determine which day is currently selected.
+                            // If this returns true, then `day` will be marked as selected.
+
+                            // Using `isSameDay` is recommended to disregard
+                            // the time-part of compared DateTime objects.
+                            return isSameDay(_selectedDay, day);
+                          },
+                          onDaySelected: (selectedDay, focusedDay) {
+                            if (!isSameDay(_selectedDay, selectedDay)) {
+                              // Call `setState()` when updating the selected day
+                              setState(() {
+                                _selectedDay = selectedDay;
+                                _focusedDay = focusedDay;
+                              });
+                            }
+                          },
+                          onFormatChanged: (format) {
+                            if (_calendarFormat != format) {
+                              // Call `setState()` when updating calendar format
+                              setState(() {
+                                _calendarFormat = format;
+                              });
+                            }
+                          },
+                          onPageChanged: (focusedDay) {
+                            // No need to call `setState()` here
+                            _focusedDay = focusedDay;
+                          },
+                        ),
+                      )
+                    ],
+                  ),
                 )
               ],
             ),
             Center(
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Expanded(
-                    child: Container(
-                      height: 30,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        color: Colors.white,
-                      ),
-                      child: const Text('Pacienti'),
+                  Container(
+                    height: 50,
+                    width: 90,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      color: Colors.white,
                     ),
+                    child: Center(child: const Text('Pacienti')),
                   ),
-                  Expanded(
-                    child: Container(
-                      height: 30,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        color: Colors.white,
-                      ),
-                      child: Text('Asistenti'),
+                  Container(
+                    height: 50,
+                    width: 90,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      color: Colors.white,
                     ),
+                    child: Center(child: const Text('Asistenti')),
                   ),
-                  Expanded(
-                    child: Container(
-                      height: 30,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        color: Colors.white,
-                      ),
-                      child: Text('Trimite invitatie'),
+                  Container(
+                    height: 50,
+                    width: 90,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blue, width: 5),
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      color: Colors.white,
                     ),
+                    child: Center(child: const Text('Trimite o invitatie')),
                   ),
                 ],
               ),
@@ -141,7 +189,6 @@ class _MedicProfileState extends State<MedicProfile> {
                     fontSize: 20,
                   )),
             ),
-           
           ],
         ),
       ),

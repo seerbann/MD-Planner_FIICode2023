@@ -77,6 +77,6 @@ GoRouter router = GoRouter(
     GoRoute(
       path: '/calendar',
       builder: (context, state) => CalendarPage(),
-    )
+    ),
   ],
 );

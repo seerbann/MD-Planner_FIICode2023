@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -98,7 +99,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       title:
                           Text("Logout", style: TextStyle(color: Colors.white)),
                       onTap: () {
-                        // Find peoples button action
+                        setState(() {
+                          FirebaseAuth.instance.signOut();
+                        });
                       })
 
                   //add more drawer menu here

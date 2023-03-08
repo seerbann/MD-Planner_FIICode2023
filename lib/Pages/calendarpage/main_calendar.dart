@@ -18,10 +18,12 @@ class _CalendarPageState extends State<CalendarPage> {
       // Let's work on our mobile part
       mobile: const Scaffold(
         appBar: CustomAppBar(),
+        drawer: CustomDrawer(),
         body: Calendar(),
       ),
       tablet: Scaffold(
         appBar: const CustomAppBar(),
+        drawer: CustomDrawer(),
         body: Row(
           children: [
             const Expanded(flex: 6, child: Calendar()),
