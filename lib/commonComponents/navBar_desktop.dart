@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../Pages/listpage/main_listpage.dart';
@@ -36,6 +37,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
           if (index == 0) context.go('/profile');
           if (index == 1) context.go('/list');
           if (index == 2) context.go('/calendar');
+          if (index == 3) FirebaseAuth.instance.signOut();
         });
       },
       destinations: [
