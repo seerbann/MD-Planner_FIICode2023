@@ -35,6 +35,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
           _selectedIndex = index;
           if (index == 0) context.go('/profile');
           if (index == 1) context.go('/list');
+          if (index == 2) context.go('/calendar');
         });
       },
       destinations: [
