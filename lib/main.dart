@@ -12,6 +12,7 @@ import 'package:health_hub/Pages/signin/signin_user/cont_creat.dart';
 import 'package:health_hub/Pages/userprofile/main_userprofile.dart';
 import 'package:health_hub/firebase_options.dart';
 
+import 'Pages/calendarpage/main_calendar.dart';
 import 'Pages/medicprofile/main_medicprofile.dart';
 import 'Pages/signin/signin_user/signin_page_user.dart';
 import 'Pages/listpage/main_listpage.dart';
@@ -75,7 +76,7 @@ GoRouter router = GoRouter(
     ),
     GoRoute(
       path: '/calendar',
-      builder: (context, state) => Calendar(),
+      builder: (context, state) => CalendarPage(),
     )
   ],
 );
