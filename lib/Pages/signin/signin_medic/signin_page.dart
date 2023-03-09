@@ -67,7 +67,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
 
   Future addUserDetails(String firstName, String lastName, String email,
       String phone, String city) async {
-    await FirebaseFirestore.instance.collection('medici').add({
+    await FirebaseFirestore.instance.collection('users').add({
       'first name': firstName,
       'last name': lastName,
       'email': email,

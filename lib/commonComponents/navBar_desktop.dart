@@ -34,7 +34,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
       onDestinationSelected: (int index) {
         setState(() {
           _selectedIndex = index;
-          if (index == 0) context.go('/profile');
+          if (index == 0) context.go('/medicprofile');
           if (index == 1) context.go('/list');
           if (index == 2) context.go('/calendar');
           if (index == 3) FirebaseAuth.instance.signOut();
