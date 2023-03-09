@@ -59,7 +59,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       onTap: () {
                         Navigator.of(context).pop();
                         setState(() {
-                          context.go('/profile');
+                          context.go('/medicprofile');
                         });
                       }),
 

@@ -40,11 +40,11 @@ GoRouter router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const MainPage(),
+      builder: (context, state) => const FirstPage(),
     ),
     GoRoute(
       path: '/login',
-      builder: (context, state) => const LoginPage(),
+      builder: (context, state) => const MainPage(),
     ),
     GoRoute(
       path: '/signin/medic',
