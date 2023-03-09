@@ -73,6 +73,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
       'email': email,
       'phone': phone,
       'city': city,
+      'isMedic': true,
     });
   }
 

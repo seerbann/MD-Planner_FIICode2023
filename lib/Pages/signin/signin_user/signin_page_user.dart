@@ -81,6 +81,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
       'phone': phone,
       'cnp': cnp,
       'city': city,
+      'isMedic': false,
     });
   }
 
