@@ -32,11 +32,13 @@ class _MainProfileState extends State<MainProfile> {
         ),
       ),
       desktop: SafeArea(
-        child: Row(
-          children: [
-            Expanded(flex: 1, child: CustomNavBar()),
-            Expanded(flex: 15, child: Profile()),
-          ],
+        child: Scaffold(
+          body: Row(
+            children: [
+              Expanded(flex: 1, child: const CustomNavBar()),
+              Expanded(flex: 15, child: const Profile()),
+            ],
+          ),
         ),
       ),
     );
