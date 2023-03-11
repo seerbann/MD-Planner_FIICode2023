@@ -23,146 +23,140 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: double.infinity,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.centerRight,
-          end: Alignment.centerLeft,
-          colors: [
-            Color.fromRGBO(122, 162, 255, 1),
-            Color.fromRGBO(51, 112, 255, 1),
-          ],
-        )),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: Colors.white,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Image.asset('assets/images/defaultUser.png'),
-                              Column(
-                                children: [
-                                  const Text(
-                                    'profile user',
+      height: double.infinity,
+      decoration: const BoxDecoration(
+          gradient: LinearGradient(
+        begin: Alignment.centerRight,
+        end: Alignment.centerLeft,
+        colors: [
+          Color.fromRGBO(122, 162, 255, 1),
+          Color.fromRGBO(51, 112, 255, 1),
+        ],
+      )),
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Colors.white,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset('assets/images/defaultUser.png'),
+                            Column(
+                              children: [
+                                const Text(
+                                  'profile user',
+                                  style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 30,
+                                      color: Colors.black),
+                                ),
+                                Text('no description',
                                     style: TextStyle(
                                         fontFamily: 'Roboto',
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 30,
-                                        color: Colors.black),
-                                  ),
-                                  Text('no description',
-                                      style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20,
-                                          color: Colors.black.withOpacity(0.7)))
-                                ],
+                                        fontSize: 20,
+                                        color: Colors.black.withOpacity(0.7)))
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 100,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              height: 50,
+                              width: 90,
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.grey, width: 1),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
                               ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 100,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                height: 50,
-                                width: 90,
-                                decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: Colors.grey, width: 1),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
-                                ),
-                                child: Center(child: const Text('Pacienti')),
+                              child: Center(child: const Text('Pacienti')),
+                            ),
+                            Container(
+                              height: 50,
+                              width: 90,
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.grey, width: 1),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
                               ),
-                              Container(
-                                height: 50,
-                                width: 90,
-                                decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: Colors.grey, width: 1),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
-                                ),
-                                child: Center(child: const Text('Asistenti')),
+                              child: Center(child: const Text('Asistenti')),
+                            ),
+                            Container(
+                              height: 50,
+                              width: 90,
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.blue, width: 5),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
                               ),
-                              Container(
-                                height: 50,
-                                width: 90,
-                                decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: Colors.blue, width: 5),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
-                                ),
-                                child: Center(
-                                    child: const Text(
-                                  'Trimite o invitatie',
-                                  textAlign: TextAlign.center,
-                                )),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 50,
-                          )
-                        ],
-                      ),
+                              child: Center(
+                                  child: const Text(
+                                'Trimite o invitatie',
+                                textAlign: TextAlign.center,
+                              )),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 50,
+                        )
+                      ],
                     ),
                   ),
-                  SizedBox(
-                    width: 50,
-                  ),
-                  Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: Colors.white,
-                    ),
-                  )
-                ],
-              ),
-              Container(
-                color: Colors.white,
-                child: Text('Istoric Medical'),
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 255, 205, 67),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50)),
                 ),
-                onPressed: (() => FirebaseAuth.instance.signOut()),
-                child: Text('Sign Out',
-                    style: GoogleFonts.roboto(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      letterSpacing: 2,
-                      fontSize: 20,
-                    )),
+                SizedBox(
+                  width: 50,
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Colors.white,
+                  ),
+                )
+              ],
+            ),
+            Container(
+              color: Colors.white,
+              child: Text('Istoric Medical'),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromARGB(255, 255, 205, 67),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50)),
               ),
-            ]),
-      ),
+              onPressed: (() => FirebaseAuth.instance.signOut()),
+              child: Text('Sign Out',
+                  style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    letterSpacing: 2,
+                    fontSize: 20,
+                  )),
+            ),
+          ]),
     );
-
-              SizedBox(
-                height: 20,
-              ),
-            ]));
   }
 }
