@@ -4,9 +4,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:health_hub/Pages/login/login_page.dart';
 import 'package:health_hub/Pages/medicprofile/main_medicprofile.dart';
+import 'package:health_hub/Pages/signin/este_medic.dart';
+import 'package:health_hub/Pages/userprofile/main_userprofile.dart';
 
 class MainPage extends StatelessWidget {
-  const MainPage({super.key});
+  MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class MainPage extends StatelessWidget {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return MainMedicProfile();
+              return EsteMedic();
             } else {
               return LoginPage();
             }

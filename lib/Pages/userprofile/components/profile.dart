@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -45,7 +47,24 @@ class _ProfileState extends State<Profile> {
               Container(
                 color: Colors.white,
                 child: Text('Istoric Medical'),
-              )
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 255, 205, 67),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50)),
+                ),
+                onPressed: (() => FirebaseAuth.instance.signOut()),
+                child: Text('Sign Out',
+                    style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      letterSpacing: 2,
+                      fontSize: 20,
+                    )),
+              ),
             ]),
       ),
     );
