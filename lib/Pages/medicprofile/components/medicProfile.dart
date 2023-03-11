@@ -34,6 +34,8 @@ class _MedicProfileState extends State<MedicProfile> {
           ],
         )),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -45,30 +47,85 @@ class _MedicProfileState extends State<MedicProfile> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Row(
+                    child: Column(
                       children: [
-                        Image.asset('assets/images/defaultUser.png'),
-                        Column(
+                        Row(
                           children: [
-                            const Text(
-                              'Prof. Dr. Daniel Leon ',
-                              style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 30,
-                                  color: Colors.black),
+                            Image.asset('assets/images/defaultUser.png'),
+                            Column(
+                              children: [
+                                const Text(
+                                  'Prof. Dr. Daniel Leon ',
+                                  style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 30,
+                                      color: Colors.black),
+                                ),
+                                Text('no description',
+                                    style: TextStyle(
+                                        fontFamily: 'Roboto',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                        color: Colors.black.withOpacity(0.7)))
+                              ],
                             ),
-                            Text('no description',
-                                style: TextStyle(
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    color: Colors.black.withOpacity(0.7)))
                           ],
                         ),
+                        SizedBox(
+                          height: 100,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              height: 50,
+                              width: 90,
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.grey, width: 1),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                              ),
+                              child: Center(child: const Text('Pacienti')),
+                            ),
+                            Container(
+                              height: 50,
+                              width: 90,
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.grey, width: 1),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                              ),
+                              child: Center(child: const Text('Asistenti')),
+                            ),
+                            Container(
+                              height: 50,
+                              width: 90,
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.blue, width: 5),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                              ),
+                              child: Center(
+                                  child: const Text(
+                                'Trimite o invitatie',
+                                textAlign: TextAlign.center,
+                              )),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 50,
+                        )
                       ],
                     ),
                   ),
+                ),
+                SizedBox(
+                  width: 50,
                 ),
                 Container(
                   decoration: const BoxDecoration(
@@ -126,41 +183,6 @@ class _MedicProfileState extends State<MedicProfile> {
                   ),
                 )
               ],
-            ),
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    height: 50,
-                    width: 90,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: Colors.white,
-                    ),
-                    child: Center(child: const Text('Pacienti')),
-                  ),
-                  Container(
-                    height: 50,
-                    width: 90,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: Colors.white,
-                    ),
-                    child: Center(child: const Text('Asistenti')),
-                  ),
-                  Container(
-                    height: 50,
-                    width: 90,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blue, width: 5),
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: Colors.white,
-                    ),
-                    child: Center(child: const Text('Trimite o invitatie')),
-                  ),
-                ],
-              ),
             ),
             SizedBox(
               height: 20,
