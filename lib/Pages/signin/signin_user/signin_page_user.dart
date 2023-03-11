@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:health_hub/Pages/signin/signin_medic/medic_components.dart';
 import 'package:health_hub/firebase_options.dart';
 import 'package:health_hub/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -207,7 +206,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                             validator: (value) {
                                               if (value == null ||
                                                   value.isEmpty) {
-                                                return 'Please enter some text';
+                                                return 'Ai uitat sa scrii aici.';
                                               }
                                               return null;
                                             },
