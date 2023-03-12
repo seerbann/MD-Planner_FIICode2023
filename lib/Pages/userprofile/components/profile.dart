@@ -48,475 +48,243 @@ class _ProfileState extends State<Profile> {
   DateTime? _selectedDay;
   @override
   Widget build(BuildContext context) {
-    return Responsive(
-      desktop: Container(
-        height: double.infinity,
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFFE2E3E3), width: 5),
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: Colors.white,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Column(
-                                children: [
-                                  Image.asset(
-                                    'assets/images/defaultUser.png',
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text('editeaza date',
-                                      style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 17,
-                                          color: Colors.black))
-                                ],
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  FutureBuilder(
-                                    future: getName(),
-                                    builder: (context, snapshot) {
-                                      if (snapshot.hasData) {
-                                        return Text(
-                                          finalString,
-                                          style: TextStyle(
-                                              fontFamily: 'Roboto',
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20),
-                                        );
-                                      } else {
-                                        return Center(
-                                            child: CircularProgressIndicator());
-                                      }
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text('0734532568',
-                                      style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
-                                          color:
-                                              Colors.black.withOpacity(0.7))),
-                                  Text(
-                                      'Strada Cristea Mateescu nr. 6-68,10,Brasov',
-                                      style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
-                                          color:
-                                              Colors.black.withOpacity(0.7))),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
+    return Container(
+      height: double.infinity,
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xFFE2E3E3), width: 5),
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        color: Colors.white,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Column(
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/defaultUser.png',
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text('editeaza date',
+                                        style: TextStyle(
+                                            fontFamily: 'Roboto',
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17,
+                                            color: Colors.black))
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    FutureBuilder(
+                                      future: getName(),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasData) {
+                                          return Text(
+                                            finalString,
+                                            style: TextStyle(
+                                                fontFamily: 'Roboto',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20),
+                                          );
+                                        } else {
+                                          return Center(
+                                              child:
+                                                  CircularProgressIndicator());
+                                        }
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Text('0734532568',
+                                        style: TextStyle(
+                                            fontFamily: 'Roboto',
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                            color:
+                                                Colors.black.withOpacity(0.7))),
+                                    Text(
+                                        'Strada Cristea Mateescu nr. 6-68,10,Brasov',
+                                        style: TextStyle(
+                                            fontFamily: 'Roboto',
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                            color:
+                                                Colors.black.withOpacity(0.7))),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 50,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFFE2E3E3), width: 5),
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: Colors.white,
+                    SizedBox(
+                      height: 25,
                     ),
-                    width: 300,
-                    child: TableCalendar(
-                      firstDay: kFirstDay,
-                      lastDay: kLastDay,
-                      focusedDay: _focusedDay,
-                      calendarFormat: _calendarFormat,
-                      selectedDayPredicate: (day) {
-                        // Use `selectedDayPredicate` to determine which day is currently selected.
-                        // If this returns true, then `day` will be marked as selected.
-
-                        // Using `isSameDay` is recommended to disregard
-                        // the time-part of compared DateTime objects.
-                        return isSameDay(_selectedDay, day);
-                      },
-                      onDaySelected: (selectedDay, focusedDay) {
-                        if (!isSameDay(_selectedDay, selectedDay)) {
-                          // Call `setState()` when updating the selected day
-                          setState(() {
-                            _selectedDay = selectedDay;
-                            _focusedDay = focusedDay;
-                          });
-                        }
-                      },
-                      onFormatChanged: (format) {
-                        if (_calendarFormat != format) {
-                          // Call `setState()` when updating calendar format
-                          setState(() {
-                            _calendarFormat = format;
-                          });
-                        }
-                      },
-                      onPageChanged: (focusedDay) {
-                        // No need to call `setState()` here
-                        _focusedDay = focusedDay;
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 100,
-              ),
-              Container(
-                width: 400,
-                height: 100,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Color(0xFFE2E3E3), width: 5),
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: Colors.white,
-                ),
-                child: Center(
-                  child: Text(
-                    'Istoric Medical',
-                    style: TextStyle(
-                      fontFamily: 'Outfit',
-                      fontSize: 25,
-                    ),
-                  ),
-                ),
-              ),
-            ]),
-      ),
-      tablet: Container(
-        height: double.infinity,
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 450,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFFE2E3E3), width: 5),
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: Colors.white,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Row(
-                        children: [
-                          Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/defaultUser.png',
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text('editeaza date',
-                                  style: TextStyle(
-                                      fontFamily: 'Roboto',
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 17,
-                                      color: Colors.black))
-                            ],
+                    Container(
+                      width: 450,
+                      height: 300,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xFFE2E3E3), width: 5),
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        color: Colors.white,
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Istoric Medical',
+                          style: TextStyle(
+                            fontFamily: 'Outfit',
+                            fontSize: 25,
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              FutureBuilder(
-                                future: getName(),
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasData) {
-                                    return Text(
-                                      finalString,
-                                      style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20),
-                                    );
-                                  } else {
-                                    return Center(
-                                        child: CircularProgressIndicator());
-                                  }
-                                },
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Text('0734532568',
-                                  style: TextStyle(
-                                      fontFamily: 'Roboto',
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                      color: Colors.black.withOpacity(0.7))),
-                              Text('Strada Cristea Mateescu nr. 6-68,10,Brasov',
-                                  style: TextStyle(
-                                      fontFamily: 'Roboto',
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                      color: Colors.black.withOpacity(0.7))),
-                            ],
-                          ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 50,
-                  ),
-                  Container(
+                  ],
+                ),
+                SizedBox(
+                  width: 50,
+                ),
+                Container(
+                    width: 400,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xFFE2E3E3), width: 5),
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                       color: Colors.white,
                     ),
-                    width: 300,
-                    child: TableCalendar(
-                      firstDay: kFirstDay,
-                      lastDay: kLastDay,
-                      focusedDay: _focusedDay,
-                      calendarFormat: _calendarFormat,
-                      selectedDayPredicate: (day) {
-                        // Use `selectedDayPredicate` to determine which day is currently selected.
-                        // If this returns true, then `day` will be marked as selected.
-
-                        // Using `isSameDay` is recommended to disregard
-                        // the time-part of compared DateTime objects.
-                        return isSameDay(_selectedDay, day);
-                      },
-                      onDaySelected: (selectedDay, focusedDay) {
-                        if (!isSameDay(_selectedDay, selectedDay)) {
-                          // Call `setState()` when updating the selected day
-                          setState(() {
-                            _selectedDay = selectedDay;
-                            _focusedDay = focusedDay;
-                          });
-                        }
-                      },
-                      onFormatChanged: (format) {
-                        if (_calendarFormat != format) {
-                          // Call `setState()` when updating calendar format
-                          setState(() {
-                            _calendarFormat = format;
-                          });
-                        }
-                      },
-                      onPageChanged: (focusedDay) {
-                        // No need to call `setState()` here
-                        _focusedDay = focusedDay;
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 100,
-              ),
-              Container(
-                width: 400,
-                height: 100,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Color(0xFFE2E3E3), width: 5),
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: Colors.white,
-                ),
-                child: Center(
-                  child: Text(
-                    'Istoric Medical',
-                    style: TextStyle(
-                      fontFamily: 'Outfit',
-                      fontSize: 25,
-                    ),
-                  ),
-                ),
-              ),
-            ]),
-      ),
-      mobile: Container(
-        height: double.infinity,
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFFE2E3E3), width: 5),
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: Colors.white,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Column(
-                                children: [
-                                  Image.asset(
-                                    'assets/images/defaultUser.png',
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text('editeaza date',
-                                      style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 17,
-                                          color: Colors.black))
-                                ],
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  FutureBuilder(
-                                    future: getName(),
-                                    builder: (context, snapshot) {
-                                      if (snapshot.hasData) {
-                                        return Text(
-                                          finalString,
-                                          style: TextStyle(
-                                              fontFamily: 'Roboto',
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20),
-                                        );
-                                      } else {
-                                        return Center(
-                                            child: CircularProgressIndicator());
-                                      }
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text('0734532568',
-                                      style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
-                                          color:
-                                              Colors.black.withOpacity(0.7))),
-                                  Text(
-                                      'Strada Cristea Mateescu nr. 6-68,10,Brasov',
-                                      style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
-                                          color:
-                                              Colors.black.withOpacity(0.7))),
-                                ],
-                              ),
-                            ],
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 50,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Email',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black),
+                                ),
+                                Text(
+                                  'serban.chiriac@gmail.com',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black.withOpacity(0.7)),
+                                )
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 50,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFFE2E3E3), width: 5),
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: Colors.white,
-                    ),
-                    width: 300,
-                    child: TableCalendar(
-                      firstDay: kFirstDay,
-                      lastDay: kLastDay,
-                      focusedDay: _focusedDay,
-                      calendarFormat: _calendarFormat,
-                      selectedDayPredicate: (day) {
-                        // Use `selectedDayPredicate` to determine which day is currently selected.
-                        // If this returns true, then `day` will be marked as selected.
-
-                        // Using `isSameDay` is recommended to disregard
-                        // the time-part of compared DateTime objects.
-                        return isSameDay(_selectedDay, day);
-                      },
-                      onDaySelected: (selectedDay, focusedDay) {
-                        if (!isSameDay(_selectedDay, selectedDay)) {
-                          // Call `setState()` when updating the selected day
-                          setState(() {
-                            _selectedDay = selectedDay;
-                            _focusedDay = focusedDay;
-                          });
-                        }
-                      },
-                      onFormatChanged: (format) {
-                        if (_calendarFormat != format) {
-                          // Call `setState()` when updating calendar format
-                          setState(() {
-                            _calendarFormat = format;
-                          });
-                        }
-                      },
-                      onPageChanged: (focusedDay) {
-                        // No need to call `setState()` here
-                        _focusedDay = focusedDay;
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 100,
-              ),
-              Container(
-                width: 400,
-                height: 100,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Color(0xFFE2E3E3), width: 5),
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: Colors.white,
-                ),
-                child: Center(
-                  child: Text(
-                    'Istoric Medical',
-                    style: TextStyle(
-                      fontFamily: 'Outfit',
-                      fontSize: 25,
-                    ),
-                  ),
-                ),
-              ),
-            ]),
-      ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 50,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Telefon',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black),
+                                ),
+                                Text(
+                                  '076545785',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black.withOpacity(0.7)),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 50,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Oras',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black),
+                                ),
+                                Text(
+                                  'Iasi',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black.withOpacity(0.7)),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 50,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'CNP',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black),
+                                ),
+                                Text(
+                                  '5046578564345',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black.withOpacity(0.7)),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+              ],
+            ),
+            SizedBox(
+              height: 100,
+            ),
+          ]),
     );
   }
 }
