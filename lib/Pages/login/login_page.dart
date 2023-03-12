@@ -19,9 +19,16 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
 
   Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim());
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+            email: _emailController.text.trim(),
+            password: _passwordController.text.trim())
+        .then((value) => print(value))
+        //flag
+        .onError((error, stackTrace) => ScaffoldMessenger.of(context)
+            .showSnackBar(
+                const SnackBar(content: Text('Parola/Email invalid.'))));
+    throw Exception('bad');
   }
 
   @override
