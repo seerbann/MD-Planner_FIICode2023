@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -17,6 +18,29 @@ final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
 final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
 
 class _ProfileState extends State<Profile> {
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  String finalString = "";
+
+  Future getName() async {
+    bool procesTerminat = false;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: auth.currentUser?.email)
+        .get()
+        .then(
+          (snapshot) => snapshot.docs.forEach((document) {
+            print(document.reference.id);
+            Map<String, dynamic> data = document.data();
+            String firstname = data['first name'];
+            String lastname = data['last name'];
+            procesTerminat = true;
+            finalString = firstname + ' ' + lastname;
+          }),
+        );
+    return procesTerminat;
+  }
+
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
@@ -54,13 +78,16 @@ class _ProfileState extends State<Profile> {
                             Image.asset('assets/images/defaultUser.png'),
                             Column(
                               children: [
-                                const Text(
-                                  'profile user',
-                                  style: TextStyle(
-                                      fontFamily: 'Roboto',
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 30,
-                                      color: Colors.black),
+                                FutureBuilder(
+                                  future: getName(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return Text(finalString);
+                                    } else {
+                                      return Center(
+                                          child: CircularProgressIndicator());
+                                    }
+                                  },
                                 ),
                                 Text('no description',
                                     style: TextStyle(
