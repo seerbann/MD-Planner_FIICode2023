@@ -30,6 +30,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: ThemeData(
+        pageTransitionsTheme: PageTransitionsTheme(
+          builders: Map<TargetPlatform, PageTransitionsBuilder>.fromIterable(
+            TargetPlatform.values,
+            value: (dynamic _) =>
+                const FadeUpwardsPageTransitionsBuilder(), //applying old animation
+          ),
+        ),
+      ),
       routerConfig: router,
       debugShowCheckedModeBanner: false,
     );
