@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:health_hub/dynamic_link.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 final kToday = DateTime.now();
@@ -137,10 +140,34 @@ class _MedicProfileState extends State<MedicProfile> {
                                     BorderRadius.all(Radius.circular(20)),
                               ),
                               child: Center(
-                                  child: const Text(
-                                'Trimite o invitatie',
-                                textAlign: TextAlign.center,
-                              )),
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        const Color.fromRGBO(67, 123, 255, 1),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 25, vertical: 20),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
+                                  ),
+                                  onPressed: () async {
+                                    if (!kIsWeb) {
+                                      DynamicLinkProvider()
+                                          .createLink(finalString)
+                                          .then((value) {
+                                        Share.share(value);
+                                      });
+                                    }
+                                  },
+                                  child: Text('Trimite o invitatie',
+                                      style: GoogleFonts.roboto(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        letterSpacing: 2,
+                                        fontSize: 20,
+                                      )),
+                                ),
+                              ),
                             ),
                           ],
                         ),

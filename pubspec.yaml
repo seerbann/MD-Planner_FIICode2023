@@ -43,6 +43,8 @@ dependencies:
   textfield_search: ^0.10.0
   searchfield: ^0.7.5
   table_calendar: ^3.0.8
+  firebase_dynamic_links: ^5.0.16
+  share_plus: ^6.3.1
 
 dev_dependencies:
   flutter_test:

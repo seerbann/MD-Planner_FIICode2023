@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:health_hub/Pages/calendarpage/components/calendar.dart';
@@ -10,6 +11,7 @@ import 'package:health_hub/Pages/signin/signin_medic/signin_page.dart';
 import 'package:health_hub/Pages/firstpage/first_page.dart';
 import 'package:health_hub/Pages/signin/signin_user/cont_creat.dart';
 import 'package:health_hub/Pages/userprofile/main_userprofile.dart';
+import 'package:health_hub/dynamic_link.dart';
 import 'package:health_hub/firebase_options.dart';
 
 import 'Pages/calendarpage/main_calendar.dart';
@@ -21,6 +23,10 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  if (!kIsWeb) {
+    DynamicLinkProvider().initDynamicLink();
+  }
+
   runApp(const MyApp());
 }
 
