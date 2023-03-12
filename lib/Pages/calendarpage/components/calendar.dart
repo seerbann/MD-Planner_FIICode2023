@@ -23,7 +23,6 @@ class _CalendarState extends State<Calendar> {
     return Scaffold(
       body: Column(
         children: [
-          Text("Ziua selectata este:" + today.toString().split(" ")[0]),
           TableCalendar(
             rowHeight: 43,
             firstDay: DateTime.utc(2010, 10, 16),
@@ -31,7 +30,14 @@ class _CalendarState extends State<Calendar> {
             lastDay: DateTime.utc(2030, 3, 14),
             onDaySelected: _onDaySelected,
             selectedDayPredicate: (day) => isSameDay(day, today),
-          )
+          ),
+          SizedBox(
+            height: 100,
+          ),
+          Text(
+            "Ziua selectata este:  " + today.toString().split(" ")[0],
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ],
       ),
     );
