@@ -48,7 +48,7 @@ class EsteMedic extends StatelessWidget {
               return MainProfile();
             }
           } else {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }
         }));
   }
