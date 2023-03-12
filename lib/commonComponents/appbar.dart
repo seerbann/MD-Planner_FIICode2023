@@ -47,6 +47,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
               margin: EdgeInsets.only(top: 50),
               child: Column(
                 children: <Widget>[
+                  DrawerHeader(
+                      padding: EdgeInsets.zero,
+                      child: Image.asset(
+                        'assets/images/logo2.png',
+                        scale: 6,
+                      )),
                   ListTile(
                       leading: Image.asset(
                         'assets/images/user.png',
