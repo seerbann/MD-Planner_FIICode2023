@@ -31,11 +31,13 @@ class _CalendarPageState extends State<CalendarPage> {
         ),
       ),
       desktop: SafeArea(
-        child: Row(
-          children: const [
-            Expanded(flex: 1, child: CustomNavBar()),
-            Expanded(flex: 15, child: Calendar()),
-          ],
+        child: Scaffold(
+          body: Row(
+            children: const [
+              Expanded(flex: 1, child: CustomNavBar()),
+              Expanded(flex: 15, child: Calendar()),
+            ],
+          ),
         ),
       ),
     );

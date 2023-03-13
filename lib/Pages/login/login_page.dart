@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
         .signInWithEmailAndPassword(
             email: _emailController.text.trim(),
             password: _passwordController.text.trim())
-        .then((value) => print(value))
+        .then((value) => Navigator.pushNamed(context, '/profile'))
         //flag
         .onError((error, stackTrace) => ScaffoldMessenger.of(context)
             .showSnackBar(

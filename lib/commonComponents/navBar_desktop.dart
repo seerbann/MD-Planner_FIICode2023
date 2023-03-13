@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import '../Pages/listpage/main_listpage.dart';
 import '../Pages/userprofile/main_userprofile.dart';
 
@@ -34,10 +33,14 @@ class _CustomNavBarState extends State<CustomNavBar> {
       onDestinationSelected: (int index) {
         setState(() {
           _selectedIndex = index;
-          if (index == 0) context.go('/medicprofile');
-          if (index == 1) context.go('/list');
-          if (index == 2) context.go('/calendar');
-          if (index == 3) FirebaseAuth.instance.signOut();
+          if (index == 0) Navigator.pushNamed(context, '/profile');
+          if (index == 1) Navigator.pushNamed(context, '/list');
+          if (index == 2) Navigator.pushNamed(context, '/calendar');
+          if (index == 3)
+            setState(() {
+              FirebaseAuth.instance.signOut();
+              Navigator.pushNamed(context, '/');
+            });
         });
       },
       destinations: [

@@ -375,23 +375,6 @@ class _MedicProfileState extends State<MedicProfile> {
                   letterSpacing: 2,
                   fontSize: 20,
                 )),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 255, 205, 67),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50)),
-              ),
-              onPressed: (() => FirebaseAuth.instance.signOut()),
-              child: Text('Sign Out',
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    letterSpacing: 2,
-                    fontSize: 20,
-                  )),
-            ),
           ],
         ),
       ),
