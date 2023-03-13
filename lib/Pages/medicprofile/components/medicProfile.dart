@@ -51,24 +51,17 @@ class _MedicProfileState extends State<MedicProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.centerRight,
-          end: Alignment.centerLeft,
-          colors: [
-            Color.fromRGBO(122, 162, 255, 1),
-            Color.fromRGBO(51, 112, 255, 1),
-          ],
-        )),
+        color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Color(0xFFE2E3E3), width: 5),
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                     color: Colors.white,
                   ),
@@ -92,7 +85,7 @@ class _MedicProfileState extends State<MedicProfile> {
                                     }
                                   },
                                 ),
-                                Text('no description',
+                                Text('Orar',
                                     style: TextStyle(
                                         fontFamily: 'Roboto',
                                         fontWeight: FontWeight.bold,
@@ -105,72 +98,6 @@ class _MedicProfileState extends State<MedicProfile> {
                         SizedBox(
                           height: 100,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                              height: 50,
-                              width: 90,
-                              decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.grey, width: 1),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                              ),
-                              child: Center(child: const Text('Pacienti')),
-                            ),
-                            Container(
-                              height: 50,
-                              width: 90,
-                              decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.grey, width: 1),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                              ),
-                              child: Center(child: const Text('Asistenti')),
-                            ),
-                            Container(
-                              height: 50,
-                              width: 90,
-                              decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.blue, width: 5),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                              ),
-                              child: Center(
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        const Color.fromRGBO(67, 123, 255, 1),
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 25, vertical: 20),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(50)),
-                                  ),
-                                  onPressed: () async {
-                                    if (!kIsWeb) {
-                                      DynamicLinkProvider()
-                                          .createLink(finalString)
-                                          .then((value) {
-                                        Share.share(value);
-                                      });
-                                    }
-                                  },
-                                  child: Text('Trimite o invitatie',
-                                      style: GoogleFonts.roboto(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                        letterSpacing: 2,
-                                        fontSize: 20,
-                                      )),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
                         SizedBox(
                           height: 50,
                         )
@@ -182,7 +109,8 @@ class _MedicProfileState extends State<MedicProfile> {
                   width: 50,
                 ),
                 Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Color(0xFFE2E3E3), width: 5),
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                     color: Colors.white,
                   ),
@@ -236,6 +164,205 @@ class _MedicProfileState extends State<MedicProfile> {
                     ],
                   ),
                 )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    width: 400,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color(0xFFE2E3E3), width: 5),
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      color: Colors.white,
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 50,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Email',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black),
+                                ),
+                                Text(
+                                  'serban.chiriac@gmail.com',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black.withOpacity(0.7)),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 50,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Telefon',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black),
+                                ),
+                                Text(
+                                  '076545785',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black.withOpacity(0.7)),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 50,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Oras',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black),
+                                ),
+                                Text(
+                                  'Iasi',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black.withOpacity(0.7)),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 50,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'CNP',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black),
+                                ),
+                                Text(
+                                  '5046578564345',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Outfit',
+                                      color: Colors.black.withOpacity(0.7)),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+                SizedBox(
+                  width: 50,
+                ),
+                Container(
+                  width: 450,
+                  height: 300,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Color(0xFFE2E3E3), width: 5),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Colors.white,
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Istoric Medical',
+                      style: TextStyle(
+                        fontFamily: 'Outfit',
+                        fontSize: 25,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 50,
+                  width: 90,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey, width: 1),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  child: Center(child: const Text('Pacienti')),
+                ),
+                Container(
+                  height: 50,
+                  width: 90,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey, width: 1),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  child: Center(child: const Text('Asistenti')),
+                ),
+                Container(
+                  height: 50,
+                  width: 90,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.blue, width: 5),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  child: Center(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(67, 123, 255, 1),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 25, vertical: 20),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                      ),
+                      onPressed: () async {
+                        if (!kIsWeb) {
+                          DynamicLinkProvider()
+                              .createLink(finalString)
+                              .then((value) {
+                            Share.share(value);
+                          });
+                        }
+                      },
+                      child: Text('Trimite o invitatie',
+                          style: GoogleFonts.roboto(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            letterSpacing: 2,
+                            fontSize: 20,
+                          )),
+                    ),
+                  ),
+                ),
               ],
             ),
             SizedBox(
