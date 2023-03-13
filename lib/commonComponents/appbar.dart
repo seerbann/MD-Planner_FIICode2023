@@ -65,7 +65,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       onTap: () {
                         Navigator.of(context).pop();
                         setState(() {
-                          context.go('/medicprofile');
+                          Navigator.pushNamed(context, '/profile');
                         });
                       }),
 
@@ -79,7 +79,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       onTap: () {
                         Navigator.of(context).pop();
                         setState(() {
-                          context.go('/list');
+                          Navigator.pushNamed(context, '/list');
                         });
                       }),
 
@@ -93,7 +93,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       onTap: () {
                         Navigator.of(context).pop();
                         setState(() {
-                          context.go('/calendar');
+                          Navigator.pushNamed(context, '/calendar');
                         });
                       }),
 

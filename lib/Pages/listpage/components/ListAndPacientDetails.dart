@@ -65,6 +65,9 @@ class NarrowLayout extends StatelessWidget {
       onPersonTap: (person) => Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.black,
+            ),
             body: PersonDetail(person),
           ),
         ),
