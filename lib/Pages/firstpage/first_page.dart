@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_hub/Pages/signin/signin_medic/signin_page.dart';
 import 'package:health_hub/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
@@ -91,7 +92,11 @@ class _FirstPageState extends State<FirstPage> {
                               const Color.fromARGB(255, 255, 255, 255),
                           padding: const EdgeInsets.symmetric(
                               vertical: 15, horizontal: 30)),
-                      onPressed: (() => context.push('/signin/medic')),
+                      onPressed: (() => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const SignInPage_medic(),
+                            ),
+                          )),
                       child: Text('Inregistreaza-te\nca medic',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.roboto(

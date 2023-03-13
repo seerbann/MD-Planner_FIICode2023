@@ -1,5 +1,7 @@
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:health_hub/Pages/calendarpage/components/calendar.dart';
 import 'package:health_hub/Pages/listpage/components/ListAndPacientDetails.dart';
@@ -23,19 +25,36 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  if (!kIsWeb) {
-    DynamicLinkProvider().initDynamicLink();
-  }
+  //final PendingDynamicLinkData? _initialLink =
+  //await FirebaseDynamicLinks.instance.getInitialLink();
 
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initDynamicLinks();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return GetMaterialApp(
+      routes: {
+        '/SIGNIN': (BuildContext context) => SignInPage_user(),
+        '/': (context) => FirstPage(),
+        '/signin/medic': (context) => SignInPage_medic(),
+        '/medicprofile': (context) => MainMedicProfile(),
+      },
       theme: ThemeData(
         pageTransitionsTheme: PageTransitionsTheme(
           builders: Map<TargetPlatform, PageTransitionsBuilder>.fromIterable(
@@ -45,7 +64,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      routerConfig: router,
       debugShowCheckedModeBanner: false,
     );
   }
@@ -95,3 +113,15 @@ GoRouter router = GoRouter(
     ),
   ],
 );
+
+void initDynamicLinks() async {
+  FirebaseDynamicLinks.instance.onLink.listen((dynamicLinkData) {
+    final Uri? deeplink = dynamicLinkData.link;
+    if (deeplink != null) {
+      print("deeplink data " + deeplink.queryParameters.values.first);
+      Get.toNamed('/SIGNIN');
+    }
+  }).onError((error) {
+    // Handle errors
+  });
+}
