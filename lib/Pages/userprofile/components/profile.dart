@@ -22,9 +22,12 @@ final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
 class _ProfileState extends State<Profile> {
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  String finalString = "";
-
-  Future getName() async {
+  String fullName = "";
+  String phone = "";
+  String city = "";
+  String cnp = "";
+  String email = "";
+  Future getInfo() async {
     bool procesTerminat = false;
     await FirebaseFirestore.instance
         .collection('users')
@@ -36,8 +39,12 @@ class _ProfileState extends State<Profile> {
             Map<String, dynamic> data = document.data();
             String firstname = data['first name'];
             String lastname = data['last name'];
+            city = data['city'];
+            cnp = data['cnp'];
+            email = data['email'];
+            phone = data['phone'];
             procesTerminat = true;
-            finalString = firstname + ' ' + lastname;
+            fullName = firstname + ' ' + lastname;
           }),
         );
     return procesTerminat;
@@ -46,6 +53,12 @@ class _ProfileState extends State<Profile> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
+
+  void initState() {
+    super.initState();
+    getInfo();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -95,11 +108,11 @@ class _ProfileState extends State<Profile> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     FutureBuilder(
-                                      future: getName(),
+                                      future: getInfo(),
                                       builder: (context, snapshot) {
                                         if (snapshot.hasData) {
                                           return Text(
-                                            finalString,
+                                            fullName,
                                             style: TextStyle(
                                                 fontFamily: 'Roboto',
                                                 fontWeight: FontWeight.bold,
@@ -115,21 +128,42 @@ class _ProfileState extends State<Profile> {
                                     SizedBox(
                                       height: 20,
                                     ),
-                                    Text('0734532568',
-                                        style: TextStyle(
-                                            fontFamily: 'Roboto',
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                            color:
-                                                Colors.black.withOpacity(0.7))),
-                                    Text(
-                                        'Strada Cristea Mateescu nr. 6-68,10,Brasov',
-                                        style: TextStyle(
-                                            fontFamily: 'Roboto',
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                            color:
-                                                Colors.black.withOpacity(0.7))),
+                                    FutureBuilder(
+                                      future: getInfo(),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasData) {
+                                          return Text(phone,
+                                              style: TextStyle(
+                                                  fontFamily: 'Roboto',
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 15,
+                                                  color: Colors.black
+                                                      .withOpacity(0.7)));
+                                        } else {
+                                          return Center(
+                                              child:
+                                                  CircularProgressIndicator());
+                                        }
+                                      },
+                                    ),
+                                    FutureBuilder(
+                                      future: getInfo(),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasData) {
+                                          return Text(city,
+                                              style: TextStyle(
+                                                  fontFamily: 'Roboto',
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 15,
+                                                  color: Colors.black
+                                                      .withOpacity(0.7)));
+                                        } else {
+                                          return Center(
+                                              child:
+                                                  CircularProgressIndicator());
+                                        }
+                                      },
+                                    ),
                                   ],
                                 ),
                               ],
@@ -188,13 +222,24 @@ class _ProfileState extends State<Profile> {
                                       fontFamily: 'Outfit',
                                       color: Colors.black),
                                 ),
-                                Text(
-                                  'serban.chiriac@gmail.com',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontFamily: 'Outfit',
-                                      color: Colors.black.withOpacity(0.7)),
-                                )
+                                FutureBuilder(
+                                  future: getInfo(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return Text(
+                                        email,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontFamily: 'Outfit',
+                                            color:
+                                                Colors.black.withOpacity(0.7)),
+                                      );
+                                    } else {
+                                      return Center(
+                                          child: CircularProgressIndicator());
+                                    }
+                                  },
+                                ),
                               ],
                             ),
                           ),
@@ -214,13 +259,24 @@ class _ProfileState extends State<Profile> {
                                       fontFamily: 'Outfit',
                                       color: Colors.black),
                                 ),
-                                Text(
-                                  '076545785',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontFamily: 'Outfit',
-                                      color: Colors.black.withOpacity(0.7)),
-                                )
+                                FutureBuilder(
+                                  future: getInfo(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return Text(
+                                        phone,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontFamily: 'Outfit',
+                                            color:
+                                                Colors.black.withOpacity(0.7)),
+                                      );
+                                    } else {
+                                      return Center(
+                                          child: CircularProgressIndicator());
+                                    }
+                                  },
+                                ),
                               ],
                             ),
                           ),
@@ -240,13 +296,24 @@ class _ProfileState extends State<Profile> {
                                       fontFamily: 'Outfit',
                                       color: Colors.black),
                                 ),
-                                Text(
-                                  'Iasi',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontFamily: 'Outfit',
-                                      color: Colors.black.withOpacity(0.7)),
-                                )
+                                FutureBuilder(
+                                  future: getInfo(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return Text(
+                                        city,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontFamily: 'Outfit',
+                                            color:
+                                                Colors.black.withOpacity(0.7)),
+                                      );
+                                    } else {
+                                      return Center(
+                                          child: CircularProgressIndicator());
+                                    }
+                                  },
+                                ),
                               ],
                             ),
                           ),
@@ -266,13 +333,24 @@ class _ProfileState extends State<Profile> {
                                       fontFamily: 'Outfit',
                                       color: Colors.black),
                                 ),
-                                Text(
-                                  '5046578564345',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontFamily: 'Outfit',
-                                      color: Colors.black.withOpacity(0.7)),
-                                )
+                                FutureBuilder(
+                                  future: getInfo(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return Text(
+                                        cnp,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontFamily: 'Outfit',
+                                            color:
+                                                Colors.black.withOpacity(0.7)),
+                                      );
+                                    } else {
+                                      return Center(
+                                          child: CircularProgressIndicator());
+                                    }
+                                  },
+                                ),
                               ],
                             ),
                           ),
