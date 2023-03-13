@@ -410,7 +410,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                             content:
                                                 Text('Ai fost inregistrat.')));
 
-                                    context.go('/login');
+                                    Navigator.pushNamed(context, '/login');
                                   }
                                 },
                                 child: Text('Inregistrare',
@@ -760,7 +760,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                           content:
                                               Text('Ai fost inregistrat.')));
 
-                                  context.go('/login');
+                                  Navigator.pushNamed(context, '/login');
                                 }
                               },
                               child: Text('Inregistrare',
@@ -1110,7 +1110,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                           content:
                                               Text('Ai fost inregistrat.')));
 
-                                  context.go('/login');
+                                  Navigator.pushNamed(context, '/login');
                                 }
                               },
                               child: Text('Inregistrare',

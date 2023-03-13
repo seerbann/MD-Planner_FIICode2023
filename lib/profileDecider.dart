@@ -1,15 +1,16 @@
+//fostul EsteMedic()
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-import '../medicprofile/main_medicprofile.dart';
-import '../userprofile/main_userprofile.dart';
+import 'Pages/medicprofile/main_medicprofile.dart';
+import 'Pages/userprofile/main_userprofile.dart';
 import 'package:go_router/go_router.dart';
 
-class EsteMedic extends StatelessWidget {
-  EsteMedic({super.key});
+class ProfileDecider extends StatelessWidget {
+  ProfileDecider({super.key});
 
   FirebaseAuth auth = FirebaseAuth.instance;
 

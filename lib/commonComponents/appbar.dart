@@ -44,7 +44,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
       backgroundColor: Colors.black,
       child: SingleChildScrollView(
           child: Container(
-              margin: EdgeInsets.only(top: 50),
+              margin: const EdgeInsets.only(top: 50),
               child: Column(
                 children: <Widget>[
                   DrawerHeader(
@@ -107,6 +107,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       onTap: () {
                         setState(() {
                           FirebaseAuth.instance.signOut();
+                          Navigator.pushNamed(context, '/');
                         });
                       })
 

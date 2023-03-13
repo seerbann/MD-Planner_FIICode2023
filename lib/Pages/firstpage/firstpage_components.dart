@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
+import 'package:health_hub/Pages/signin/signin_medic/signin_page.dart';
+
+import '../login/login_page.dart';
 
 class FirstpageComponent extends StatefulWidget {
   const FirstpageComponent({super.key});
@@ -110,7 +113,8 @@ class _FirstpageComponentState extends State<FirstpageComponent> {
                                         borderRadius:
                                             BorderRadius.circular(50)),
                                   ),
-                                  onPressed: (() => context.push('/login')),
+                                  onPressed: () =>
+                                      Navigator.pushNamed(context, '/login'),
                                   child: Text('Autentificare',
                                       style: GoogleFonts.roboto(
                                         fontWeight: FontWeight.bold,
@@ -143,9 +147,8 @@ class _FirstpageComponentState extends State<FirstpageComponent> {
                                           255, 255, 255, 255),
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 15, horizontal: 30)),
-                                  onPressed: () {
-                                    return context.push('/signin/medic');
-                                  },
+                                  onPressed: () => Navigator.pushNamed(
+                                      context, '/signin/medic'),
                                   child: Text('Inregistreaza-te\nca medic',
                                       textAlign: TextAlign.center,
                                       style: GoogleFonts.roboto(

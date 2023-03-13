@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_hub/Pages/login/login_page.dart';
 import 'package:health_hub/Pages/signin/signin_medic/signin_page.dart';
 import 'package:health_hub/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -63,7 +64,7 @@ class _FirstPageState extends State<FirstPage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50)),
                       ),
-                      onPressed: (() => context.push('/login')),
+                      onPressed: (() => Navigator.pushNamed(context, '/login')),
                       child: Text('Autentificare',
                           style: GoogleFonts.roboto(
                             fontWeight: FontWeight.bold,
@@ -92,11 +93,8 @@ class _FirstPageState extends State<FirstPage> {
                               const Color.fromARGB(255, 255, 255, 255),
                           padding: const EdgeInsets.symmetric(
                               vertical: 15, horizontal: 30)),
-                      onPressed: (() => Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const SignInPage_medic(),
-                            ),
-                          )),
+                      onPressed: (() =>
+                          Navigator.pushNamed(context, '/signin/medic')),
                       child: Text('Inregistreaza-te\nca medic',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.roboto(
@@ -210,7 +208,8 @@ class _FirstPageState extends State<FirstPage> {
                                             borderRadius:
                                                 BorderRadius.circular(50)),
                                       ),
-                                      onPressed: (() => context.push('/login')),
+                                      onPressed: (() => Navigator.pushNamed(
+                                          context, '/login')),
                                       child: Text('Autentificare',
                                           style: GoogleFonts.roboto(
                                             fontWeight: FontWeight.bold,
@@ -243,9 +242,8 @@ class _FirstPageState extends State<FirstPage> {
                                               255, 255, 255, 255),
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 15, horizontal: 30)),
-                                      onPressed: () {
-                                        return context.push('/login');
-                                      },
+                                      onPressed: (() => Navigator.pushNamed(
+                                          context, '/signin/medic')),
                                       child: Text('Inregistreaza-te\nca medic',
                                           textAlign: TextAlign.center,
                                           style: GoogleFonts.roboto(
