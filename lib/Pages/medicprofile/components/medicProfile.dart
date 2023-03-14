@@ -413,7 +413,7 @@ class _MedicProfileState extends State<MedicProfile> {
                             query: encodeQueryParameters(<String, String>{
                               'subject': 'Invitatie MD Planner',
                               'body':
-                                  'Buna! Sunt ${finalString} si te invit in aplicatia MD Planner. Apasa pe urmatorul link pentru a te inregistra: https://mdplanner.page.link/singin_iGuj'
+                                  'Buna! Sunt ${fullNameMedic} si te invit in aplicatia MD Planner. Apasa pe urmatorul link pentru a te inregistra: https://mdplanner.page.link/singin_iGuj'
                             }),
                           );
                           launchUrl(emailLaunchUri);
