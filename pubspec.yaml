@@ -46,6 +46,7 @@ dependencies:
   firebase_dynamic_links: ^5.0.16
   share_plus: ^6.3.1
   get: ^4.6.5
+  url_launcher: ^6.1.10
 
 dev_dependencies:
   flutter_test:
