@@ -18,35 +18,45 @@ class MedicProfile extends StatefulWidget {
   State<MedicProfile> createState() => _MedicProfileState();
 }
 
-FirebaseAuth auth = FirebaseAuth.instance;
-
-String finalString = "";
-
-Future getName() async {
-  bool procesTerminat = false;
-  await FirebaseFirestore.instance
-      .collection('users')
-      .where('email', isEqualTo: auth.currentUser?.email)
-      .get()
-      .then(
-        (snapshot) => snapshot.docs.forEach((document) {
-          print(document.reference.id);
-          Map<String, dynamic> data = document.data();
-          String firstname = data['first name'];
-          String lastname = data['last name'];
-          procesTerminat = true;
-          finalString = 'Dr. ' + firstname + ' ' + lastname;
-        }),
-      );
-  return procesTerminat;
-}
-
 CalendarFormat _calendarFormat = CalendarFormat.month;
 DateTime _focusedDay = DateTime.now();
 DateTime? _selectedDay;
 final user = FirebaseAuth.instance.currentUser;
 
 class _MedicProfileState extends State<MedicProfile> {
+  FirebaseAuth auth = FirebaseAuth.instance;
+  String fullNameMedic = "";
+  String phoneMedic = "";
+  String cityMedic = "";
+  String emailMedic = "";
+
+  Future getInfoMedic() async {
+    bool procesTerminat = false;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: auth.currentUser?.email)
+        .get()
+        .then(
+          (snapshot) => snapshot.docs.forEach((document) {
+            print(document.reference.id);
+            Map<String, dynamic> data = document.data();
+            String firstname = data['first name'];
+            String lastname = data['last name'];
+            cityMedic = data['city'];
+            emailMedic = data['email'];
+            phoneMedic = data['phone'];
+            procesTerminat = true;
+            fullNameMedic = 'Dr. ' + firstname + ' ' + lastname;
+          }),
+        );
+    return procesTerminat;
+  }
+
+  void initState() {
+    super.initState();
+    getInfoMedic();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,10 +85,10 @@ class _MedicProfileState extends State<MedicProfile> {
                             Column(
                               children: [
                                 FutureBuilder(
-                                  future: getName(),
+                                  future: getInfoMedic(),
                                   builder: (context, snapshot) {
                                     if (snapshot.hasData) {
-                                      return Text(finalString);
+                                      return Text(fullNameMedic);
                                     } else {
                                       return Center(
                                           child: CircularProgressIndicator());
@@ -193,13 +203,24 @@ class _MedicProfileState extends State<MedicProfile> {
                                       fontFamily: 'Outfit',
                                       color: Colors.black),
                                 ),
-                                Text(
-                                  'serban.chiriac@gmail.com',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontFamily: 'Outfit',
-                                      color: Colors.black.withOpacity(0.7)),
-                                )
+                                FutureBuilder(
+                                  future: getInfoMedic(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return Text(
+                                        emailMedic,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontFamily: 'Outfit',
+                                            color:
+                                                Colors.black.withOpacity(0.7)),
+                                      );
+                                    } else {
+                                      return Center(
+                                          child: CircularProgressIndicator());
+                                    }
+                                  },
+                                ),
                               ],
                             ),
                           ),
@@ -219,12 +240,23 @@ class _MedicProfileState extends State<MedicProfile> {
                                       fontFamily: 'Outfit',
                                       color: Colors.black),
                                 ),
-                                Text(
-                                  '076545785',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontFamily: 'Outfit',
-                                      color: Colors.black.withOpacity(0.7)),
+                                FutureBuilder(
+                                  future: getInfoMedic(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return Text(
+                                        phoneMedic,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontFamily: 'Outfit',
+                                            color:
+                                                Colors.black.withOpacity(0.7)),
+                                      );
+                                    } else {
+                                      return Center(
+                                          child: CircularProgressIndicator());
+                                    }
+                                  },
                                 )
                               ],
                             ),
@@ -245,12 +277,23 @@ class _MedicProfileState extends State<MedicProfile> {
                                       fontFamily: 'Outfit',
                                       color: Colors.black),
                                 ),
-                                Text(
-                                  'Iasi',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontFamily: 'Outfit',
-                                      color: Colors.black.withOpacity(0.7)),
+                                FutureBuilder(
+                                  future: getInfoMedic(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return Text(
+                                        cityMedic,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontFamily: 'Outfit',
+                                            color:
+                                                Colors.black.withOpacity(0.7)),
+                                      );
+                                    } else {
+                                      return Center(
+                                          child: CircularProgressIndicator());
+                                    }
+                                  },
                                 )
                               ],
                             ),
@@ -271,12 +314,23 @@ class _MedicProfileState extends State<MedicProfile> {
                                       fontFamily: 'Outfit',
                                       color: Colors.black),
                                 ),
-                                Text(
-                                  '5046578564345',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontFamily: 'Outfit',
-                                      color: Colors.black.withOpacity(0.7)),
+                                FutureBuilder(
+                                  future: getInfoMedic(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return Text(
+                                        'cnpMedic',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontFamily: 'Outfit',
+                                            color:
+                                                Colors.black.withOpacity(0.7)),
+                                      );
+                                    } else {
+                                      return Center(
+                                          child: CircularProgressIndicator());
+                                    }
+                                  },
                                 )
                               ],
                             ),
@@ -347,7 +401,7 @@ class _MedicProfileState extends State<MedicProfile> {
                       onPressed: () async {
                         if (!kIsWeb) {
                           DynamicLinkProvider()
-                              .createLink(finalString)
+                              .createLink(fullNameMedic)
                               .then((value) {
                             Share.share(value);
                           });
