@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:health_hub/dynamic_link.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final kToday = DateTime.now();
 final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
@@ -351,6 +352,17 @@ class _MedicProfileState extends State<MedicProfile> {
                               .then((value) {
                             Share.share(value);
                           });
+                        } else {
+                          final Uri emailLaunchUri = Uri(
+                            scheme: 'mailto',
+                            path: 'smith@example.com',
+                            query: encodeQueryParameters(<String, String>{
+                              'subject': 'Invitatie MD Planner',
+                              'body':
+                                  'Buna! Sunt ${finalString} si te invit in aplicatia MD Planner. Apasa pe urmatorul link pentru a te inregistra: https://mdplanner.page.link/singin_iGuj'
+                            }),
+                          );
+                          launchUrl(emailLaunchUri);
                         }
                       },
                       child: Text('Trimite o invitatie',
@@ -379,5 +391,12 @@ class _MedicProfileState extends State<MedicProfile> {
         ),
       ),
     );
+  }
+
+  String? encodeQueryParameters(Map<String, String> params) {
+    return params.entries
+        .map((MapEntry<String, String> e) =>
+            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+        .join('&');
   }
 }

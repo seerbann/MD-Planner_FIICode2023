@@ -81,7 +81,7 @@ void initDynamicLinks() async {
     final Uri? deeplink = dynamicLinkData.link;
     if (deeplink != null) {
       print("deeplink data " + deeplink.queryParameters.values.first);
-      Get.toNamed('/SIGNIN');
+      Get.toNamed('/signin/user');
     }
   }).onError((error) {
     // Handle errors
