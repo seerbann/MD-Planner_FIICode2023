@@ -79,26 +79,29 @@ class _ProfileState extends State<Profile> {
                         color: Colors.white,
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(15.0),
+                        padding: const EdgeInsets.all(25.0),
                         child: Column(
                           children: [
                             Row(
                               children: [
-                                Column(
-                                  children: [
-                                    Image.asset(
-                                      'assets/images/defaultUser.png',
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Text('editeaza date',
-                                        style: TextStyle(
-                                            fontFamily: 'Roboto',
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 17,
-                                            color: Colors.black))
-                                  ],
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    children: [
+                                      Image.asset(
+                                        'assets/images/defaultUser.png',
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text('editeaza date',
+                                          style: TextStyle(
+                                              fontFamily: 'Roboto',
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 17,
+                                              color: Colors.black))
+                                    ],
+                                  ),
                                 ),
                                 SizedBox(
                                   width: 10,
@@ -173,17 +176,18 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     SizedBox(
-                      height: 25,
+                      height: 15,
                     ),
                     Container(
-                      width: 450,
+                      width: 300,
                       height: 300,
                       decoration: BoxDecoration(
                         border: Border.all(color: Color(0xFFE2E3E3), width: 5),
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                         color: Colors.white,
                       ),
-                      child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Text(
                           'Istoric Medical',
                           style: TextStyle(
@@ -196,7 +200,7 @@ class _ProfileState extends State<Profile> {
                   ],
                 ),
                 SizedBox(
-                  width: 50,
+                  width: 20,
                 ),
                 Container(
                     width: 400,
