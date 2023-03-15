@@ -1,11 +1,13 @@
+
+
 import 'package:flutter/material.dart';
 
 class BlueVector extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path = Path();
-    final double _xScaling = size.width / 414;
-    final double _yScaling = size.height / 500;
+    final double _xScaling = size.width / 168;
+    final double _yScaling = size.height / 116;
     path.lineTo(22.0598 * _xScaling, 54.1355 * _yScaling);
     path.cubicTo(
       89.4315 * _xScaling,
