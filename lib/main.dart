@@ -47,6 +47,22 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      onGenerateRoute: (settings) {
+        if (settings.name == '/profile') {
+          return PageRouteBuilder(
+              settings: settings,
+              pageBuilder: (_, __, ___) => ProfileDecider());
+        }
+        if (settings.name == '/list') {
+          return PageRouteBuilder(
+              settings: settings, pageBuilder: (_, __, ___) => MainListPage());
+        }
+        if (settings.name == '/calendar') {
+          return PageRouteBuilder(
+              settings: settings, pageBuilder: (_, __, ___) => CalendarPage());
+        }
+        return null;
+      },
       routes: {
         '/': (context) => FirstPage(),
         '/login': (context) => LoginPage(),
@@ -55,11 +71,11 @@ class _MyAppState extends State<MyApp> {
         '/medicprofile': (context) => MainMedicProfile(),
         '/pending': (context) => Pending(),
         '/signin/user/contCreat': (context) => ContCreat(),
-        '/list': (context) => MainListPage(),
+        //'/list': (context) => MainListPage(),
         '/userprofile': (context) => MainProfile(),
         '/medicprofile': (context) => MainMedicProfile(),
-        '/calendar': (context) => CalendarPage(),
-        '/profile': (context) => ProfileDecider(),
+        //'/calendar': (context) => CalendarPage(),
+        //'/profile': (context) => ProfileDecider(),
         '/main': (context) => MainPage()
       },
       theme: ThemeData(
