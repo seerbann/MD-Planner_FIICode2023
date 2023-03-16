@@ -77,18 +77,23 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
 
   /// document IDs
   List<String> docIDs = [];
+  bool fetchOrase = false;
   late List<String> cities = [];
 
   /// get doc IDs
   Future getDocId() async {
     await FirebaseFirestore.instance.collection('cities').get().then(
           (snapshot) => snapshot.docs.forEach((document) {
-            print(document.reference.id);
-            Map<String, dynamic> data = document.data();
-            cities.add(data['nume']);
-            docIDs.add(document.reference.id);
+            if (fetchOrase == false) {
+              print(document.reference.id);
+              Map<String, dynamic> data = document.data();
+              cities.add(data['nume']);
+              docIDs.add(document.reference.id);
+            }
           }),
         );
+    fetchOrase = true;
+    cities.sort();
   }
 
   @override
