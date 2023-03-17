@@ -100,8 +100,9 @@ class _WideLayoutwithUsersState extends State<WideLayoutwithUsers> {
                     }))),
         Expanded(
           flex: 3,
-          child:
-              _person.name == 'default' ? EmptyView() : PersonDetail(_person),
+          child: _person.name == 'default'
+              ? EmptyViewPacienti()
+              : PersonDetail(_person),
         ),
       ],
     );
@@ -284,8 +285,8 @@ class PersonDetail extends StatelessWidget {
   }
 }
 
-class EmptyView extends StatelessWidget {
-  const EmptyView({super.key});
+class EmptyViewPacienti extends StatelessWidget {
+  const EmptyViewPacienti({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -415,7 +416,10 @@ class MedicList extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            onPressed: () => onMedicTap(medicList[i]),
+                            onPressed: () {
+                              Medic medic = medicList[i];
+                              return onMedicTap(medic);
+                            },
                           ),
                       ],
                     ),
@@ -465,24 +469,8 @@ class MedicDetail extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Text(
-                    'trimite altui medic',
-                    style: TextStyle(fontWeight: FontWeight.w400),
-                  )
                 ],
               ),
-            ),
-            SizedBox(
-              height: 200,
-            ),
-            Container(
-              color: Color(0xFFFAFBFF),
-              child: Text('Fisa Medicala'),
-            ),
-            SizedBox(height: 400),
-            Container(
-              color: Color(0xFFFAFBFF),
-              child: Text('Istoric Medical'),
             ),
           ],
         ),
@@ -510,8 +498,9 @@ class _WideLayoutwithMedicsState extends State<WideLayoutwithMedics> {
                     }))),
         Expanded(
           flex: 3,
-          child:
-              _person.name == 'default' ? EmptyView() : PersonDetail(_person),
+          child: _medic.firstName == 'default'
+              ? EmptyViewMedici()
+              : MedicDetail(_medic),
         ),
       ],
     );
@@ -530,6 +519,26 @@ class NarrowLayoutwithMedics extends StatelessWidget {
             ),
             body: MedicDetail(medic),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class EmptyViewMedici extends StatelessWidget {
+  const EmptyViewMedici({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: double.infinity,
+      color: Colors.white,
+      child: Center(
+        child: Text(
+          'Hei, momentan nu ai selectat niciun medic.',
+          style: TextStyle(
+              fontFamily: 'Outfit', fontSize: 35, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
         ),
       ),
     );
