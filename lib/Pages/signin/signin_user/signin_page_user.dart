@@ -94,7 +94,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
   }
 
   Future addUserDetails(String firstName, String lastName, String email,
-      String phone, String cnp, String city) async {
+      String phone, String cnp, String city, String medic) async {
     await FirebaseFirestore.instance.collection('users').add({
       'first name': firstName,
       'last name': lastName,
@@ -103,6 +103,8 @@ class _SignInPage_userState extends State<SignInPage_user> {
       'cnp': cnp,
       'city': city,
       'isMedic': false,
+      'medic': medic,
+      'fullName': '$firstName $lastName'
     });
   }
 
@@ -116,7 +118,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
     await FirebaseFirestore.instance.collection('cities').get().then(
           (snapshot) => snapshot.docs.forEach((document) {
             if (fetchOrase == false) {
-              print(document.reference.id);
+              //print(document.reference.id);
               Map<String, dynamic> data = document.data();
               cities.add(data['nume']);
               docIDs.add(document.reference.id);
@@ -146,9 +148,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
               city: docSnapshot.data()['city'],
               email: docSnapshot.data()['email'],
               phone: docSnapshot.data()['phone'],
-              fullName: docSnapshot.data()['first name'] +
-                  ' ' +
-                  docSnapshot.data()['last name'],
+              fullName: docSnapshot.data()['fullName'],
             );
             medicList.add(m);
             //print('${docSnapshot.id} => ${docSnapshot.data()}');
@@ -508,7 +508,8 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                           _email.text.trim(),
                                           _phone.text.trim(),
                                           _cnp.text.trim(),
-                                          _city.text.trim());
+                                          _city.text.trim(),
+                                          _medic.text.trim());
 
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(const SnackBar(
@@ -869,7 +870,8 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                       _email.text.trim(),
                                       _phone.text.trim(),
                                       _cnp.text.trim(),
-                                      _city.text.trim());
+                                      _city.text.trim(),
+                                      _medic.text.trim());
 
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
@@ -1225,7 +1227,8 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                       _email.text.trim(),
                                       _phone.text.trim(),
                                       _cnp.text.trim(),
-                                      _city.text.trim());
+                                      _city.text.trim(),
+                                      _medic.text.trim());
 
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
