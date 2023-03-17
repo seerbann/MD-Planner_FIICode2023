@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_hub/Pages/listpage/components/people.dart';
 import 'package:flutter/material.dart';
@@ -16,16 +17,55 @@ class ListAndPacientDetails extends StatefulWidget {
 }
 
 class _ListAndPacientDetailsState extends State<ListAndPacientDetails> {
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  bool esteMedicLista = false;
+
+  Future isMedic() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: auth.currentUser?.email)
+        .get()
+        .then(
+          (snapshot) => snapshot.docs.forEach((document) {
+            print(document.reference.id);
+            Map<String, dynamic> data = document.data();
+            if (data['isMedic']) {
+              esteMedicLista = true;
+              print('Acest utilizator este medic');
+            } else {
+              esteMedicLista = false;
+              print('Acest utilizator nu este medic');
+            }
+          }),
+        );
+    return esteMedicLista;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          if (constraints.maxWidth > 800) {
-            return WideLayout();
-          } else {
-            return NarrowLayout();
-          }
+      body: FutureBuilder(
+        future: isMedic(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            if (esteMedicLista == true) {
+              if (MediaQuery.of(context).size.width > 800) {
+                return WideLayoutwithUsers();
+              } else {
+                return NarrowLayoutwithUsers();
+              }
+            } else {
+              if (MediaQuery.of(context).size.width > 800) {
+                return WideLayoutwithMedics();
+              } else {
+                return NarrowLayoutwithMedics();
+              }
+            }
+          } else
+            return Center(
+              child: CircularProgressIndicator(),
+            );
         },
       ),
     );
@@ -41,12 +81,12 @@ Medic _medic = Medic(
     phone: 'default',
     fullName: 'default');
 
-class WideLayout extends StatefulWidget {
+class WideLayoutwithUsers extends StatefulWidget {
   @override
-  _WideLayoutState createState() => _WideLayoutState();
+  _WideLayoutwithUsersState createState() => _WideLayoutwithUsersState();
 }
 
-class _WideLayoutState extends State<WideLayout> {
+class _WideLayoutwithUsersState extends State<WideLayoutwithUsers> {
   @override
   @override
   Widget build(BuildContext context) {
@@ -68,7 +108,7 @@ class _WideLayoutState extends State<WideLayout> {
   }
 }
 
-class NarrowLayout extends StatelessWidget {
+class NarrowLayoutwithUsers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PeopleList(
@@ -266,18 +306,13 @@ class EmptyView extends StatelessWidget {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///medic
-class MedicList extends StatefulWidget {
+class MedicList extends StatelessWidget {
   final void Function(Medic) onMedicTap;
-
   MedicList({required this.onMedicTap});
 
-  @override
-  State<MedicList> createState() => _MedicListState();
-}
-
-class _MedicListState extends State<MedicList> {
   List<Medic> medicList = [];
   bool fetchMedici2 = false;
+
   Future readMedics() async {
     await db.collection("users").where("isMedic", isEqualTo: true).get().then(
       (querySnapshot) {
@@ -292,7 +327,6 @@ class _MedicListState extends State<MedicList> {
               phone: docSnapshot.data()['phone'],
               fullName: docSnapshot.data()['fullName'],
             );
-
             medicList.add(m);
             print('${docSnapshot.id} => ${docSnapshot.data()}');
           }
@@ -349,36 +383,39 @@ class _MedicListState extends State<MedicList> {
                           height: 30,
                         ),
                         for (int i = 0; i < medicList.length; i++)
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 70,
-                              decoration: BoxDecoration(
-                                  color: Color(0xFF9DBAFE),
-                                  border: Border.all(color: Colors.black)),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Image.asset(
-                                    'assets/images/user.png',
-                                    scale: 5,
-                                  ),
-                                  SizedBox(
-                                    width: 15,
-                                  ),
-                                  Text(
-                                    medicList[i].fullName,
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontFamily: 'Outfit',
-                                        color: Colors.black),
-                                  )
-                                ],
+                          TextButton(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 70,
+                                decoration: BoxDecoration(
+                                    color: Color(0xFF9DBAFE),
+                                    border: Border.all(color: Colors.black)),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Image.asset(
+                                      'assets/images/user.png',
+                                      scale: 5,
+                                    ),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Text(
+                                      medicList[i].fullName,
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontFamily: 'Outfit',
+                                          color: Colors.black),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
+                            onPressed: () => onMedicTap(medicList[i]),
                           ),
                       ],
                     ),
@@ -448,6 +485,51 @@ class MedicDetail extends StatelessWidget {
               child: Text('Istoric Medical'),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class WideLayoutwithMedics extends StatefulWidget {
+  @override
+  _WideLayoutwithMedicsState createState() => _WideLayoutwithMedicsState();
+}
+
+class _WideLayoutwithMedicsState extends State<WideLayoutwithMedics> {
+  @override
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+            flex: 2,
+            child: MedicList(
+                onMedicTap: (medic) => setState(() {
+                      _medic = medic;
+                    }))),
+        Expanded(
+          flex: 3,
+          child:
+              _person.name == 'default' ? EmptyView() : PersonDetail(_person),
+        ),
+      ],
+    );
+  }
+}
+
+class NarrowLayoutwithMedics extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MedicList(
+      onMedicTap: (medic) => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.black,
+            ),
+            body: MedicDetail(medic),
+          ),
         ),
       ),
     );
