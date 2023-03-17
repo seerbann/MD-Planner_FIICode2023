@@ -108,11 +108,26 @@ class _SignInPage_userState extends State<SignInPage_user> {
     });
   }
 
-  Future addUserToMedic(String numePacient) async {
+  Future<String> getMedicId(String numeMedic) async {
+    String idDoctor = "aaaa";
+    print(idDoctor);
+    await FirebaseFirestore.instance
+        .collection('users')
+        .where('fullName', isEqualTo: numeMedic)
+        .get()
+        .then((snapshot) => snapshot.docs.forEach((document) {
+              idDoctor = document.id;
+            }));
+    print(idDoctor);
+    return idDoctor;
+  }
+
+  Future addUserToMedic(String numePacient, String numeMedic) async {
     var list = [numePacient];
+    var idDoctor = await getMedicId(numeMedic);
     FirebaseFirestore.instance
         .collection('users')
-        .doc('uidDoctor')
+        .doc(idDoctor)
         .update({"pacienti": FieldValue.arrayUnion(list)});
   }
 
@@ -520,7 +535,8 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                           _medic.text.trim());
 
                                       addUserToMedic(
-                                          '${_firstName.text.trim()} ${_lastName.text.trim()}');
+                                          '${_firstName.text.trim()} ${_lastName.text.trim()}',
+                                          _medic.text.trim());
 
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(const SnackBar(
