@@ -46,7 +46,7 @@ class _WideLayoutState extends State<WideLayout> {
       children: [
         Expanded(
           flex: 2,
-          child: MedicList(
+          child: PeopleList(
               onPersonTap: (person) => setState(() {
                     _person = person;
                   })),
@@ -258,35 +258,129 @@ class EmptyView extends StatelessWidget {
 }
 
 class MedicList extends StatefulWidget {
-  final void Function(Person) onPersonTap;
+  final void Function(Medic) onMedicTap;
 
-  MedicList({required this.onPersonTap});
+  MedicList({required this.onMedicTap});
 
   @override
   State<MedicList> createState() => _MedicListState();
 }
 
 class _MedicListState extends State<MedicList> {
-  late Future medics;
-  @override
-  void initState() {
-    super.initState();
-    medics = readMedics();
-  }
+  List<Medic> medicList = [];
+  bool fetchMedici2 = false;
+  Future readMedics() async {
+    await db.collection("users").where("isMedic", isEqualTo: true).get().then(
+      (querySnapshot) {
+        print("Successfully completed");
+        if (fetchMedici2 == false)
+          for (var docSnapshot in querySnapshot.docs) {
+            Medic m = Medic(
+              firstName: docSnapshot.data()['first name'],
+              lastName: docSnapshot.data()['last name'],
+              city: docSnapshot.data()['city'],
+              email: docSnapshot.data()['email'],
+              phone: docSnapshot.data()['phone'],
+              fullName: docSnapshot.data()['fullName'],
+            );
 
-  Widget buildMedic(Medic medic) => ListTile(title: Text(medic.firstName));
+            medicList.add(m);
+            print('${docSnapshot.id} => ${docSnapshot.data()}');
+          }
+        fetchMedici2 = true;
+      },
+      onError: (e) => print("Error completing: $e"),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: medics,
-        builder: ((context, snapshot) {
-          if (snapshot.hasData) {
-            print(snapshot.data);
-            return Text('nulll');
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        }));
+        future: readMedics(),
+        builder: (context, snapshot) {
+          return Container(
+            height: double.infinity,
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+              begin: Alignment.centerRight,
+              end: Alignment.centerLeft,
+              colors: [
+                Color.fromRGBO(122, 162, 255, 1),
+                Color.fromRGBO(51, 112, 255, 1),
+              ],
+            )),
+            child: Row(
+              children: [
+                Spacer(
+                  flex: 1,
+                ),
+                Expanded(
+                  flex: 5,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            Text("Medici",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.roboto(
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    letterSpacing: 1,
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.w500)),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            InkWell(child: Image.asset('assets/images/add.png'))
+                          ],
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        for (int i = 0; i < medicList.length; i++)
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 70,
+                              decoration: BoxDecoration(
+                                  color: Color(0xFF9DBAFE),
+                                  border: Border.all(color: Colors.black)),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Image.asset(
+                                    'assets/images/user.png',
+                                    scale: 5,
+                                  ),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  Text(
+                                    medicList[i].fullName,
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontFamily: 'Outfit',
+                                        color: Colors.black),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+                Spacer(
+                  flex: 1,
+                )
+              ],
+            ),
+          );
+        });
   }
 }
