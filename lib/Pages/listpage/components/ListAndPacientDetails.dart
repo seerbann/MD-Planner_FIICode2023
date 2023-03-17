@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_hub/Pages/listpage/components/people.dart';
 import 'package:flutter/material.dart';
+
+import '../../../read data/get_medic_info.dart';
 
 class ListAndPacientDetails extends StatefulWidget {
   ListAndPacientDetails({
@@ -43,7 +46,7 @@ class _WideLayoutState extends State<WideLayout> {
       children: [
         Expanded(
           flex: 2,
-          child: PeopleList(
+          child: MedicList(
               onPersonTap: (person) => setState(() {
                     _person = person;
                   })),
@@ -251,5 +254,39 @@ class EmptyView extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class MedicList extends StatefulWidget {
+  final void Function(Person) onPersonTap;
+
+  MedicList({required this.onPersonTap});
+
+  @override
+  State<MedicList> createState() => _MedicListState();
+}
+
+class _MedicListState extends State<MedicList> {
+  late Future medics;
+  @override
+  void initState() {
+    super.initState();
+    medics = readMedics();
+  }
+
+  Widget buildMedic(Medic medic) => ListTile(title: Text(medic.firstName));
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: medics,
+        builder: ((context, snapshot) {
+          if (snapshot.hasData) {
+            print(snapshot.data);
+            return Text('nulll');
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        }));
   }
 }
