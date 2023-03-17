@@ -9,6 +9,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:textfield_search/textfield_search.dart';
 import 'package:searchfield/searchfield.dart';
 
+class Medic {
+  final String firstName;
+  final String lastName;
+  final String city;
+  final String email;
+  final String phone;
+  final String fullName;
+
+  Medic({
+    required this.firstName,
+    required this.lastName,
+    required this.city,
+    required this.email,
+    required this.phone,
+    required this.fullName,
+  });
+}
+
 class SignInPage_user extends StatefulWidget {
   const SignInPage_user({super.key});
 
@@ -25,6 +43,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
   late final TextEditingController _phone;
   late final TextEditingController _cnp;
   late final TextEditingController _city;
+  late final TextEditingController _medic;
   var label = "Some Label";
   var dummyList = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
 
@@ -41,8 +60,10 @@ class _SignInPage_userState extends State<SignInPage_user> {
     _phone = TextEditingController();
     _cnp = TextEditingController();
     _city = TextEditingController();
+    _medic = TextEditingController();
     myController.addListener(_printLatestValue);
     super.initState();
+    readMedics();
   }
 
   @override
@@ -55,6 +76,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
     _phone.dispose();
     _cnp.dispose();
     _city.dispose();
+    _medic.dispose();
     myController.dispose();
     super.dispose();
   }
@@ -103,6 +125,42 @@ class _SignInPage_userState extends State<SignInPage_user> {
         );
     fetchOrase = true;
     cities.sort();
+  }
+
+  List<Medic> medicList = [];
+
+  bool fetchMedici = false;
+  Future readMedics() async {
+    FirebaseFirestore.instance
+        .collection("users")
+        .where("isMedic", isEqualTo: true)
+        .get()
+        .then(
+      (querySnapshot) {
+        print("Successfully completed");
+        for (var docSnapshot in querySnapshot.docs) {
+          if (fetchMedici == false) {
+            Medic m = Medic(
+              firstName: docSnapshot.data()['first name'],
+              lastName: docSnapshot.data()['last name'],
+              city: docSnapshot.data()['city'],
+              email: docSnapshot.data()['email'],
+              phone: docSnapshot.data()['phone'],
+              fullName: docSnapshot.data()['first name'] +
+                  ' ' +
+                  docSnapshot.data()['last name'],
+            );
+            medicList.add(m);
+            //print('${docSnapshot.id} => ${docSnapshot.data()}');
+          }
+        }
+        fetchMedici = true;
+        print(medicList.length);
+        //return medicList;
+        //print(medicList);
+      },
+      onError: (e) => print("Error completing: $e"),
+    );
   }
 
   @override
@@ -364,6 +422,26 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                               suggestions: cities
                                                   .map((e) =>
                                                       SearchFieldListItem(e))
+                                                  .toList(),
+                                            );
+                                          },
+                                        ),
+                                        FutureBuilder(
+                                          future: readMedics(),
+                                          builder: (context, snapshot) {
+                                            return SearchField(
+                                              validator: (value) {
+                                                if (value == null ||
+                                                    value.isEmpty) {
+                                                  return 'Ai uitat sa alegi un oras.';
+                                                }
+                                              },
+                                              hint: 'Medic',
+                                              controller: _medic,
+                                              suggestions: medicList
+                                                  .map((e) =>
+                                                      SearchFieldListItem(
+                                                          e.fullName))
                                                   .toList(),
                                             );
                                           },
