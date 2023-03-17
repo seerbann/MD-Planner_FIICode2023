@@ -72,6 +72,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
       'phone': phone,
       'city': city,
       'isMedic': true,
+      'fullName': '$firstName $lastName',
     });
   }
 
