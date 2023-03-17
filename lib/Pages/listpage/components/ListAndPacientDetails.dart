@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_hub/Pages/listpage/components/people.dart';
 import 'package:flutter/material.dart';
+import 'package:health_hub/profileDecider.dart';
 
 import '../../../read data/get_medic_info.dart';
 
@@ -32,6 +33,13 @@ class _ListAndPacientDetailsState extends State<ListAndPacientDetails> {
 }
 
 Person _person = Person(name: 'default', phone: 'default', picture: 'default');
+Medic _medic = Medic(
+    firstName: 'default',
+    lastName: 'default',
+    city: 'default',
+    email: 'default',
+    phone: 'default',
+    fullName: 'default');
 
 class WideLayout extends StatefulWidget {
   @override
@@ -45,12 +53,11 @@ class _WideLayoutState extends State<WideLayout> {
     return Row(
       children: [
         Expanded(
-          flex: 2,
-          child: PeopleList(
-              onPersonTap: (person) => setState(() {
-                    _person = person;
-                  })),
-        ),
+            flex: 2,
+            child: PeopleList(
+                onPersonTap: (person) => setState(() {
+                      _person = person;
+                    }))),
         Expanded(
           flex: 3,
           child:
@@ -257,6 +264,8 @@ class EmptyView extends StatelessWidget {
   }
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///medic
 class MedicList extends StatefulWidget {
   final void Function(Medic) onMedicTap;
 
@@ -382,5 +391,65 @@ class _MedicListState extends State<MedicList> {
             ),
           );
         });
+  }
+}
+
+class MedicDetail extends StatelessWidget {
+  final Medic medic;
+
+  const MedicDetail(this.medic);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              color: Color(0xFFFAFBFF),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/defaultUser.png'),
+                      Column(
+                        children: [
+                          Text(
+                            medic.fullName,
+                            style: TextStyle(
+                                fontFamily: 'Outfit',
+                                fontSize: 35,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(medic.phone)
+                        ],
+                      ),
+                    ],
+                  ),
+                  Text(
+                    'trimite altui medic',
+                    style: TextStyle(fontWeight: FontWeight.w400),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 200,
+            ),
+            Container(
+              color: Color(0xFFFAFBFF),
+              child: Text('Fisa Medicala'),
+            ),
+            SizedBox(height: 400),
+            Container(
+              color: Color(0xFFFAFBFF),
+              child: Text('Istoric Medical'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
