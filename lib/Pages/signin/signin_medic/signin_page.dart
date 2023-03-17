@@ -64,7 +64,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
   }
 
   Future addUserDetails(String firstName, String lastName, String email,
-      String phone, String city) async {
+      String phone, String city, List<String> pacienti) async {
     await FirebaseFirestore.instance.collection('users').add({
       'first name': firstName,
       'last name': lastName,
@@ -73,6 +73,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
       'city': city,
       'isMedic': true,
       'fullName': '$firstName $lastName',
+      'pacienti': pacienti
     });
   }
 
@@ -409,7 +410,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                         _lastName.text.trim(),
                                         _email.text.trim(),
                                         _phone.text.trim(),
-                                        _city.text.trim());
+                                        _city.text.trim(), []);
 
                                     ScaffoldMessenger.of(context).showSnackBar(
                                         const SnackBar(
@@ -759,7 +760,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                       _lastName.text.trim(),
                                       _email.text.trim(),
                                       _phone.text.trim(),
-                                      _city.text.trim());
+                                      _city.text.trim(), []);
 
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
@@ -1109,7 +1110,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                       _lastName.text.trim(),
                                       _email.text.trim(),
                                       _phone.text.trim(),
-                                      _city.text.trim());
+                                      _city.text.trim(), []);
 
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
