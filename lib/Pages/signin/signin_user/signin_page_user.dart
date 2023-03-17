@@ -108,6 +108,14 @@ class _SignInPage_userState extends State<SignInPage_user> {
     });
   }
 
+  Future addUserToMedic(String numePacient) async {
+    var list = [numePacient];
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc('uidDoctor')
+        .update({"pacienti": FieldValue.arrayUnion(list)});
+  }
+
   /// document IDs
   List<String> docIDs = [];
   bool fetchOrase = false;
@@ -510,6 +518,9 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                           _cnp.text.trim(),
                                           _city.text.trim(),
                                           _medic.text.trim());
+
+                                      addUserToMedic(
+                                          '${_firstName.text.trim()} ${_lastName.text.trim()}');
 
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(const SnackBar(
