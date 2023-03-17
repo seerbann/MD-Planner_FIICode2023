@@ -830,6 +830,25 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                         );
                                       },
                                     ),
+                                    FutureBuilder(
+                                      future: readMedics(),
+                                      builder: (context, snapshot) {
+                                        return SearchField(
+                                          validator: (value) {
+                                            if (value == null ||
+                                                value.isEmpty) {
+                                              return 'Ai uitat sa alegi un oras.';
+                                            }
+                                          },
+                                          hint: 'Medic',
+                                          controller: _medic,
+                                          suggestions: medicList
+                                              .map((e) => SearchFieldListItem(
+                                                  e.fullName))
+                                              .toList(),
+                                        );
+                                      },
+                                    ),
                                     Container(
                                       padding: const EdgeInsets.all(10),
                                       child: TextFormField(
@@ -898,6 +917,10 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                       _phone.text.trim(),
                                       _cnp.text.trim(),
                                       _city.text.trim(),
+                                      _medic.text.trim());
+
+                                  addUserToMedic(
+                                      '${_firstName.text.trim()} ${_lastName.text.trim()}',
                                       _medic.text.trim());
 
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -1191,6 +1214,25 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                         );
                                       },
                                     ),
+                                    FutureBuilder(
+                                      future: readMedics(),
+                                      builder: (context, snapshot) {
+                                        return SearchField(
+                                          validator: (value) {
+                                            if (value == null ||
+                                                value.isEmpty) {
+                                              return 'Ai uitat sa alegi un oras.';
+                                            }
+                                          },
+                                          hint: 'Medic',
+                                          controller: _medic,
+                                          suggestions: medicList
+                                              .map((e) => SearchFieldListItem(
+                                                  e.fullName))
+                                              .toList(),
+                                        );
+                                      },
+                                    ),
                                     Container(
                                       padding: const EdgeInsets.all(10),
                                       child: TextFormField(
@@ -1255,6 +1297,10 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                       _phone.text.trim(),
                                       _cnp.text.trim(),
                                       _city.text.trim(),
+                                      _medic.text.trim());
+
+                                  addUserToMedic(
+                                      '${_firstName.text.trim()} ${_lastName.text.trim()}',
                                       _medic.text.trim());
 
                                   ScaffoldMessenger.of(context).showSnackBar(
