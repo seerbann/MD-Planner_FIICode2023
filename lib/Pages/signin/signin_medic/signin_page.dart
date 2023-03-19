@@ -340,25 +340,36 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                               border: InputBorder.none),
                                         ),
                                       ),
-                                      FutureBuilder(
-                                        future: getDocId(),
-                                        builder: (context, snapshot) {
-                                          return SearchField(
-                                            hasOverlay: false,
-                                            validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return 'Ai uitat sa alegi un oras.';
-                                              }
-                                            },
-                                            hint: 'Oras',
-                                            controller: _city,
-                                            suggestions: cities
-                                                .map((e) =>
-                                                    SearchFieldListItem(e))
-                                                .toList(),
-                                          );
-                                        },
+                                      Container(
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: const BoxDecoration(
+                                            border: Border(
+                                                bottom: BorderSide(
+                                                    color: Color.fromRGBO(
+                                                        240, 240, 240, 1)))),
+                                        child: FutureBuilder(
+                                          future: getDocId(),
+                                          builder: (context, snapshot) {
+                                            return SearchField(
+                                              searchInputDecoration:
+                                                  InputDecoration(
+                                                      border: InputBorder.none),
+                                              hasOverlay: false,
+                                              validator: (value) {
+                                                if (value == null ||
+                                                    value.isEmpty) {
+                                                  return 'Ai uitat sa alegi un oras.';
+                                                }
+                                              },
+                                              hint: 'Oras',
+                                              controller: _city,
+                                              suggestions: cities
+                                                  .map((e) =>
+                                                      SearchFieldListItem(e))
+                                                  .toList(),
+                                            );
+                                          },
+                                        ),
                                       ),
                                       Container(
                                         padding: const EdgeInsets.all(10),
@@ -683,25 +694,36 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                             border: InputBorder.none),
                                       ),
                                     ),
-                                    FutureBuilder(
-                                      future: getDocId(),
-                                      builder: (context, snapshot) {
-                                        return SearchField(
-                                          hasOverlay: false,
-                                          validator: (value) {
-                                            if (value == null ||
-                                                value.isEmpty) {
-                                              return 'Ai uitat sa alegi un oras.';
-                                            }
-                                          },
-                                          hint: 'Oras',
-                                          controller: _city,
-                                          suggestions: cities
-                                              .map(
-                                                  (e) => SearchFieldListItem(e))
-                                              .toList(),
-                                        );
-                                      },
+                                    Container(
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: const BoxDecoration(
+                                          border: Border(
+                                              bottom: BorderSide(
+                                                  color: Color.fromRGBO(
+                                                      240, 240, 240, 1)))),
+                                      child: FutureBuilder(
+                                        future: getDocId(),
+                                        builder: (context, snapshot) {
+                                          return SearchField(
+                                            searchInputDecoration:
+                                                InputDecoration(
+                                                    border: InputBorder.none),
+                                            hasOverlay: false,
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return 'Ai uitat sa alegi un oras.';
+                                              }
+                                            },
+                                            hint: 'Oras',
+                                            controller: _city,
+                                            suggestions: cities
+                                                .map((e) =>
+                                                    SearchFieldListItem(e))
+                                                .toList(),
+                                          );
+                                        },
+                                      ),
                                     ),
                                     Container(
                                       padding: const EdgeInsets.all(10),
@@ -1033,25 +1055,36 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                             border: InputBorder.none),
                                       ),
                                     ),
-                                    FutureBuilder(
-                                      future: getDocId(),
-                                      builder: (context, snapshot) {
-                                        return SearchField(
-                                          hasOverlay: false,
-                                          validator: (value) {
-                                            if (value == null ||
-                                                value.isEmpty) {
-                                              return 'Ai uitat sa alegi un oras.';
-                                            }
-                                          },
-                                          hint: 'Oras',
-                                          controller: _city,
-                                          suggestions: cities
-                                              .map(
-                                                  (e) => SearchFieldListItem(e))
-                                              .toList(),
-                                        );
-                                      },
+                                    Container(
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: const BoxDecoration(
+                                          border: Border(
+                                              bottom: BorderSide(
+                                                  color: Color.fromRGBO(
+                                                      240, 240, 240, 1)))),
+                                      child: FutureBuilder(
+                                        future: getDocId(),
+                                        builder: (context, snapshot) {
+                                          return SearchField(
+                                            searchInputDecoration:
+                                                InputDecoration(
+                                                    border: InputBorder.none),
+                                            hasOverlay: false,
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return 'Ai uitat sa alegi un oras.';
+                                              }
+                                            },
+                                            hint: 'Oras',
+                                            controller: _city,
+                                            suggestions: cities
+                                                .map((e) =>
+                                                    SearchFieldListItem(e))
+                                                .toList(),
+                                          );
+                                        },
+                                      ),
                                     ),
                                     Container(
                                       padding: const EdgeInsets.all(10),
