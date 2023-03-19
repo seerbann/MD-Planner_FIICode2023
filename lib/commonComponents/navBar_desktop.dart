@@ -45,6 +45,10 @@ class _CustomNavBarState extends State<CustomNavBar> {
       },
       destinations: [
         NavigationRailDestination(
+          selectedIcon: Image.asset(
+            'assets/images/userSelectat.png',
+            scale: 5,
+          ),
           icon: Image.asset(
             'assets/images/user.png',
             scale: 5,
@@ -56,6 +60,10 @@ class _CustomNavBarState extends State<CustomNavBar> {
           ),
         ),
         NavigationRailDestination(
+          selectedIcon: Image.asset(
+            'assets/images/listSelected.png',
+            scale: 3,
+          ),
           icon: Image.asset(
             'assets/images/list.png',
             scale: 3,
@@ -67,6 +75,10 @@ class _CustomNavBarState extends State<CustomNavBar> {
           ),
         ),
         NavigationRailDestination(
+          selectedIcon: Image.asset(
+            'assets/images/calendarSelectat.png',
+            scale: 3,
+          ),
           icon: Image.asset(
             'assets/images/calendar.png',
             scale: 3,
