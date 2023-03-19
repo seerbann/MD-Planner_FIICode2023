@@ -127,6 +127,71 @@ class NarrowLayoutwithUsers extends StatelessWidget {
   }
 }
 
+List<String> pacienti = [];
+bool fetchPatients = false;
+//get patient list
+Future getPatients() async {
+  await db
+      .collection("users")
+      .where('email', isEqualTo: FirebaseAuth.instance.currentUser?.email)
+      .get()
+      .then(
+    (querySnapshot) {
+      print("Successfully completed");
+      if (fetchPatients == false) {
+        var index = 0;
+        for (var docSnapshot in querySnapshot.docs) {
+          for (int i = 0; i <= querySnapshot.docs.length; i++)
+            pacienti.add(docSnapshot.data()['pacienti'][i]);
+        }
+      }
+      print(pacienti[0]);
+      fetchPatients = true;
+    },
+    onError: (e) => print("Error completing: $e"),
+  );
+}
+
+//get patient id
+Future<String> getPatientId(String numePacient) async {
+  String idPacient = "aaaa";
+  print(idPacient);
+  await FirebaseFirestore.instance
+      .collection('users')
+      .where('fullName', isEqualTo: numePacient)
+      .get()
+      .then((snapshot) => snapshot.docs.forEach((document) {
+            idPacient = document.id;
+          }));
+  print("id-ul pacientului este: " + idPacient);
+  return idPacient;
+}
+
+List<Medic> patientList = []; //obj list
+Future getCurrMedicsPatients() async {
+  await db.collection("users").where("isMedic", isEqualTo: false).get().then(
+    (querySnapshot) {
+      print("Successfully completed");
+      for (var docSnapshot in querySnapshot.docs) {
+        if (pacienti.contains(docSnapshot.data()['fullName'])) {
+          print('x');
+          Medic p = Medic(
+            firstName: docSnapshot.data()['first name'],
+            lastName: docSnapshot.data()['last name'],
+            city: docSnapshot.data()['city'],
+            email: docSnapshot.data()['email'],
+            phone: docSnapshot.data()['phone'],
+            fullName: docSnapshot.data()['fullName'],
+          );
+          patientList.add(p);
+        }
+      }
+      print(patientList.length);
+    },
+    onError: (e) => print("Error completing: $e"),
+  );
+}
+
 class PeopleList extends StatefulWidget {
   final void Function(Person) onPersonTap;
 
@@ -137,76 +202,6 @@ class PeopleList extends StatefulWidget {
 }
 
 class _PeopleListState extends State<PeopleList> {
-  List<String> pacienti = [];
-  bool fetchPatients = false;
-//get patient list
-  Future getPatients() async {
-    await db
-        .collection("users")
-        .where('email', isEqualTo: FirebaseAuth.instance.currentUser?.email)
-        .get()
-        .then(
-      (querySnapshot) {
-        print("Successfully completed");
-        if (fetchPatients == false) {
-          var index = 0;
-          for (var docSnapshot in querySnapshot.docs) {
-            for (int i = 0; i <= querySnapshot.docs.length; i++)
-              pacienti.add(docSnapshot.data()['pacienti'][i]);
-          }
-        }
-        print(pacienti[0]);
-        fetchPatients = true;
-      },
-      onError: (e) => print("Error completing: $e"),
-    );
-  }
-
-//get patient id
-  Future<String> getPatientId(String numePacient) async {
-    String idPacient = "aaaa";
-    print(idPacient);
-    await FirebaseFirestore.instance
-        .collection('users')
-        .where('fullName', isEqualTo: numePacient)
-        .get()
-        .then((snapshot) => snapshot.docs.forEach((document) {
-              idPacient = document.id;
-            }));
-    print("id-ul pacientului este: " + idPacient);
-    return idPacient;
-  }
-
-  List<Medic> patientList = []; //obj list
-  Future getCurrMedicsPatients() async {
-    await db.collection("users").where("isMedic", isEqualTo: false).get().then(
-      (querySnapshot) {
-        print("Successfully completed");
-        for (var docSnapshot in querySnapshot.docs) {
-          if (pacienti.contains(docSnapshot.data()['fullName'])) {
-            print('x');
-            Medic p = Medic(
-              firstName: docSnapshot.data()['first name'],
-              lastName: docSnapshot.data()['last name'],
-              city: docSnapshot.data()['city'],
-              email: docSnapshot.data()['email'],
-              phone: docSnapshot.data()['phone'],
-              fullName: docSnapshot.data()['fullName'],
-            );
-            patientList.add(p);
-          }
-        }
-        print(patientList.length);
-      },
-      onError: (e) => print("Error completing: $e"),
-    );
-  }
-
-  void initState() {
-    getPatients();
-    getCurrMedicsPatients();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
