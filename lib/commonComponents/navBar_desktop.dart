@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:health_hub/Pages/listpage/components/ListAndPacientDetails.dart';
 import '../Pages/listpage/main_listpage.dart';
 import '../Pages/userprofile/main_userprofile.dart';
 
@@ -38,6 +39,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
           if (index == 2) Navigator.pushNamed(context, '/calendar');
           if (index == 3)
             setState(() {
+              random = false;
               FirebaseAuth.instance.signOut();
               Navigator.pushNamed(context, '/');
             });

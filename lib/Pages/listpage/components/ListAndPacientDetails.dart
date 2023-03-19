@@ -17,6 +17,12 @@ class ListAndPacientDetails extends StatefulWidget {
 }
 
 class _ListAndPacientDetailsState extends State<ListAndPacientDetails> {
+  @override
+  void initState() {
+    getPatients();
+    getCurrMedicsPatients();
+  }
+
   FirebaseAuth auth = FirebaseAuth.instance;
 
   bool esteMedicLista = false;
@@ -145,7 +151,6 @@ Future getPatients() async {
     (querySnapshot) {
       print("Successfully completed");
       if (fetchPatients == false) {
-        var index = 0;
         for (var docSnapshot in querySnapshot.docs) {
           for (int i = 0; i <= querySnapshot.docs.length; i++)
             pacienti.add(docSnapshot.data()['pacienti'][i]);
@@ -159,25 +164,28 @@ Future getPatients() async {
 }
 
 List<Medic> patientList = []; //obj list
+bool random = false;
 Future getCurrMedicsPatients() async {
   await db.collection("users").where("isMedic", isEqualTo: false).get().then(
     (querySnapshot) {
       print("Successfully completed");
-      for (var docSnapshot in querySnapshot.docs) {
-        if (pacienti.contains(docSnapshot.data()['fullName'])) {
-          print('x');
-          Medic p = Medic(
-            firstName: docSnapshot.data()['first name'],
-            lastName: docSnapshot.data()['last name'],
-            city: docSnapshot.data()['city'],
-            email: docSnapshot.data()['email'],
-            phone: docSnapshot.data()['phone'],
-            fullName: docSnapshot.data()['fullName'],
-          );
-          patientList.add(p);
+      if (random == false) {
+        for (var docSnapshot in querySnapshot.docs) {
+          if (pacienti.contains(docSnapshot.data()['fullName'])) {
+            print('x');
+            Medic p = Medic(
+              firstName: docSnapshot.data()['first name'],
+              lastName: docSnapshot.data()['last name'],
+              city: docSnapshot.data()['city'],
+              email: docSnapshot.data()['email'],
+              phone: docSnapshot.data()['phone'],
+              fullName: docSnapshot.data()['fullName'],
+            );
+            patientList.add(p);
+          }
         }
+        random = true;
       }
-      print(patientList.length);
     },
     onError: (e) => print("Error completing: $e"),
   );
@@ -187,10 +195,6 @@ class PeopleList extends StatelessWidget {
   final void Function(Medic) onPersonTap;
 
   PeopleList({required this.onPersonTap});
-
-  void initState() {
-    getPatients();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -317,7 +321,7 @@ class PersonDetail extends StatelessWidget {
                                 fontSize: 35,
                                 fontWeight: FontWeight.bold),
                           ),
-                          Text(person.phone)
+                          Text(person.email)
                         ],
                       ),
                     ],
