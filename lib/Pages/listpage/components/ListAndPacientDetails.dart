@@ -127,10 +127,59 @@ class NarrowLayoutwithUsers extends StatelessWidget {
   }
 }
 
-class PeopleList extends StatelessWidget {
+class PeopleList extends StatefulWidget {
   final void Function(Person) onPersonTap;
 
-  const PeopleList({required this.onPersonTap});
+  PeopleList({required this.onPersonTap});
+
+  @override
+  State<PeopleList> createState() => _PeopleListState();
+}
+
+class _PeopleListState extends State<PeopleList> {
+  List<String> pacienti = [];
+  bool fetchPatients = false;
+//get patient list
+  Future getPatients() async {
+    await db
+        .collection("users")
+        .where('email', isEqualTo: FirebaseAuth.instance.currentUser?.email)
+        .get()
+        .then(
+      (querySnapshot) {
+        print("Successfully completed");
+        if (fetchPatients == false) {
+          var index = 0;
+          for (var docSnapshot in querySnapshot.docs) {
+            for (int i = 0; i <= querySnapshot.docs.length; i++)
+              pacienti.add(docSnapshot.data()['pacienti'][i]);
+          }
+        }
+        print(pacienti[0]);
+        fetchPatients = true;
+      },
+      onError: (e) => print("Error completing: $e"),
+    );
+  }
+
+//get patient id
+  Future<String> getPatientId(String numePacient) async {
+    String idPacient = "aaaa";
+    print(idPacient);
+    await FirebaseFirestore.instance
+        .collection('users')
+        .where('fullName', isEqualTo: numePacient)
+        .get()
+        .then((snapshot) => snapshot.docs.forEach((document) {
+              idPacient = document.id;
+            }));
+    print("id-ul pacientului este: " + idPacient);
+    return idPacient;
+  }
+
+  void initState() {
+    getPatients();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +226,8 @@ class PeopleList extends StatelessWidget {
                   SizedBox(
                     height: 30,
                   ),
-                  for (var person in people)
+                  //flag
+                  for (int i = 0; i < pacienti.length; i++)
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
@@ -200,7 +250,7 @@ class PeopleList extends StatelessWidget {
                                 width: 15,
                               ),
                               Text(
-                                person.name,
+                                pacienti[i],
                                 style: TextStyle(
                                     fontSize: 20,
                                     fontFamily: 'Outfit',
@@ -208,7 +258,7 @@ class PeopleList extends StatelessWidget {
                               )
                             ],
                           ),
-                          onPressed: () => onPersonTap(person),
+                          onPressed: () {},
                         ),
                       ),
                     ),
