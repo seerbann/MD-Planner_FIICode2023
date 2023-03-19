@@ -72,7 +72,13 @@ class _ListAndPacientDetailsState extends State<ListAndPacientDetails> {
   }
 }
 
-Person _person = Person(name: 'default', phone: 'default', picture: 'default');
+Medic _person = Medic(
+    firstName: 'default',
+    lastName: 'default',
+    city: 'default',
+    email: 'default',
+    phone: 'default',
+    fullName: 'default');
 Medic _medic = Medic(
     firstName: 'default',
     lastName: 'default',
@@ -100,7 +106,7 @@ class _WideLayoutwithUsersState extends State<WideLayoutwithUsers> {
                     }))),
         Expanded(
           flex: 3,
-          child: _person.name == 'default'
+          child: _person.firstName == 'default'
               ? EmptyViewPacienti()
               : PersonDetail(_person),
         ),
@@ -152,21 +158,6 @@ Future getPatients() async {
   );
 }
 
-//get patient id
-Future<String> getPatientId(String numePacient) async {
-  String idPacient = "aaaa";
-  print(idPacient);
-  await FirebaseFirestore.instance
-      .collection('users')
-      .where('fullName', isEqualTo: numePacient)
-      .get()
-      .then((snapshot) => snapshot.docs.forEach((document) {
-            idPacient = document.id;
-          }));
-  print("id-ul pacientului este: " + idPacient);
-  return idPacient;
-}
-
 List<Medic> patientList = []; //obj list
 Future getCurrMedicsPatients() async {
   await db.collection("users").where("isMedic", isEqualTo: false).get().then(
@@ -192,16 +183,15 @@ Future getCurrMedicsPatients() async {
   );
 }
 
-class PeopleList extends StatefulWidget {
-  final void Function(Person) onPersonTap;
+class PeopleList extends StatelessWidget {
+  final void Function(Medic) onPersonTap;
 
   PeopleList({required this.onPersonTap});
 
-  @override
-  State<PeopleList> createState() => _PeopleListState();
-}
+  void initState() {
+    getPatients();
+  }
 
-class _PeopleListState extends State<PeopleList> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -280,7 +270,9 @@ class _PeopleListState extends State<PeopleList> {
                             ],
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          return onPersonTap(patientList[i]);
+                        },
                       ),
                     ),
                 ],
@@ -297,7 +289,7 @@ class _PeopleListState extends State<PeopleList> {
 }
 
 class PersonDetail extends StatelessWidget {
-  final Person person;
+  final Medic person;
 
   const PersonDetail(this.person);
 
@@ -319,7 +311,7 @@ class PersonDetail extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            person.name,
+                            person.firstName,
                             style: TextStyle(
                                 fontFamily: 'Outfit',
                                 fontSize: 35,
@@ -378,13 +370,13 @@ class EmptyViewPacienti extends StatelessWidget {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///medic
+
 class MedicList extends StatelessWidget {
   final void Function(Medic) onMedicTap;
   MedicList({required this.onMedicTap});
-
   List<Medic> medicList = [];
-  bool fetchMedici2 = false;
 
+  bool fetchMedici2 = false;
   Future readMedics() async {
     await db.collection("users").where("isMedic", isEqualTo: true).get().then(
       (querySnapshot) {
@@ -403,6 +395,7 @@ class MedicList extends StatelessWidget {
             print('${docSnapshot.id} => ${docSnapshot.data()}');
           }
         fetchMedici2 = true;
+        return medicList;
       },
       onError: (e) => print("Error completing: $e"),
     );
