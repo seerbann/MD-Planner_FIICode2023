@@ -177,8 +177,34 @@ class _PeopleListState extends State<PeopleList> {
     return idPacient;
   }
 
+  List<Medic> patientList = []; //obj list
+  Future getCurrMedicsPatients() async {
+    await db.collection("users").where("isMedic", isEqualTo: false).get().then(
+      (querySnapshot) {
+        print("Successfully completed");
+        for (var docSnapshot in querySnapshot.docs) {
+          if (pacienti.contains(docSnapshot.data()['fullName'])) {
+            print('x');
+            Medic p = Medic(
+              firstName: docSnapshot.data()['first name'],
+              lastName: docSnapshot.data()['last name'],
+              city: docSnapshot.data()['city'],
+              email: docSnapshot.data()['email'],
+              phone: docSnapshot.data()['phone'],
+              fullName: docSnapshot.data()['fullName'],
+            );
+            patientList.add(p);
+          }
+        }
+        print(patientList.length);
+      },
+      onError: (e) => print("Error completing: $e"),
+    );
+  }
+
   void initState() {
     getPatients();
+    getCurrMedicsPatients();
   }
 
   @override
@@ -227,15 +253,15 @@ class _PeopleListState extends State<PeopleList> {
                     height: 30,
                   ),
                   //flag
-                  for (int i = 0; i < pacienti.length; i++)
+                  for (int i = 0; i < patientList.length; i++)
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 70,
-                        decoration: BoxDecoration(
-                            color: Color(0xFF9DBAFE),
-                            border: Border.all(color: Colors.black)),
-                        child: TextButton(
+                      child: TextButton(
+                        child: Container(
+                          height: 70,
+                          decoration: BoxDecoration(
+                              color: Color(0xFF9DBAFE),
+                              border: Border.all(color: Colors.black)),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -250,7 +276,7 @@ class _PeopleListState extends State<PeopleList> {
                                 width: 15,
                               ),
                               Text(
-                                pacienti[i],
+                                patientList[i].fullName,
                                 style: TextStyle(
                                     fontSize: 20,
                                     fontFamily: 'Outfit',
@@ -258,8 +284,8 @@ class _PeopleListState extends State<PeopleList> {
                               )
                             ],
                           ),
-                          onPressed: () {},
                         ),
+                        onPressed: () {},
                       ),
                     ),
                 ],
