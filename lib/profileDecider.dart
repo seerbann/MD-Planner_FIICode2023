@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
+import 'Pages/login/login_page.dart';
 import 'Pages/medicprofile/main_medicprofile.dart';
 import 'Pages/userprofile/main_userprofile.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +14,17 @@ class ProfileDecider extends StatelessWidget {
   ProfileDecider({super.key});
 
   FirebaseAuth auth = FirebaseAuth.instance;
+
+  bool isRestricted() {
+    bool esteRestrictionat = false;
+    if (FirebaseAuth.instance.currentUser != null) {
+      esteRestrictionat = false;
+    } else {
+      esteRestrictionat = true;
+      print('Este restrictionat');
+    }
+    return esteRestrictionat;
+  }
 
   bool esteMedic = false;
 
@@ -39,18 +51,22 @@ class ProfileDecider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: isMedic(),
-        builder: ((context, snapshot) {
-          if (snapshot.hasData) {
-            if (esteMedic) {
-              return MainMedicProfile();
+    bool esteRestrictionat = isRestricted();
+    if (esteRestrictionat) {
+      return LoginPage();
+    } else
+      return FutureBuilder(
+          future: isMedic(),
+          builder: ((context, snapshot) {
+            if (snapshot.hasData) {
+              if (esteMedic) {
+                return MainMedicProfile();
+              } else {
+                return MainProfile();
+              }
             } else {
-              return MainProfile();
+              return Center(child: CircularProgressIndicator());
             }
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        }));
+          }));
   }
 }

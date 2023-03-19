@@ -178,6 +178,11 @@ class _SignInPage_userState extends State<SignInPage_user> {
           }
         }
         fetchMedici = true;
+        medicList.sort(
+          (a, b) {
+            return a.fullName.compareTo(b.fullName);
+          },
+        );
         print(medicList.length);
         //return medicList;
         //print(medicList);
