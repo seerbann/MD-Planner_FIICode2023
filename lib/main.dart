@@ -42,8 +42,7 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement initState
 
     initDynamicLinks();
-    getPatients();
-    getCurrMedicsPatients();
+
     super.initState();
   }
 
