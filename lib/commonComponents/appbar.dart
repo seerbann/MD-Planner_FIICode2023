@@ -54,6 +54,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         scale: 6,
                       )),
                   ListTile(
+                      hoverColor: Colors.lightBlue,
                       leading: Image.asset(
                         'assets/images/user.png',
                         scale: 5,
@@ -70,6 +71,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       }),
 
                   ListTile(
+                      hoverColor: Colors.lightBlue,
                       leading: Image.asset(
                         'assets/images/list.png',
                         scale: 3,
@@ -84,6 +86,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       }),
 
                   ListTile(
+                      hoverColor: Colors.lightBlue,
                       leading: Image.asset(
                         'assets/images/calendar.png',
                         scale: 3,
@@ -98,6 +101,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       }),
 
                   ListTile(
+                      hoverColor: Colors.lightBlue,
                       leading: Image.asset(
                         'assets/images/logout.png',
                         scale: 5,
