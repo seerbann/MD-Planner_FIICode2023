@@ -13,6 +13,31 @@ class SignInPage_medic extends StatefulWidget {
   State<SignInPage_medic> createState() => _SignInPage_medicState();
 }
 
+class Appointment {
+  final String? day;
+  final String? month;
+  final String? year;
+  final String? hour;
+  final String? minutes;
+
+  Appointment({
+    required this.day,
+    required this.month,
+    required this.year,
+    required this.hour,
+    required this.minutes,
+  });
+  Map<String, dynamic> toMap() {
+    return {
+      "day": day,
+      "month": month,
+      "year": year,
+      "hour": hour,
+      "minutes": minutes
+    };
+  }
+}
+
 class _SignInPage_medicState extends State<SignInPage_medic> {
   late final TextEditingController _email;
   late final TextEditingController _password;
@@ -63,8 +88,14 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
     }
   }
 
-  Future addUserDetails(String firstName, String lastName, String email,
-      String phone, String city, List<String> pacienti) async {
+  Future addUserDetails(
+      String firstName,
+      String lastName,
+      String email,
+      String phone,
+      String city,
+      List<String> pacienti,
+      List<Appointment> programari) async {
     await FirebaseFirestore.instance.collection('users').add({
       'first name': firstName,
       'last name': lastName,
@@ -73,7 +104,8 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
       'city': city,
       'isMedic': true,
       'fullName': '$firstName $lastName',
-      'pacienti': pacienti
+      'pacienti': pacienti,
+      'programari': programari,
     });
   }
 
@@ -421,7 +453,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                         _lastName.text.trim(),
                                         _email.text.trim(),
                                         _phone.text.trim(),
-                                        _city.text.trim(), []);
+                                        _city.text.trim(), [], []);
 
                                     ScaffoldMessenger.of(context).showSnackBar(
                                         const SnackBar(
@@ -782,7 +814,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                       _lastName.text.trim(),
                                       _email.text.trim(),
                                       _phone.text.trim(),
-                                      _city.text.trim(), []);
+                                      _city.text.trim(), [], []);
 
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
@@ -1143,7 +1175,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                       _lastName.text.trim(),
                                       _email.text.trim(),
                                       _phone.text.trim(),
-                                      _city.text.trim(), []);
+                                      _city.text.trim(), [], []);
 
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
