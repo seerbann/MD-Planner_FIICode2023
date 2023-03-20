@@ -3,9 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:table_calendar/table_calendar.dart';
-
 import '../../../responsive.dart';
 
 class Profile extends StatefulWidget {
@@ -49,10 +46,6 @@ class _ProfileState extends State<Profile> {
         );
     return procesTerminat;
   }
-
-  CalendarFormat _calendarFormat = CalendarFormat.month;
-  DateTime _focusedDay = DateTime.now();
-  DateTime? _selectedDay;
 
   void initState() {
     super.initState();
