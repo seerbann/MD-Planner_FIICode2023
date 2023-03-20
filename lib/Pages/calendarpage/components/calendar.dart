@@ -51,7 +51,6 @@ class _CalendarState extends State<Calendar> {
         int.parse(args.value.toString().substring(5, 7)),
         int.parse(args.value.toString().substring(8, 10)),
       );
-      print(_meetingDate?.month);
     });
   }
 
