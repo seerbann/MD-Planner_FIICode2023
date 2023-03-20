@@ -40,6 +40,9 @@ class _CustomNavBarState extends State<CustomNavBar> {
           if (index == 3)
             setState(() {
               random = false;
+              fetchPatients = false;
+              pacienti = [];
+              patientList = [];
               FirebaseAuth.instance.signOut();
               Navigator.pushNamed(context, '/');
             });

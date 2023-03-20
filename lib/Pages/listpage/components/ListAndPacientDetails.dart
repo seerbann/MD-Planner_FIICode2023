@@ -155,6 +155,7 @@ Future getPatients() async {
           for (int i = 0; i <= querySnapshot.docs.length; i++)
             pacienti.add(docSnapshot.data()['pacienti'][i]);
         }
+        print('AM FACUT FETCH LA PACIENTI');
       }
       print(pacienti[0]);
       fetchPatients = true;
@@ -168,7 +169,7 @@ bool random = false;
 Future getCurrMedicsPatients() async {
   await db.collection("users").where("isMedic", isEqualTo: false).get().then(
     (querySnapshot) {
-      print("Successfully completed");
+      //print("Successfully completed");
       if (random == false) {
         for (var docSnapshot in querySnapshot.docs) {
           if (pacienti.contains(docSnapshot.data()['fullName'])) {
@@ -185,6 +186,7 @@ Future getCurrMedicsPatients() async {
           }
         }
         random = true;
+        print('AM FACUT FETCH LA DOCTOR');
       }
     },
     onError: (e) => print("Error completing: $e"),
