@@ -34,7 +34,7 @@ class _CalendarPageState extends State<CalendarPage> {
     } else
       return Responsive(
         // Let's work on our mobile part
-        mobile: const Scaffold(
+        mobile: Scaffold(
           appBar: CustomAppBar(),
           drawer: CustomDrawer(),
           body: Calendar(),
@@ -44,14 +44,14 @@ class _CalendarPageState extends State<CalendarPage> {
           drawer: CustomDrawer(),
           body: Row(
             children: [
-              const Expanded(flex: 6, child: Calendar()),
+              Expanded(flex: 6, child: Calendar()),
             ],
           ),
         ),
         desktop: SafeArea(
           child: Scaffold(
             body: Row(
-              children: const [
+              children: [
                 Expanded(flex: 1, child: CustomNavBar()),
                 Expanded(flex: 15, child: Calendar()),
               ],

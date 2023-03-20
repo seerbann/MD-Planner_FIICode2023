@@ -6,14 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:health_hub/commonComponents/vectors/vector_top_right.dart';
 import 'package:health_hub/dynamic_link.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:table_calendar/table_calendar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../commonComponents/vectors/vector_center_right.dart';
-
-final kToday = DateTime.now();
-final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
-final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
 
 class MedicProfile extends StatefulWidget {
   const MedicProfile({super.key});
@@ -22,9 +17,6 @@ class MedicProfile extends StatefulWidget {
   State<MedicProfile> createState() => _MedicProfileState();
 }
 
-CalendarFormat _calendarFormat = CalendarFormat.month;
-DateTime _focusedDay = DateTime.now();
-DateTime? _selectedDay;
 final user = FirebaseAuth.instance.currentUser;
 
 class _MedicProfileState extends State<MedicProfile> {
