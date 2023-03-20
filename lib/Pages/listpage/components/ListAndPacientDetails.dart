@@ -34,14 +34,14 @@ class _ListAndPacientDetailsState extends State<ListAndPacientDetails> {
         .get()
         .then(
           (snapshot) => snapshot.docs.forEach((document) {
-            print(document.reference.id);
+            //print(document.reference.id);
             Map<String, dynamic> data = document.data();
             if (data['isMedic']) {
               esteMedicLista = true;
-              print('Acest utilizator este medic');
+              print('Acest utilizator este medic ISMEDIC');
             } else {
               esteMedicLista = false;
-              print('Acest utilizator nu este medic');
+              print('Acest utilizator nu este medic ISMEDIC');
             }
           }),
         );
@@ -191,6 +191,7 @@ Future getCurrMedicsPatients() async {
     },
     onError: (e) => print("Error completing: $e"),
   );
+  return random;
 }
 
 class PeopleList extends StatelessWidget {
@@ -244,43 +245,85 @@ class PeopleList extends StatelessWidget {
                     height: 30,
                   ),
                   //flag
-                  for (int i = 0; i < patientList.length; i++)
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextButton(
-                        child: Container(
-                          height: 70,
-                          decoration: BoxDecoration(
-                              color: Color(0xFF9DBAFE),
-                              border: Border.all(color: Colors.black)),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: 10,
+                  FutureBuilder(
+                      future: getCurrMedicsPatients(),
+                      builder: ((context, snapshot) {
+                        List<Widget> children = [];
+                        if (snapshot.hasData) {
+                          for (int i = 0; i < patientList.length; i++) {
+                            children.add(
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextButton(
+                                  child: Container(
+                                    height: 70,
+                                    decoration: BoxDecoration(
+                                        color: Color(0xFF9DBAFE),
+                                        border:
+                                            Border.all(color: Colors.black)),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Image.asset(
+                                          'assets/images/user.png',
+                                          scale: 5,
+                                        ),
+                                        SizedBox(
+                                          width: 15,
+                                        ),
+                                        Text(
+                                          patientList[i].fullName,
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontFamily: 'Outfit',
+                                              color: Colors.black),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    return onPersonTap(patientList[i]);
+                                  },
+                                ),
                               ),
-                              Image.asset(
-                                'assets/images/user.png',
-                                scale: 5,
-                              ),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Text(
-                                patientList[i].fullName,
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontFamily: 'Outfit',
-                                    color: Colors.black),
-                              )
-                            ],
+                            );
+                          }
+                        } else if (snapshot.hasError) {
+                          children = <Widget>[
+                            const Icon(
+                              Icons.error_outline,
+                              color: Colors.red,
+                              size: 60,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16),
+                              child: Text('Error: ${snapshot.error}'),
+                            ),
+                          ];
+                        } else {
+                          children = const <Widget>[
+                            SizedBox(
+                              width: 60,
+                              height: 60,
+                              child: CircularProgressIndicator(),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 16),
+                              child: Text('Awaiting result...'),
+                            ),
+                          ];
+                        }
+                        return Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: children,
                           ),
-                        ),
-                        onPressed: () {
-                          return onPersonTap(patientList[i]);
-                        },
-                      ),
-                    ),
+                        );
+                      })),
                 ],
               ),
             ),
@@ -398,7 +441,7 @@ class MedicList extends StatelessWidget {
               fullName: docSnapshot.data()['fullName'],
             );
             medicList.add(m);
-            print('${docSnapshot.id} => ${docSnapshot.data()}');
+            //print('${docSnapshot.id} => ${docSnapshot.data()}');
           }
         fetchMedici2 = true;
         return medicList;
