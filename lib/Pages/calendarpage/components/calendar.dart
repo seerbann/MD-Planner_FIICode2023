@@ -1,7 +1,34 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+
+class Appointment {
+  final String? day;
+  final String? month;
+  final String? year;
+  final String? hour;
+  final String? minutes;
+
+  Appointment({
+    required this.day,
+    required this.month,
+    required this.year,
+    required this.hour,
+    required this.minutes,
+  });
+  Map<String, dynamic> toMap() {
+    return {
+      "day": day,
+      "month": month,
+      "year": year,
+      "hour": hour,
+      "minutes": minutes
+    };
+  }
+}
 
 class Calendar extends StatefulWidget {
   const Calendar({super.key});
@@ -11,6 +38,35 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
+  String currentUsersMedic = "";
+  Future getCurrUsersMedic() async {
+    bool procesTerminat = false;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: FirebaseAuth.instance.currentUser?.email)
+        .get()
+        .then(
+          (snapshot) => snapshot.docs.forEach((document) {
+            Map<String, dynamic> data = document.data();
+            currentUsersMedic = data['medic'];
+          }),
+        );
+    return procesTerminat;
+  }
+
+  Future<String> getMedicId(String numeMedic) async {
+    String idDoctor = "aaaa";
+    print(idDoctor);
+    await FirebaseFirestore.instance
+        .collection('users')
+        .where('fullName', isEqualTo: numeMedic)
+        .get()
+        .then((snapshot) => snapshot.docs.forEach((document) {
+              idDoctor = document.id;
+            }));
+    return idDoctor;
+  }
+
   void _selectStartTime() async {
     final TimeOfDay? newTime = await showTimePicker(
       builder: (context, child) {
@@ -25,9 +81,9 @@ class _CalendarState extends State<Calendar> {
     );
     if (newTime != null) {
       setState(() {
-        _meetingStart = newTime;
+        _meetingHour = newTime;
       });
-      print(newTime); //time for db
+      //time for db
     }
   }
 
@@ -37,10 +93,12 @@ class _CalendarState extends State<Calendar> {
   final DateRangePickerController _controller = DateRangePickerController();
   DateTime? selectedDate;
   DateTime? _meetingDate;
-  TimeOfDay? _meetingStart;
+  TimeOfDay? _meetingHour;
   void initState() {
     _minDate = DateTime.now();
-    _meetingStart = TimeOfDay(hour: DateTime.now().hour, minute: 0);
+    _meetingHour = TimeOfDay(hour: DateTime.now().hour, minute: 0);
+    getCurrUsersMedic();
+
     super.initState();
   }
 
@@ -79,7 +137,7 @@ class _CalendarState extends State<Calendar> {
               ],
               borderRadius: BorderRadius.circular(16),
             ),
-            child: _meetingStart == null
+            child: _meetingHour == null
                 ? InkWell(
                     focusColor: Colors.transparent,
                     highlightColor: Colors.transparent,
@@ -124,7 +182,7 @@ class _CalendarState extends State<Calendar> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
-                            '${_meetingStart!.hour.toString().padLeft(2, '0')}:${_meetingStart!.minute.toString().padLeft(2, '0')}',
+                            '${_meetingHour!.hour.toString().padLeft(2, '0')}:${_meetingHour!.minute.toString().padLeft(2, '0')}',
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: const TextStyle(
@@ -142,8 +200,19 @@ class _CalendarState extends State<Calendar> {
               TextButton(
                 onPressed: () {
                   selectedDate = _controller.selectedDate;
-                  print(_meetingDate);
-                  print(_meetingStart);
+
+                  Appointment appointmentToAdd = Appointment(
+                      day: _meetingDate?.day.toString(),
+                      month: _meetingDate?.month.toString(),
+                      year: _meetingDate?.year.toString(),
+                      hour: _meetingHour?.hour.toString(),
+                      minutes: _meetingHour?.minute.toString());
+
+                  print(appointmentToAdd.day);
+                  print(appointmentToAdd.month);
+                  print(appointmentToAdd.hour);
+                  print(currentUsersMedic);
+
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text(
                       'Selection Confirmed',
