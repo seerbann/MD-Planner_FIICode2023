@@ -56,7 +56,7 @@ class _ListAndPacientDetailsState extends State<ListAndPacientDetails> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (esteMedicLista == true) {
-              if (MediaQuery.of(context).size.width > 800) {
+              if (MediaQuery.of(context).size.width > 882) {
                 return WideLayoutwithUsers();
               } else {
                 return NarrowLayoutwithUsers();
