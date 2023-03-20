@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:health_hub/Pages/listpage/components/people.dart';
 import 'package:flutter/material.dart';
 import 'package:health_hub/profileDecider.dart';
-
 import '../../../read data/get_medic_info.dart';
 
 class ListAndPacientDetails extends StatefulWidget {
