@@ -35,7 +35,7 @@ class ProfileDecider extends StatelessWidget {
         .get()
         .then(
           (snapshot) => snapshot.docs.forEach((document) {
-            print(document.reference.id);
+            //print(document.reference.id);
             Map<String, dynamic> data = document.data();
             if (data['isMedic']) {
               esteMedic = true;

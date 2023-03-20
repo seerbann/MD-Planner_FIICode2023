@@ -35,7 +35,7 @@ class _ProfileState extends State<Profile> {
         .get()
         .then(
           (snapshot) => snapshot.docs.forEach((document) {
-            print(document.reference.id);
+            //print(document.reference.id);
             Map<String, dynamic> data = document.data();
             String firstname = data['first name'];
             String lastname = data['last name'];
