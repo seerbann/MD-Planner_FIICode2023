@@ -67,6 +67,15 @@ class _CalendarState extends State<Calendar> {
     return idDoctor;
   }
 
+  Future addProgramareToMedic(Appointment app, String numeMedic) async {
+    List list = [app.toMap()];
+    var idDoctor = await getMedicId(numeMedic);
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(idDoctor)
+        .update({"programari": FieldValue.arrayUnion(list)});
+  }
+
   void _selectStartTime() async {
     final TimeOfDay? newTime = await showTimePicker(
       builder: (context, child) {
@@ -212,6 +221,8 @@ class _CalendarState extends State<Calendar> {
                   print(appointmentToAdd.month);
                   print(appointmentToAdd.hour);
                   print(currentUsersMedic);
+
+                  addProgramareToMedic(appointmentToAdd, currentUsersMedic);
 
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text(
