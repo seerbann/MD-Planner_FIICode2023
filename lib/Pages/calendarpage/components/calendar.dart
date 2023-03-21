@@ -107,7 +107,7 @@ class _CalendarForUserState extends State<CalendarForUser> {
 
   Future<String> getMedicId(String numeMedic) async {
     String idDoctor = "aaaa";
-    print(idDoctor);
+
     await FirebaseFirestore.instance
         .collection('users')
         .where('fullName', isEqualTo: numeMedic)
@@ -339,7 +339,7 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
                   year: program['year'],
                   hour: program['hour'],
                   minutes: program['minutes']);
-              print(appToAdd);
+
               appList.add(appToAdd);
             }
           }),
@@ -348,6 +348,7 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
   }
 
   DateTime? _minDate;
+  List<DateTime> _specialDates = [];
 
   void initState() {
     getCurrMedicsAppts();
@@ -393,14 +394,23 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
                     specialDatesTextStyle: const TextStyle(color: Colors.white),
                   ),
                   monthViewSettings: DateRangePickerMonthViewSettings(
-                      specialDates: [DateTime(2023, 3, 22)]),
+                      specialDates: _specialDates),
                 ),
               ),
               TextButton(
                   onPressed: () {
-                    print(appList);
+                    setState(() {
+                      for (int i = 0; i < appList.length; i++) {
+                        _specialDates.add(DateTime(
+                          int.parse(appList[i].year ?? "1"),
+                          int.parse(appList[i].month ?? "1"),
+                          int.parse(appList[i].day ?? "1"),
+                        ));
+                        print(_specialDates);
+                      }
+                    });
                   },
-                  child: Text('Arata programari'))
+                  child: Text('Refresh appointments'))
             ],
           )),
         ));
