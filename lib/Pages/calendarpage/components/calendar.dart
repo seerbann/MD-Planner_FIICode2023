@@ -6,12 +6,12 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class Appointment {
-  final String? email;
-  final String? day;
-  final String? month;
-  final String? year;
-  final String? hour;
-  final String? minutes;
+  String? email;
+  String? day;
+  String? month;
+  String? year;
+  String? hour;
+  String? minutes;
 
   Appointment({
     required this.email,
@@ -304,8 +304,29 @@ class _CalendarForUserState extends State<CalendarForUser> {
 }
 
 class CalendarForMedic extends StatelessWidget {
+  Appointment? currMedicsAppts;
+  var _list;
+  Future getCurrMedicsAppts() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: FirebaseAuth.instance.currentUser?.email)
+        .get()
+        .then(
+          (snapshot) => snapshot.docs.forEach((document) {
+            Map<String, dynamic> data = document.data();
+            currMedicsAppts?.email = data['programari'];
+            currMedicsAppts?.day = data['programari'][0]['day'];
+            currMedicsAppts?.hour = data['programari'][0]['hour'];
+            currMedicsAppts?.minutes = data['programari'][0]['minutes'];
+            currMedicsAppts?.month = data['programari'][0]['month'];
+            currMedicsAppts?.year = data['programari'][0]['year'];
+          }),
+        );
+  }
+
   DateTime? _minDate;
   void initState() {
+    getCurrMedicsAppts();
     _minDate = DateTime.now();
   }
 
@@ -314,61 +335,41 @@ class CalendarForMedic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
           body: SafeArea(
-        child: SfDateRangePicker(
-          minDate: _minDate,
-          controller: _controller,
-          cellBuilder:
-              (BuildContext context, DateRangePickerCellDetails details) {
-            final bool isToday = isSameDate(details.date, DateTime.now());
-            final bool isBlackOut = isBlackedDate(details.date);
-            final bool isSpecialDate = isSpecialDay(details.date);
-            return Container(
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          details.date.day.toString(),
-                        ),
-                        SizedBox(
-                          height: 30,
-                        )
-                      ],
-                    ),
-                  ),
-                  isBlackOut
-                      ? Icon(
-                          Icons.block_sharp,
-                          size: 15,
-                        )
-                      : isSpecialDate
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.air_outlined,
-                                  size: 15,
-                                ),
-                                Icon(
-                                  Icons.air_outlined,
-                                  size: 15,
-                                ),
-                              ],
-                            )
-                          : Container()
-                ],
+              child: Container(
+            height: 500,
+            child: SfDateRangePicker(
+              controller: _controller,
+              minDate: _minDate,
+              enablePastDates: false,
+              monthCellStyle: DateRangePickerMonthCellStyle(
+                blackoutDatesDecoration: BoxDecoration(
+                    color: Colors.red,
+                    border:
+                        Border.all(color: const Color(0xFFF44436), width: 1),
+                    shape: BoxShape.circle),
+                weekendDatesDecoration: BoxDecoration(
+                    color: const Color(0xFFDFDFDF),
+                    border:
+                        Border.all(color: const Color(0xFFB6B6B6), width: 1),
+                    shape: BoxShape.circle),
+                specialDatesDecoration: BoxDecoration(
+                    color: Colors.green,
+                    border:
+                        Border.all(color: const Color(0xFF2B732F), width: 1),
+                    shape: BoxShape.circle),
+                blackoutDateTextStyle: TextStyle(
+                    color: Colors.white,
+                    decoration: TextDecoration.lineThrough),
+                specialDatesTextStyle: const TextStyle(color: Colors.white),
               ),
-            );
-          },
-        ),
-      )),
-    );
-    ;
+              monthViewSettings: DateRangePickerMonthViewSettings(
+                  specialDates: [DateTime(2023, 3, 22)]),
+            ),
+          )),
+        ));
   }
 }
 
