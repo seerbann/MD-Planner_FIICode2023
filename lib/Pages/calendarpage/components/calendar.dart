@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class Appointment {
+  final String? email;
   final String? day;
   final String? month;
   final String? year;
@@ -13,6 +14,7 @@ class Appointment {
   final String? minutes;
 
   Appointment({
+    required this.email,
     required this.day,
     required this.month,
     required this.year,
@@ -21,6 +23,7 @@ class Appointment {
   });
   Map<String, dynamic> toMap() {
     return {
+      "email": email,
       "day": day,
       "month": month,
       "year": year,
@@ -39,6 +42,7 @@ class Calendar extends StatefulWidget {
 
 class _CalendarState extends State<Calendar> {
   String currentUsersMedic = "";
+  String? currentUserEmail = FirebaseAuth.instance.currentUser?.email;
   Future getCurrUsersMedic() async {
     bool procesTerminat = false;
     await FirebaseFirestore.instance
@@ -211,6 +215,7 @@ class _CalendarState extends State<Calendar> {
                   selectedDate = _controller.selectedDate;
 
                   Appointment appointmentToAdd = Appointment(
+                      email: currentUserEmail,
                       day: _meetingDate?.day.toString(),
                       month: _meetingDate?.month.toString(),
                       year: _meetingDate?.year.toString(),
@@ -220,7 +225,7 @@ class _CalendarState extends State<Calendar> {
                   print(appointmentToAdd.day);
                   print(appointmentToAdd.month);
                   print(appointmentToAdd.hour);
-                  print(currentUsersMedic);
+                  print(currentUserEmail);
 
                   addProgramareToMedic(appointmentToAdd, currentUsersMedic);
 
