@@ -1,8 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloudinary_dart/transformation/effect/effect.dart';
+import 'package:cloudinary_dart/transformation/resize/resize.dart';
+import 'package:cloudinary_dart/transformation/transformation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:health_hub/profileDecider.dart';
+import '../../../main.dart';
 import '../../../read data/get_medic_info.dart';
 
 class ListAndPacientDetails extends StatefulWidget {
@@ -342,53 +346,55 @@ class PersonDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              color: Color(0xFFFAFBFF),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset('assets/images/defaultUser.png'),
-                      Column(
-                        children: [
-                          Text(
-                            person.firstName,
-                            style: TextStyle(
-                                fontFamily: 'Outfit',
-                                fontSize: 35,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(person.email)
-                        ],
-                      ),
-                    ],
-                  ),
-                  Text(
-                    'trimite altui medic',
-                    style: TextStyle(fontWeight: FontWeight.w400),
-                  )
-                ],
+    return Scaffold(
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                color: Color(0xFFFAFBFF),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/images/defaultUser.png'),
+                        Column(
+                          children: [
+                            Text(
+                              person.firstName,
+                              style: TextStyle(
+                                  fontFamily: 'Outfit',
+                                  fontSize: 35,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(person.email),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Text(
+                      'trimite altui medic',
+                      style: TextStyle(fontWeight: FontWeight.w400),
+                    )
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 200,
-            ),
-            Container(
-              color: Color(0xFFFAFBFF),
-              child: Text('Fisa Medicala'),
-            ),
-            SizedBox(height: 400),
-            Container(
-              color: Color(0xFFFAFBFF),
-              child: Text('Istoric Medical'),
-            ),
-          ],
+              SizedBox(
+                height: 200,
+              ),
+              Container(
+                color: Color(0xFFFAFBFF),
+                child: Text('Fisa Medicala'),
+              ),
+              SizedBox(height: 400),
+              Container(
+                color: Color(0xFFFAFBFF),
+                child: Text('Istoric Medical'),
+              ),
+            ],
+          ),
         ),
       ),
     );

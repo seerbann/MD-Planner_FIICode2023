@@ -303,9 +303,18 @@ class _CalendarForUserState extends State<CalendarForUser> {
   }
 }
 
-class CalendarForMedic extends StatelessWidget {
+class CalendarForMedic extends StatefulWidget {
+  CalendarForMedic({super.key});
+
+  @override
+  State<CalendarForMedic> createState() => _CalendarForMedicState();
+}
+
+class _CalendarForMedicState extends State<CalendarForMedic> {
   Appointment? currMedicsAppts;
+
   var _list;
+
   Future getCurrMedicsAppts() async {
     await FirebaseFirestore.instance
         .collection('users')
@@ -325,13 +334,14 @@ class CalendarForMedic extends StatelessWidget {
   }
 
   DateTime? _minDate;
+
   void initState() {
     getCurrMedicsAppts();
     _minDate = DateTime.now();
   }
 
-  CalendarForMedic({super.key});
   final DateRangePickerController _controller = DateRangePickerController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

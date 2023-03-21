@@ -19,8 +19,15 @@ import 'Pages/medicprofile/main_medicprofile.dart';
 import 'Pages/signin/signin_user/signin_page_user.dart';
 import 'Pages/listpage/main_listpage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:cloudinary_dart/cloudinary.dart';
+
+import 'commonComponents/cloudifyEx.dart';
+
+var cloudinary = Cloudinary.fromStringUrl(
+    'cloudinary://665785946699142:mmPc-BsG49tiakIKcgMfbHi1WdE@dmlw4xeov');
 
 void main() async {
+  cloudinary.config.urlConfig.secure = true;
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   //final PendingDynamicLinkData? _initialLink =
@@ -78,7 +85,8 @@ class _MyAppState extends State<MyApp> {
         //'/medicprofile': (context) => MainMedicProfile(),
         //'/calendar': (context) => CalendarPage(),
         //'/profile': (context) => ProfileDecider(),
-        '/main': (context) => MainPage()
+        '/main': (context) => MainPage(),
+        '/cloud': (context) => Clodify(),
       },
       theme: ThemeData(
         pageTransitionsTheme: PageTransitionsTheme(

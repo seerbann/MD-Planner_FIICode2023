@@ -65,6 +65,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.4"
+  cloudinary_dart:
+    dependency: "direct main"
+    description:
+      name: cloudinary_dart
+      sha256: "7dbcd67f6a463dbb7d638de983211d44323665368d054003b8c1d9eedfd1f8b6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.11"
   collection:
     dependency: transitive
     description:
@@ -73,6 +81,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.0"
+  convert:
+    dependency: transitive
+    description:
+      name: convert
+      sha256: "0f08b14755d163f6e2134cb58222dd25ea2a2ee8a195e53983d57c075324d592"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.1"
   cross_file:
     dependency: transitive
     description:
