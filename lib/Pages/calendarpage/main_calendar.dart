@@ -1,11 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:health_hub/Pages/calendarpage/components/calendar.dart';
 import 'package:health_hub/commonComponents/navBar_desktop.dart';
 import 'package:health_hub/responsive.dart';
 import 'package:health_hub/commonComponents/appbar.dart';
 
 import '../login/login_page.dart';
+import 'components/calendar.dart';
 
 class CalendarPage extends StatefulWidget {
   @override

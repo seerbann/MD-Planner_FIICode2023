@@ -33,14 +33,59 @@ class Appointment {
   }
 }
 
-class Calendar extends StatefulWidget {
+bool esteMedicCalendar = false;
+Future isMedic() async {
+  await FirebaseFirestore.instance
+      .collection('users')
+      .where('email', isEqualTo: FirebaseAuth.instance.currentUser?.email)
+      .get()
+      .then(
+        (snapshot) => snapshot.docs.forEach((document) {
+          //print(document.reference.id);
+          Map<String, dynamic> data = document.data();
+          if (data['isMedic']) {
+            esteMedicCalendar = true;
+            print('Acest utilizator este medic ISMEDIC');
+          } else {
+            esteMedicCalendar = false;
+            print('Acest utilizator nu este medic ISMEDIC');
+          }
+        }),
+      );
+  return esteMedicCalendar;
+}
+
+class Calendar extends StatelessWidget {
   const Calendar({super.key});
 
   @override
-  State<Calendar> createState() => _CalendarState();
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: isMedic(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            if (esteMedicCalendar == true)
+              return CalendarForMedic();
+            else
+              return CalendarForUser();
+          } else {
+            print('eroare');
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        });
+  }
 }
 
-class _CalendarState extends State<Calendar> {
+class CalendarForUser extends StatefulWidget {
+  const CalendarForUser({super.key});
+
+  @override
+  State<CalendarForUser> createState() => _CalendarForUserState();
+}
+
+class _CalendarForUserState extends State<CalendarForUser> {
   String currentUsersMedic = "";
   String? currentUserEmail = FirebaseAuth.instance.currentUser?.email;
   Future getCurrUsersMedic() async {
@@ -255,5 +300,19 @@ class _CalendarState extends State<Calendar> {
         ],
       ),
     );
+  }
+}
+
+class CalendarForMedic extends StatefulWidget {
+  const CalendarForMedic({super.key});
+
+  @override
+  State<CalendarForMedic> createState() => _CalendarForMedicState();
+}
+
+class _CalendarForMedicState extends State<CalendarForMedic> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
