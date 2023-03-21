@@ -305,11 +305,22 @@ class _CalendarForUserState extends State<CalendarForUser> {
   }
 }
 
-class CalendarForMedic extends StatelessWidget {
+class CalendarForMedic extends StatefulWidget {
+  CalendarForMedic({super.key});
+
+  @override
+  State<CalendarForMedic> createState() => _CalendarForMedicState();
+}
+
+class _CalendarForMedicState extends State<CalendarForMedic> {
+  List<Appointment> appList = [];
   Appointment? currMedicsAppts;
+
   var programs;
+
   HashMap<String, Appointment> appointmentsHashMap =
       new HashMap<String, Appointment>();
+
   Future getCurrMedicsAppts() async {
     bool procesTerminat = false;
     await FirebaseFirestore.instance
@@ -320,19 +331,31 @@ class CalendarForMedic extends StatelessWidget {
           (snapshot) => snapshot.docs.forEach((document) {
             Map<String, dynamic> data = document.data();
             programs = data['programari'];
+            for (var program in programs) {
+              Appointment appToAdd = Appointment(
+                  email: program['email'],
+                  day: program['day'],
+                  month: program['month'],
+                  year: program['year'],
+                  hour: program['hour'],
+                  minutes: program['minutes']);
+              print(appToAdd);
+              appList.add(appToAdd);
+            }
           }),
         );
     return procesTerminat;
   }
 
   DateTime? _minDate;
+
   void initState() {
     getCurrMedicsAppts();
     _minDate = DateTime.now();
   }
 
-  CalendarForMedic({super.key});
   final DateRangePickerController _controller = DateRangePickerController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -375,7 +398,7 @@ class CalendarForMedic extends StatelessWidget {
               ),
               TextButton(
                   onPressed: () {
-                    print(programs);
+                    print(appList);
                   },
                   child: Text('Arata programari'))
             ],
