@@ -303,16 +303,95 @@ class _CalendarForUserState extends State<CalendarForUser> {
   }
 }
 
-class CalendarForMedic extends StatefulWidget {
-  const CalendarForMedic({super.key});
+class CalendarForMedic extends StatelessWidget {
+  DateTime? _minDate;
+  void initState() {
+    _minDate = DateTime.now();
+  }
 
-  @override
-  State<CalendarForMedic> createState() => _CalendarForMedicState();
-}
-
-class _CalendarForMedicState extends State<CalendarForMedic> {
+  CalendarForMedic({super.key});
+  final DateRangePickerController _controller = DateRangePickerController();
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+          body: SafeArea(
+        child: SfDateRangePicker(
+          minDate: _minDate,
+          controller: _controller,
+          cellBuilder:
+              (BuildContext context, DateRangePickerCellDetails details) {
+            final bool isToday = isSameDate(details.date, DateTime.now());
+            final bool isBlackOut = isBlackedDate(details.date);
+            final bool isSpecialDate = isSpecialDay(details.date);
+            return Container(
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          details.date.day.toString(),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        )
+                      ],
+                    ),
+                  ),
+                  isBlackOut
+                      ? Icon(
+                          Icons.block_sharp,
+                          size: 15,
+                        )
+                      : isSpecialDate
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.air_outlined,
+                                  size: 15,
+                                ),
+                                Icon(
+                                  Icons.air_outlined,
+                                  size: 15,
+                                ),
+                              ],
+                            )
+                          : Container()
+                ],
+              ),
+            );
+          },
+        ),
+      )),
+    );
+    ;
   }
+}
+
+bool isSpecialDay(DateTime date) {
+  if (date.day == 20 || date.day == 21 || date.day == 24 || date.day == 25) {
+    return true;
+  }
+  return false;
+}
+
+bool isSameDate(DateTime date, DateTime dateTime) {
+  if (date.year == dateTime.year &&
+      date.month == dateTime.month &&
+      date.day == dateTime.day) {
+    return true;
+  }
+
+  return false;
+}
+
+bool isBlackedDate(DateTime date) {
+  if (date.day == 17 || date.day == 18) {
+    return true;
+  }
+  return false;
 }
