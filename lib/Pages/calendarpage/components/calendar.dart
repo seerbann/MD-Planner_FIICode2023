@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -305,8 +307,11 @@ class _CalendarForUserState extends State<CalendarForUser> {
 
 class CalendarForMedic extends StatelessWidget {
   Appointment? currMedicsAppts;
-  var _list;
+  var programs;
+  HashMap<String, Appointment> appointmentsHashMap =
+      new HashMap<String, Appointment>();
   Future getCurrMedicsAppts() async {
+    bool procesTerminat = false;
     await FirebaseFirestore.instance
         .collection('users')
         .where('email', isEqualTo: FirebaseAuth.instance.currentUser?.email)
@@ -314,14 +319,10 @@ class CalendarForMedic extends StatelessWidget {
         .then(
           (snapshot) => snapshot.docs.forEach((document) {
             Map<String, dynamic> data = document.data();
-            currMedicsAppts?.email = data['programari'];
-            currMedicsAppts?.day = data['programari'][0]['day'];
-            currMedicsAppts?.hour = data['programari'][0]['hour'];
-            currMedicsAppts?.minutes = data['programari'][0]['minutes'];
-            currMedicsAppts?.month = data['programari'][0]['month'];
-            currMedicsAppts?.year = data['programari'][0]['year'];
+            programs = data['programari'];
           }),
         );
+    return procesTerminat;
   }
 
   DateTime? _minDate;
@@ -338,61 +339,47 @@ class CalendarForMedic extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           body: SafeArea(
-              child: Container(
-            height: 500,
-            child: SfDateRangePicker(
-              controller: _controller,
-              minDate: _minDate,
-              enablePastDates: false,
-              monthCellStyle: DateRangePickerMonthCellStyle(
-                blackoutDatesDecoration: BoxDecoration(
-                    color: Colors.red,
-                    border:
-                        Border.all(color: const Color(0xFFF44436), width: 1),
-                    shape: BoxShape.circle),
-                weekendDatesDecoration: BoxDecoration(
-                    color: const Color(0xFFDFDFDF),
-                    border:
-                        Border.all(color: const Color(0xFFB6B6B6), width: 1),
-                    shape: BoxShape.circle),
-                specialDatesDecoration: BoxDecoration(
-                    color: Colors.green,
-                    border:
-                        Border.all(color: const Color(0xFF2B732F), width: 1),
-                    shape: BoxShape.circle),
-                blackoutDateTextStyle: TextStyle(
-                    color: Colors.white,
-                    decoration: TextDecoration.lineThrough),
-                specialDatesTextStyle: const TextStyle(color: Colors.white),
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 500,
+                child: SfDateRangePicker(
+                  controller: _controller,
+                  minDate: _minDate,
+                  enablePastDates: false,
+                  monthCellStyle: DateRangePickerMonthCellStyle(
+                    blackoutDatesDecoration: BoxDecoration(
+                        color: Colors.red,
+                        border: Border.all(
+                            color: const Color(0xFFF44436), width: 1),
+                        shape: BoxShape.circle),
+                    weekendDatesDecoration: BoxDecoration(
+                        color: const Color(0xFFDFDFDF),
+                        border: Border.all(
+                            color: const Color(0xFFB6B6B6), width: 1),
+                        shape: BoxShape.circle),
+                    specialDatesDecoration: BoxDecoration(
+                        color: Colors.green,
+                        border: Border.all(
+                            color: const Color(0xFF2B732F), width: 1),
+                        shape: BoxShape.circle),
+                    blackoutDateTextStyle: TextStyle(
+                        color: Colors.white,
+                        decoration: TextDecoration.lineThrough),
+                    specialDatesTextStyle: const TextStyle(color: Colors.white),
+                  ),
+                  monthViewSettings: DateRangePickerMonthViewSettings(
+                      specialDates: [DateTime(2023, 3, 22)]),
+                ),
               ),
-              monthViewSettings: DateRangePickerMonthViewSettings(
-                  specialDates: [DateTime(2023, 3, 22)]),
-            ),
+              TextButton(
+                  onPressed: () {
+                    print(programs);
+                  },
+                  child: Text('Arata programari'))
+            ],
           )),
         ));
   }
-}
-
-bool isSpecialDay(DateTime date) {
-  if (date.day == 20 || date.day == 21 || date.day == 24 || date.day == 25) {
-    return true;
-  }
-  return false;
-}
-
-bool isSameDate(DateTime date, DateTime dateTime) {
-  if (date.year == dateTime.year &&
-      date.month == dateTime.month &&
-      date.day == dateTime.day) {
-    return true;
-  }
-
-  return false;
-}
-
-bool isBlackedDate(DateTime date) {
-  if (date.day == 17 || date.day == 18) {
-    return true;
-  }
-  return false;
 }
