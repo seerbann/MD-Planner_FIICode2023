@@ -347,6 +347,7 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
     return procesTerminat;
   }
 
+  Widget? personList;
   String? text;
   void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
     setState(() {
@@ -359,7 +360,7 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
         if (aux == args.value) {
           text =
               'Programare facut de ${appList[i].email} la ora ${appList[i].hour}:${appList[i].minutes}';
-          print(text);
+          print(appList[i].hour);
         }
       }
     });
@@ -382,7 +383,7 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
         home: Scaffold(
           body: SafeArea(
               child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Container(
                 height: 500,
@@ -416,24 +417,42 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
                       specialDates: _specialDates),
                 ),
               ),
-              TextButton(
-                  onPressed: () {
-                    setState(() {
-                      _specialDates = [];
-                      for (int i = 0; i < appList.length; i++) {
-                        _specialDates.add(DateTime(
-                          int.parse(appList[i].year ?? "1"),
-                          int.parse(appList[i].month ?? "1"),
-                          int.parse(appList[i].day ?? "1"),
-                        ));
-                        print(_specialDates);
-                      }
-                    });
-                  },
-                  child: Text('Refresh appointments')),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Icon(
+                    Icons.refresh,
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        setState(() {
+                          _specialDates = [];
+                          for (int i = 0; i < appList.length; i++) {
+                            _specialDates.add(DateTime(
+                              int.parse(appList[i].year ?? "1"),
+                              int.parse(appList[i].month ?? "1"),
+                              int.parse(appList[i].day ?? "1"),
+                            ));
+                            print(_specialDates);
+                          }
+                        });
+                      },
+                      child: Text('Refresh appointments')),
+                ],
+              ),
+              SizedBox(
+                height: 40,
+              ),
               Container(
                 child: Center(
-                    child: Text(text ?? "Momentan nu ai selectat nicio data")),
+                    child: Text(
+                  text ?? "Momentan nu ai selectat nicio data",
+                  style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.black),
+                )),
               )
             ],
           )),
