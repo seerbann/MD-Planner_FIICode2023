@@ -4,6 +4,7 @@ import 'package:health_hub/Pages/signin/signin_medic/signin_page.dart';
 import 'package:health_hub/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'firstpage_components.dart';
 
 class FirstPage extends StatefulWidget {
@@ -104,6 +105,27 @@ class _FirstPageState extends State<FirstPage> {
                             letterSpacing: 1,
                           )),
                     ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(67, 123, 255, 1),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 25, vertical: 20),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                      ),
+                      onPressed: (() {}),
+                      child: Text('Vezi PDF',
+                          style: GoogleFonts.roboto(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            letterSpacing: 2,
+                            fontSize: 20,
+                          )),
+                    ),
+                    Container(
+                        height: 300,
+                        child: SfPdfViewer.network(
+                            'http://res.cloudinary.com/hzxyensd5/image/upload/v1679474398/uhbkoyg0iup3jivgea9o.pdf'))
                   ],
                 ),
               ),
