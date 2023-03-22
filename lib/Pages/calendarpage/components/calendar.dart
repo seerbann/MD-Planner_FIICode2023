@@ -347,6 +347,24 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
     return procesTerminat;
   }
 
+  String? text;
+  void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
+    setState(() {
+      for (int i = 0; i < appList.length; i++) {
+        DateTime aux = DateTime(
+          int.parse(appList[i].year ?? "1"),
+          int.parse(appList[i].month ?? "1"),
+          int.parse(appList[i].day ?? "1"),
+        );
+        if (aux == args.value) {
+          text =
+              'Programare facut de ${appList[i].email} la ora ${appList[i].hour}:${appList[i].minutes}';
+          print(text);
+        }
+      }
+    });
+  }
+
   DateTime? _minDate;
   List<DateTime> _specialDates = [];
 
@@ -369,6 +387,7 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
               Container(
                 height: 500,
                 child: SfDateRangePicker(
+                  onSelectionChanged: _onSelectionChanged,
                   controller: _controller,
                   minDate: _minDate,
                   enablePastDates: false,
@@ -411,7 +430,11 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
                       }
                     });
                   },
-                  child: Text('Refresh appointments'))
+                  child: Text('Refresh appointments')),
+              Container(
+                child: Center(
+                    child: Text(text ?? "Momentan nu ai selectat nicio data")),
+              )
             ],
           )),
         ));
