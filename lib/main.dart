@@ -19,8 +19,17 @@ import 'Pages/medicprofile/main_medicprofile.dart';
 import 'Pages/signin/signin_user/signin_page_user.dart';
 import 'Pages/listpage/main_listpage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:cloudinary_dart/cloudinary.dart';
+import 'package:cloudinary_dart/transformation/transformation.dart';
+import 'package:flutter/material.dart';
+import 'package:cloudinary_dart/transformation/effect/effect.dart';
+import 'package:cloudinary_dart/transformation/resize/resize.dart';
+
+var cloudinary = Cloudinary.fromStringUrl(
+    'cloudinary://977979647278431:9YSUkAPnadZ_5qgGVezbONeLfkM@deliqz1t8');
 
 void main() async {
+  cloudinary.config.urlConfig.secure = true;
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   //final PendingDynamicLinkData? _initialLink =
