@@ -400,6 +400,7 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
               TextButton(
                   onPressed: () {
                     setState(() {
+                      _specialDates = [];
                       for (int i = 0; i < appList.length; i++) {
                         _specialDates.add(DateTime(
                           int.parse(appList[i].year ?? "1"),
