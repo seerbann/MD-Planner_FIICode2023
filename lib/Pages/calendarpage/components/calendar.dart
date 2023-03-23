@@ -322,6 +322,7 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
       new HashMap<String, Appointment>();
 
   Future getCurrMedicsAppts() async {
+    DateTime today = DateTime.now().subtract(Duration(days: 1));
     bool procesTerminat = false;
     await FirebaseFirestore.instance
         .collection('users')
@@ -332,15 +333,22 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
             Map<String, dynamic> data = document.data();
             programs = data['programari'];
             for (var program in programs) {
-              Appointment appToAdd = Appointment(
-                  email: program['email'],
-                  day: program['day'],
-                  month: program['month'],
-                  year: program['year'],
-                  hour: program['hour'],
-                  minutes: program['minutes']);
+              DateTime aux = DateTime(
+                int.parse(program['year'] ?? "1"),
+                int.parse(program['month'] ?? "1"),
+                int.parse(program['day'] ?? "1"),
+              );
+              if (today.isBefore(aux)) {
+                Appointment appToAdd = Appointment(
+                    email: program['email'],
+                    day: program['day'],
+                    month: program['month'],
+                    year: program['year'],
+                    hour: program['hour'],
+                    minutes: program['minutes']);
 
-              appList.add(appToAdd);
+                appList.add(appToAdd);
+              }
             }
           }),
         );
@@ -368,8 +376,6 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
               year: appList[i].year,
               hour: appList[i].hour,
               minutes: appList[i].minutes));
-          text =
-              'Programare facut de ${appList[i].email} la ora ${appList[i].hour}:${appList[i].minutes}';
         }
       }
       buildList();
@@ -388,7 +394,7 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
 
           return ListTile(
             title: Text(item.email ?? ""),
-            subtitle: Text(item.hour ?? ""),
+            subtitle: Text("Ora: ${item.hour}"),
           );
         },
       ),
