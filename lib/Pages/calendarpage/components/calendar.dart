@@ -349,7 +349,10 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
 
   Widget? personList;
   String? text;
+  List<Appointment> appoitnemtsChosenDate = [];
   void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
+    personList = null;
+    appoitnemtsChosenDate = [];
     setState(() {
       for (int i = 0; i < appList.length; i++) {
         DateTime aux = DateTime(
@@ -358,12 +361,38 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
           int.parse(appList[i].day ?? "1"),
         );
         if (aux == args.value) {
+          appoitnemtsChosenDate.add(Appointment(
+              email: appList[i].email,
+              day: appList[i].day,
+              month: appList[i].month,
+              year: appList[i].year,
+              hour: appList[i].hour,
+              minutes: appList[i].minutes));
           text =
               'Programare facut de ${appList[i].email} la ora ${appList[i].hour}:${appList[i].minutes}';
-          print(appList[i].hour);
         }
       }
+      buildList();
     });
+  }
+
+  void buildList() {
+    personList = null;
+    print(appoitnemtsChosenDate.length);
+    personList = Container(
+      height: 350,
+      child: ListView.builder(
+        itemCount: appoitnemtsChosenDate.length,
+        itemBuilder: (context, index) {
+          final item = appoitnemtsChosenDate[index];
+
+          return ListTile(
+            title: Text(item.email ?? ""),
+            subtitle: Text(item.hour ?? ""),
+          );
+        },
+      ),
+    );
   }
 
   DateTime? _minDate;
@@ -444,15 +473,7 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
                 height: 40,
               ),
               Container(
-                child: Center(
-                    child: Text(
-                  text ?? "Momentan nu ai selectat nicio data",
-                  style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.black),
-                )),
+                child: Center(child: personList),
               )
             ],
           )),
