@@ -378,6 +378,7 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
               minutes: appList[i].minutes));
         }
       }
+
       buildList();
     });
   }
@@ -391,7 +392,6 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
         itemCount: appoitnemtsChosenDate.length,
         itemBuilder: (context, index) {
           final item = appoitnemtsChosenDate[index];
-
           return ListTile(
             title: Text(item.email ?? ""),
             subtitle: Text("Ora: ${item.hour}"),
@@ -413,76 +413,76 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: SafeArea(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Container(
-                height: 500,
-                child: SfDateRangePicker(
-                  onSelectionChanged: _onSelectionChanged,
-                  controller: _controller,
-                  minDate: _minDate,
-                  enablePastDates: false,
-                  monthCellStyle: DateRangePickerMonthCellStyle(
-                    blackoutDatesDecoration: BoxDecoration(
-                        color: Colors.red,
-                        border: Border.all(
-                            color: const Color(0xFFF44436), width: 1),
-                        shape: BoxShape.circle),
-                    weekendDatesDecoration: BoxDecoration(
-                        color: const Color(0xFFDFDFDF),
-                        border: Border.all(
-                            color: const Color(0xFFB6B6B6), width: 1),
-                        shape: BoxShape.circle),
-                    specialDatesDecoration: BoxDecoration(
-                        color: Colors.green,
-                        border: Border.all(
-                            color: const Color(0xFF2B732F), width: 1),
-                        shape: BoxShape.circle),
-                    blackoutDateTextStyle: TextStyle(
-                        color: Colors.white,
-                        decoration: TextDecoration.lineThrough),
-                    specialDatesTextStyle: const TextStyle(color: Colors.white),
-                  ),
-                  monthViewSettings: DateRangePickerMonthViewSettings(
-                      specialDates: _specialDates),
+    return Scaffold(
+      body: SafeArea(
+          child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Container(
+              height: 500,
+              child: SfDateRangePicker(
+                onSelectionChanged: _onSelectionChanged,
+                controller: _controller,
+                minDate: _minDate,
+                enablePastDates: false,
+                monthCellStyle: DateRangePickerMonthCellStyle(
+                  blackoutDatesDecoration: BoxDecoration(
+                      color: Colors.red,
+                      border:
+                          Border.all(color: const Color(0xFFF44436), width: 1),
+                      shape: BoxShape.circle),
+                  weekendDatesDecoration: BoxDecoration(
+                      color: const Color(0xFFDFDFDF),
+                      border:
+                          Border.all(color: const Color(0xFFB6B6B6), width: 1),
+                      shape: BoxShape.circle),
+                  specialDatesDecoration: BoxDecoration(
+                      color: Colors.green,
+                      border:
+                          Border.all(color: const Color(0xFF2B732F), width: 1),
+                      shape: BoxShape.circle),
+                  blackoutDateTextStyle: TextStyle(
+                      color: Colors.white,
+                      decoration: TextDecoration.lineThrough),
+                  specialDatesTextStyle: const TextStyle(color: Colors.white),
                 ),
+                monthViewSettings: DateRangePickerMonthViewSettings(
+                    specialDates: _specialDates),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Icon(
-                    Icons.refresh,
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        setState(() {
-                          _specialDates = [];
-                          for (int i = 0; i < appList.length; i++) {
-                            _specialDates.add(DateTime(
-                              int.parse(appList[i].year ?? "1"),
-                              int.parse(appList[i].month ?? "1"),
-                              int.parse(appList[i].day ?? "1"),
-                            ));
-                            print(_specialDates);
-                          }
-                        });
-                      },
-                      child: Text('Refresh appointments')),
-                ],
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Container(
-                child: Center(child: personList),
-              )
-            ],
-          )),
-        ));
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Icon(
+                  Icons.refresh,
+                ),
+                TextButton(
+                    onPressed: () {
+                      setState(() {
+                        _specialDates = [];
+                        for (int i = 0; i < appList.length; i++) {
+                          _specialDates.add(DateTime(
+                            int.parse(appList[i].year ?? "1"),
+                            int.parse(appList[i].month ?? "1"),
+                            int.parse(appList[i].day ?? "1"),
+                          ));
+                          print(_specialDates);
+                        }
+                      });
+                    },
+                    child: Text('Refresh appointments')),
+              ],
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Container(
+              child: Center(child: personList),
+            )
+          ],
+        ),
+      )),
+    );
   }
 }
