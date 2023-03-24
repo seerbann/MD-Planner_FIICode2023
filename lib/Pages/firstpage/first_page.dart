@@ -128,10 +128,10 @@ class _FirstPageState extends State<FirstPage> {
                             fontSize: 20,
                           )),
                     ),
-                    Container(
-                        height: 300,
-                        child: SfPdfViewer.network(
-                            'http://res.cloudinary.com/hzxyensd5/image/upload/v1679474398/uhbkoyg0iup3jivgea9o.pdf'))
+                    //Container(
+                    //  height: 300,
+                    //child: SfPdfViewer.network(
+                    //  'http://res.cloudinary.com/hzxyensd5/image/upload/v1679474398/uhbkoyg0iup3jivgea9o.pdf'))
                   ],
                 ),
               ),
