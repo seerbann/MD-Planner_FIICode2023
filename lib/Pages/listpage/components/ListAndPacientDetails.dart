@@ -546,10 +546,59 @@ class MedicList extends StatelessWidget {
   }
 }
 
-class MedicDetail extends StatelessWidget {
+class MedicDetail extends StatefulWidget {
   final Medic medic;
 
   const MedicDetail(this.medic);
+
+  @override
+  State<MedicDetail> createState() => _MedicDetailState();
+}
+
+class _MedicDetailState extends State<MedicDetail> {
+  var id;
+  String? currentUserEmail = FirebaseAuth.instance.currentUser?.email;
+  String? currentUsersName;
+
+  Future getCurrUsersName() async {
+    bool procesTerminat = false;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: FirebaseAuth.instance.currentUser?.email)
+        .get()
+        .then(
+          (snapshot) => snapshot.docs.forEach((document) {
+            Map<String, dynamic> data = document.data();
+            currentUsersName = data['fullName'];
+          }),
+        );
+    return procesTerminat;
+  }
+
+  Future<String> getCurrUserId(String? numeCurrUser) async {
+    String idCurrUser = "aaaa";
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .where('fullName', isEqualTo: numeCurrUser)
+        .get()
+        .then((snapshot) => snapshot.docs.forEach((document) {
+              idCurrUser = document.id;
+            }));
+    print(idCurrUser);
+    return idCurrUser;
+  }
+
+  Future updateMedic(String medic) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .set({'medic': medic}).then((value) => print('update succesful'));
+  }
+
+  void initState() {
+    getCurrUsersName();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -565,17 +614,32 @@ class MedicDetail extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset('assets/images/defaultUser.png'),
+                      Column(
+                        children: [
+                          Image.asset('assets/images/defaultUser.png'),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          TextButton(
+                            child: Text('schimba medic'),
+                            onPressed: () {
+                              id = getCurrUserId(currentUsersName);
+                              updateMedic(widget.medic.fullName);
+                              print(widget.medic.fullName);
+                            },
+                          )
+                        ],
+                      ),
                       Column(
                         children: [
                           Text(
-                            medic.fullName,
+                            widget.medic.fullName,
                             style: TextStyle(
                                 fontFamily: 'Outfit',
                                 fontSize: 35,
                                 fontWeight: FontWeight.bold),
                           ),
-                          Text(medic.phone)
+                          Text(widget.medic.phone)
                         ],
                       ),
                     ],
