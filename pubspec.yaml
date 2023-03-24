@@ -49,6 +49,8 @@ dependencies:
   syncfusion_flutter_datepicker: ^20.4.54
   syncfusion_flutter_pdfviewer: ^20.4.54
   cloudinary_dart: ^0.0.11
+  firebase_storage: ^11.0.16
+  flutter_document_picker: ^5.1.0
 
 dev_dependencies:
   flutter_test:

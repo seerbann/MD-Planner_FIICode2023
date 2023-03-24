@@ -5,6 +5,7 @@ import 'package:health_hub/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import '../../uploadpdf.dart';
 import 'firstpage_components.dart';
 
 class FirstPage extends StatefulWidget {
@@ -113,8 +114,13 @@ class _FirstPageState extends State<FirstPage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50)),
                       ),
-                      onPressed: (() {}),
-                      child: Text('Vezi PDF',
+                      onPressed: (() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => UploadPDF()));
+                      }),
+                      child: Text('Upload PDF',
                           style: GoogleFonts.roboto(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
