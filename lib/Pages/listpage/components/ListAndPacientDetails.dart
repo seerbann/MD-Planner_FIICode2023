@@ -622,12 +622,10 @@ class _MedicDetailState extends State<MedicDetail> {
                           ),
                           TextButton(
                             child: Text('schimba medic'),
-                            onPressed: () {
-                              setState(() {
-                                id = getCurrUserId(currentUsersName);
-                                updateMedic(widget.medic.fullName);
-                                print(widget.medic.fullName);
-                              });
+                            onPressed: () async {
+                              id = await getCurrUserId(currentUsersName);
+                              updateMedic(widget.medic.fullName);
+                              print(widget.medic.fullName);
                             },
                           )
                         ],
