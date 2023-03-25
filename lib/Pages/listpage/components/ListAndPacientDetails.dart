@@ -593,7 +593,7 @@ class _MedicDetailState extends State<MedicDetail> {
     await FirebaseFirestore.instance
         .collection('users')
         .doc(id)
-        .set({'medic': medic}).then((value) => print('update succesful'));
+        .update({"medic": medic}).then((value) => print('update succesful'));
   }
 
   void initState() {
@@ -623,9 +623,11 @@ class _MedicDetailState extends State<MedicDetail> {
                           TextButton(
                             child: Text('schimba medic'),
                             onPressed: () {
-                              id = getCurrUserId(currentUsersName);
-                              updateMedic(widget.medic.fullName);
-                              print(widget.medic.fullName);
+                              setState(() {
+                                id = getCurrUserId(currentUsersName);
+                                updateMedic(widget.medic.fullName);
+                                print(widget.medic.fullName);
+                              });
                             },
                           )
                         ],
