@@ -555,6 +555,22 @@ class MedicDetail extends StatefulWidget {
   State<MedicDetail> createState() => _MedicDetailState();
 }
 
+Future getCurrUsersMedic() async {
+  String currentUsersMedic = "";
+  bool procesTerminat = false;
+  await FirebaseFirestore.instance
+      .collection('users')
+      .where('email', isEqualTo: FirebaseAuth.instance.currentUser?.email)
+      .get()
+      .then(
+        (snapshot) => snapshot.docs.forEach((document) {
+          Map<String, dynamic> data = document.data();
+          currentUsersMedic = data['medic'];
+        }),
+      );
+  return currentUsersMedic;
+}
+
 class _MedicDetailState extends State<MedicDetail> {
   var id;
   String? currentUserEmail = FirebaseAuth.instance.currentUser?.email;
@@ -589,7 +605,43 @@ class _MedicDetailState extends State<MedicDetail> {
     return idCurrUser;
   }
 
+  Future<String> getMedicId(String numeMedic) async {
+    String idDoctor = "aaaa";
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .where('fullName', isEqualTo: numeMedic)
+        .get()
+        .then((snapshot) => snapshot.docs.forEach((document) {
+              idDoctor = document.id;
+            }));
+    return idDoctor;
+  }
+
+  Future schimbaArray(
+      String medicVechi, String medicNou, String? numePacient) async {
+    var list = [numePacient];
+    var idDoctorVechi = await getMedicId(medicVechi);
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(idDoctorVechi)
+        .update({"pacienti": FieldValue.arrayRemove(list)});
+    var idDoctorNou = await getMedicId(medicNou);
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(idDoctorNou)
+        .update({"pacienti": FieldValue.arrayUnion(list)});
+  }
+
   Future updateMedic(String medic) async {
+    String medicVechi = await getCurrUsersMedic();
+    print("Medicul vechi este ${medicVechi}");
+    String medicNou = medic;
+    print("Medicul nou este ${medicNou}");
+    String? numePacient = currentUsersName;
+    print("Pacientul curent se cheama ${numePacient}");
+
+    await schimbaArray(medicVechi, medicNou, numePacient);
     await FirebaseFirestore.instance
         .collection('users')
         .doc(id)
