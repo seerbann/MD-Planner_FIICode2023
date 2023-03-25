@@ -153,7 +153,7 @@ class _CalendarForUserState extends State<CalendarForUser> {
   final DateRangePickerController _controller = DateRangePickerController();
   DateTime? selectedDate;
   DateTime? _meetingDate;
-  TimeOfDay? _meetingHour;
+  TimeOfDay? _meetingHour = null;
   void initState() {
     _minDate = DateTime.now();
     _meetingHour = TimeOfDay(hour: DateTime.now().hour, minute: 0);
@@ -163,13 +163,7 @@ class _CalendarForUserState extends State<CalendarForUser> {
   }
 
   void _onDateChanged(DateRangePickerSelectionChangedArgs args) {
-    setState(() {
-      _meetingDate = DateTime(
-        int.parse(args.value.toString().substring(0, 4)),
-        int.parse(args.value.toString().substring(5, 7)),
-        int.parse(args.value.toString().substring(8, 10)),
-      );
-    });
+    setState(() {});
   }
 
   @override
@@ -177,12 +171,23 @@ class _CalendarForUserState extends State<CalendarForUser> {
     return Scaffold(
       body: Column(
         children: [
-          SfDateRangePicker(
-            controller: _controller,
-            view: DateRangePickerView.month,
-            minDate: _minDate,
-            onSelectionChanged: _onDateChanged,
-            selectionMode: DateRangePickerSelectionMode.single,
+          Padding(
+            padding: const EdgeInsets.all(35.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.4),
+                  border: Border.all(
+                    color: Colors.grey.withOpacity(0.4),
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+              child: SfDateRangePicker(
+                controller: _controller,
+                view: DateRangePickerView.month,
+                minDate: _minDate,
+                onSelectionChanged: _onDateChanged,
+                selectionMode: DateRangePickerSelectionMode.single,
+              ),
+            ),
           ),
           Container(
             width: 150,
@@ -258,6 +263,10 @@ class _CalendarForUserState extends State<CalendarForUser> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: const TextStyle(fontSize: 20),
+                  foregroundColor: Colors.blue,
+                ),
                 onPressed: () {
                   selectedDate = _controller.selectedDate;
 
@@ -278,19 +287,23 @@ class _CalendarForUserState extends State<CalendarForUser> {
 
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text(
-                      'Selection Confirmed',
+                      'Programare realizata cu succes',
                     ),
-                    duration: Duration(milliseconds: 500),
+                    duration: Duration(milliseconds: 700),
                   ));
                 },
                 child: Text("Confirm"),
               ),
               TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: const TextStyle(fontSize: 20),
+                  foregroundColor: Colors.blue,
+                ),
                 onPressed: () {
                   _controller.selectedDate = selectedDate;
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text(
-                      'Selection Cancelled',
+                      'Cancelled',
                     ),
                     duration: Duration(milliseconds: 500),
                   ));
@@ -419,36 +432,45 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Container(
-              height: 500,
-              child: SfDateRangePicker(
-                onSelectionChanged: _onSelectionChanged,
-                controller: _controller,
-                minDate: _minDate,
-                enablePastDates: false,
-                monthCellStyle: DateRangePickerMonthCellStyle(
-                  blackoutDatesDecoration: BoxDecoration(
-                      color: Colors.red,
-                      border:
-                          Border.all(color: const Color(0xFFF44436), width: 1),
-                      shape: BoxShape.circle),
-                  weekendDatesDecoration: BoxDecoration(
-                      color: const Color(0xFFDFDFDF),
-                      border:
-                          Border.all(color: const Color(0xFFB6B6B6), width: 1),
-                      shape: BoxShape.circle),
-                  specialDatesDecoration: BoxDecoration(
-                      color: Colors.green,
-                      border:
-                          Border.all(color: const Color(0xFF2B732F), width: 1),
-                      shape: BoxShape.circle),
-                  blackoutDateTextStyle: TextStyle(
-                      color: Colors.white,
-                      decoration: TextDecoration.lineThrough),
-                  specialDatesTextStyle: const TextStyle(color: Colors.white),
+            Padding(
+              padding: const EdgeInsets.all(35.0),
+              child: Container(
+                height: 500,
+                decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.4),
+                    border: Border.all(
+                      color: Colors.grey.withOpacity(0.4),
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: SfDateRangePicker(
+                  onSelectionChanged: _onSelectionChanged,
+                  controller: _controller,
+                  minDate: _minDate,
+                  enablePastDates: false,
+                  monthCellStyle: DateRangePickerMonthCellStyle(
+                    blackoutDatesDecoration: BoxDecoration(
+                        color: Colors.red,
+                        border: Border.all(
+                            color: const Color(0xFFF44436), width: 1),
+                        shape: BoxShape.circle),
+                    weekendDatesDecoration: BoxDecoration(
+                        color: const Color(0xFFDFDFDF),
+                        border: Border.all(
+                            color: const Color(0xFFB6B6B6), width: 1),
+                        shape: BoxShape.circle),
+                    specialDatesDecoration: BoxDecoration(
+                        color: Colors.green,
+                        border: Border.all(
+                            color: const Color(0xFF2B732F), width: 1),
+                        shape: BoxShape.circle),
+                    blackoutDateTextStyle: TextStyle(
+                        color: Colors.white,
+                        decoration: TextDecoration.lineThrough),
+                    specialDatesTextStyle: const TextStyle(color: Colors.white),
+                  ),
+                  monthViewSettings: DateRangePickerMonthViewSettings(
+                      specialDates: _specialDates),
                 ),
-                monthViewSettings: DateRangePickerMonthViewSettings(
-                    specialDates: _specialDates),
               ),
             ),
             Row(
@@ -458,6 +480,10 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
                   Icons.refresh,
                 ),
                 TextButton(
+                    style: TextButton.styleFrom(
+                      textStyle: const TextStyle(fontSize: 15),
+                      foregroundColor: Colors.blue,
+                    ),
                     onPressed: () {
                       setState(() {
                         _specialDates = [];
