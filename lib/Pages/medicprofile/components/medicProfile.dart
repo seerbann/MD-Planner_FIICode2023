@@ -102,153 +102,24 @@ class _MedicProfileState extends State<MedicProfile> {
                       ),
                     ),
                   ),
-                  SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 150,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Color(0xFFE2E3E3), width: 5),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
-                                    color: Colors.white,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(25.0),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Image.asset(
-                                                'assets/images/defaultUser.png'),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Column(
-                                                children: [
-                                                  FutureBuilder(
-                                                    future: getInfoMedic(),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      if (snapshot.hasData) {
-                                                        return Text(
-                                                            fullNameMedic,
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                    'Roboto',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontSize: 20,
-                                                                color: Colors
-                                                                    .black));
-                                                      } else {
-                                                        return Center(
-                                                            child:
-                                                                CircularProgressIndicator());
-                                                      }
-                                                    },
-                                                  ),
-                                                  Text('Orar',
-                                                      style: TextStyle(
-                                                          fontFamily: 'Roboto',
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 20,
-                                                          color: Colors.black
-                                                              .withOpacity(
-                                                                  0.7)))
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Container(
-                                  width: 350,
-                                  height: 150,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Color(0xFFE2E3E3), width: 5),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
-                                    color: Colors.white,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      'Consultatii recente',
-                                      style: TextStyle(
-                                        fontFamily: 'Outfit',
-                                        fontSize: 25,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      height: 50,
-                                      width: 90,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Colors.grey, width: 1),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
-                                      ),
-                                      child:
-                                          Center(child: const Text('Pacienti')),
-                                    ),
-                                    Container(
-                                      height: 50,
-                                      width: 90,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Colors.grey, width: 1),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
-                                      ),
-                                      child: Center(
-                                          child: const Text('Asistenti')),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Container(
-                                    width: 360,
+                  Center(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 150,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                           color: Color(0xFFE2E3E3), width: 5),
@@ -256,184 +127,322 @@ class _MedicProfileState extends State<MedicProfile> {
                                           BorderRadius.all(Radius.circular(20)),
                                       color: Colors.white,
                                     ),
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            height: 50,
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Email',
-                                                  style: TextStyle(
-                                                      fontSize: 20,
-                                                      fontFamily: 'Outfit',
-                                                      color: Colors.black),
-                                                ),
-                                                FutureBuilder(
-                                                  future: getInfoMedic(),
-                                                  builder: (context, snapshot) {
-                                                    if (snapshot.hasData) {
-                                                      return Text(
-                                                        emailMedic,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(25.0),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Image.asset(
+                                                  'assets/images/defaultUser.png'),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Column(
+                                                  children: [
+                                                    FutureBuilder(
+                                                      future: getInfoMedic(),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        if (snapshot.hasData) {
+                                                          return Text(
+                                                              fullNameMedic,
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      'Roboto',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 20,
+                                                                  color: Colors
+                                                                      .black));
+                                                        } else {
+                                                          return Center(
+                                                              child:
+                                                                  CircularProgressIndicator());
+                                                        }
+                                                      },
+                                                    ),
+                                                    Text('Orar',
                                                         style: TextStyle(
-                                                            fontSize: 20,
                                                             fontFamily:
-                                                                'Outfit',
+                                                                'Roboto',
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 20,
                                                             color: Colors.black
                                                                 .withOpacity(
-                                                                    0.7)),
-                                                      );
-                                                    } else {
-                                                      return Center(
-                                                          child:
-                                                              CircularProgressIndicator());
-                                                    }
-                                                  },
+                                                                    0.7)))
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            height: 50,
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Telefon',
-                                                  style: TextStyle(
-                                                      fontSize: 20,
-                                                      fontFamily: 'Outfit',
-                                                      color: Colors.black),
-                                                ),
-                                                FutureBuilder(
-                                                  future: getInfoMedic(),
-                                                  builder: (context, snapshot) {
-                                                    if (snapshot.hasData) {
-                                                      return Text(
-                                                        phoneMedic,
-                                                        style: TextStyle(
-                                                            fontSize: 20,
-                                                            fontFamily:
-                                                                'Outfit',
-                                                            color: Colors.black
-                                                                .withOpacity(
-                                                                    0.7)),
-                                                      );
-                                                    } else {
-                                                      return Center(
-                                                          child:
-                                                              CircularProgressIndicator());
-                                                    }
-                                                  },
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            height: 50,
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Oras',
-                                                  style: TextStyle(
-                                                      fontSize: 20,
-                                                      fontFamily: 'Outfit',
-                                                      color: Colors.black),
-                                                ),
-                                                FutureBuilder(
-                                                  future: getInfoMedic(),
-                                                  builder: (context, snapshot) {
-                                                    if (snapshot.hasData) {
-                                                      return Text(
-                                                        cityMedic,
-                                                        style: TextStyle(
-                                                            fontSize: 20,
-                                                            fontFamily:
-                                                                'Outfit',
-                                                            color: Colors.black
-                                                                .withOpacity(
-                                                                    0.7)),
-                                                      );
-                                                    } else {
-                                                      return Center(
-                                                          child:
-                                                              CircularProgressIndicator());
-                                                    }
-                                                  },
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    )),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: const Color(0xFF323741),
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 45, vertical: 25),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                  onPressed: () async {
-                                    if (!kIsWeb) {
-                                      DynamicLinkProvider()
-                                          .createLink(fullNameMedic)
-                                          .then((value) {
-                                        Share.share(value);
-                                      });
-                                    } else {
-                                      final Uri emailLaunchUri = Uri(
-                                        scheme: 'mailto',
-                                        path: 'smith@example.com',
-                                        query: encodeQueryParameters(<String,
-                                            String>{
-                                          'subject': 'Invitatie MD Planner',
-                                          'body':
-                                              'Buna! Sunt ${fullNameMedic} si te invit in aplicatia MD Planner. Apasa pe urmatorul link pentru a te inregistra: https://mdplanner.page.link/singin_iGuj'
-                                        }),
-                                      );
-                                      launchUrl(emailLaunchUri);
-                                    }
-                                  },
-                                  child: Text('Trimite o invitatie',
-                                      style: GoogleFonts.outfit(
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Container(
+                                    width: 350,
+                                    height: 150,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Color(0xFFE2E3E3), width: 5),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(20)),
+                                      color: Colors.white,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        'Consultatii recente',
+                                        style: TextStyle(
+                                          fontFamily: 'Outfit',
+                                          fontSize: 25,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        height: 50,
+                                        width: 90,
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Colors.grey, width: 1),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20)),
+                                        ),
+                                        child: Center(
+                                            child: const Text('Pacienti')),
+                                      ),
+                                      Container(
+                                        height: 50,
+                                        width: 90,
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Colors.grey, width: 1),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20)),
+                                        ),
+                                        child: Center(
+                                            child: const Text('Asistenti')),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Container(
+                                      width: 360,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: Color(0xFFE2E3E3), width: 5),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20)),
                                         color: Colors.white,
-                                        letterSpacing: 2,
-                                        fontSize: 20,
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              height: 50,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'Email',
+                                                    style: TextStyle(
+                                                        fontSize: 20,
+                                                        fontFamily: 'Outfit',
+                                                        color: Colors.black),
+                                                  ),
+                                                  FutureBuilder(
+                                                    future: getInfoMedic(),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      if (snapshot.hasData) {
+                                                        return Text(
+                                                          emailMedic,
+                                                          style: TextStyle(
+                                                              fontSize: 20,
+                                                              fontFamily:
+                                                                  'Outfit',
+                                                              color: Colors
+                                                                  .black
+                                                                  .withOpacity(
+                                                                      0.7)),
+                                                        );
+                                                      } else {
+                                                        return Center(
+                                                            child:
+                                                                CircularProgressIndicator());
+                                                      }
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              height: 50,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'Telefon',
+                                                    style: TextStyle(
+                                                        fontSize: 20,
+                                                        fontFamily: 'Outfit',
+                                                        color: Colors.black),
+                                                  ),
+                                                  FutureBuilder(
+                                                    future: getInfoMedic(),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      if (snapshot.hasData) {
+                                                        return Text(
+                                                          phoneMedic,
+                                                          style: TextStyle(
+                                                              fontSize: 20,
+                                                              fontFamily:
+                                                                  'Outfit',
+                                                              color: Colors
+                                                                  .black
+                                                                  .withOpacity(
+                                                                      0.7)),
+                                                        );
+                                                      } else {
+                                                        return Center(
+                                                            child:
+                                                                CircularProgressIndicator());
+                                                      }
+                                                    },
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              height: 50,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'Oras',
+                                                    style: TextStyle(
+                                                        fontSize: 20,
+                                                        fontFamily: 'Outfit',
+                                                        color: Colors.black),
+                                                  ),
+                                                  FutureBuilder(
+                                                    future: getInfoMedic(),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      if (snapshot.hasData) {
+                                                        return Text(
+                                                          cityMedic,
+                                                          style: TextStyle(
+                                                              fontSize: 20,
+                                                              fontFamily:
+                                                                  'Outfit',
+                                                              color: Colors
+                                                                  .black
+                                                                  .withOpacity(
+                                                                      0.7)),
+                                                        );
+                                                      } else {
+                                                        return Center(
+                                                            child:
+                                                                CircularProgressIndicator());
+                                                      }
+                                                    },
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       )),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color(0xFF323741),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 45, vertical: 25),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                    ),
+                                    onPressed: () async {
+                                      if (!kIsWeb) {
+                                        DynamicLinkProvider()
+                                            .createLink(fullNameMedic)
+                                            .then((value) {
+                                          Share.share(value);
+                                        });
+                                      } else {
+                                        final Uri emailLaunchUri = Uri(
+                                          scheme: 'mailto',
+                                          path: 'smith@example.com',
+                                          query: encodeQueryParameters(<String,
+                                              String>{
+                                            'subject': 'Invitatie MD Planner',
+                                            'body':
+                                                'Buna! Sunt ${fullNameMedic} si te invit in aplicatia MD Planner. Apasa pe urmatorul link pentru a te inregistra: https://mdplanner.page.link/singin_iGuj'
+                                          }),
+                                        );
+                                        launchUrl(emailLaunchUri);
+                                      }
+                                    },
+                                    child: Text('Trimite o invitatie',
+                                        style: GoogleFonts.outfit(
+                                          color: Colors.white,
+                                          letterSpacing: 2,
+                                          fontSize: 20,
+                                        )),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ]),
