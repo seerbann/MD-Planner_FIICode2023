@@ -153,7 +153,7 @@ class _CalendarForUserState extends State<CalendarForUser> {
   final DateRangePickerController _controller = DateRangePickerController();
   DateTime? selectedDate;
   DateTime? _meetingDate;
-  TimeOfDay? _meetingHour = null;
+  TimeOfDay? _meetingHour;
   void initState() {
     _minDate = DateTime.now();
     _meetingHour = TimeOfDay(hour: DateTime.now().hour, minute: 0);
@@ -163,7 +163,13 @@ class _CalendarForUserState extends State<CalendarForUser> {
   }
 
   void _onDateChanged(DateRangePickerSelectionChangedArgs args) {
-    setState(() {});
+    setState(() {
+      _meetingDate = DateTime(
+        int.parse(args.value.toString().substring(0, 4)),
+        int.parse(args.value.toString().substring(5, 7)),
+        int.parse(args.value.toString().substring(8, 10)),
+      );
+    });
   }
 
   @override
