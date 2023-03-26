@@ -107,28 +107,28 @@ class _FirstPageState extends State<FirstPage> {
                             letterSpacing: 1,
                           )),
                     ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(67, 123, 255, 1),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 25, vertical: 20),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)),
-                      ),
-                      onPressed: (() {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => UploadPDF()));
-                      }),
-                      child: Text('Upload PDF',
-                          style: GoogleFonts.roboto(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            letterSpacing: 2,
-                            fontSize: 20,
-                          )),
-                    ),
+                    // ElevatedButton(
+                    //   style: ElevatedButton.styleFrom(
+                    //     backgroundColor: const Color.fromRGBO(67, 123, 255, 1),
+                    //     padding: const EdgeInsets.symmetric(
+                    //         horizontal: 25, vertical: 20),
+                    //     shape: RoundedRectangleBorder(
+                    //         borderRadius: BorderRadius.circular(50)),
+                    //   ),
+                    //   onPressed: (() {
+                    //     Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (context) => UploadPDF()));
+                    //   }),
+                    //   child: Text('Upload PDF',
+                    //       style: GoogleFonts.roboto(
+                    //         fontWeight: FontWeight.bold,
+                    //         color: Colors.white,
+                    //         letterSpacing: 2,
+                    //         fontSize: 20,
+                    //       )),
+                    // ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(67, 123, 255, 1),

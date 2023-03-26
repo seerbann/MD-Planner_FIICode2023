@@ -93,8 +93,16 @@ class _SignInPage_userState extends State<SignInPage_user> {
     }
   }
 
-  Future addUserDetails(String firstName, String lastName, String email,
-      String phone, String cnp, String city, String medic) async {
+  Future addUserDetails(
+    String firstName,
+    String lastName,
+    String email,
+    String phone,
+    String cnp,
+    String city,
+    String medic,
+    List<String> fiseMedicale,
+  ) async {
     await FirebaseFirestore.instance.collection('users').add({
       'first name': firstName,
       'last name': lastName,
@@ -104,7 +112,8 @@ class _SignInPage_userState extends State<SignInPage_user> {
       'city': city,
       'isMedic': false,
       'medic': medic,
-      'fullName': '$firstName $lastName'
+      'fullName': '$firstName $lastName',
+      'fiseMedicale': fiseMedicale,
     });
   }
 
@@ -561,7 +570,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                           _phone.text.trim(),
                                           _cnp.text.trim(),
                                           _city.text.trim(),
-                                          _medic.text.trim());
+                                          _medic.text.trim(), []);
 
                                       addUserToMedic(
                                           '${_firstName.text.trim()} ${_lastName.text.trim()}',
@@ -968,7 +977,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                       _phone.text.trim(),
                                       _cnp.text.trim(),
                                       _city.text.trim(),
-                                      _medic.text.trim());
+                                      _medic.text.trim(), []);
 
                                   addUserToMedic(
                                       '${_firstName.text.trim()} ${_lastName.text.trim()}',
@@ -1370,7 +1379,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
                                       _phone.text.trim(),
                                       _cnp.text.trim(),
                                       _city.text.trim(),
-                                      _medic.text.trim());
+                                      _medic.text.trim(), []);
 
                                   addUserToMedic(
                                       '${_firstName.text.trim()} ${_lastName.text.trim()}',

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:health_hub/profileDecider.dart';
 import '../../../commonComponents/vectors/vector_center_right.dart';
 import '../../../read data/get_medic_info.dart';
+import '../../../uploadpdf.dart';
 
 class ListAndPacientDetails extends StatefulWidget {
   ListAndPacientDetails({
@@ -376,7 +377,32 @@ class PersonDetail extends StatelessWidget {
                   Text(
                     'trimite altui medic',
                     style: TextStyle(fontWeight: FontWeight.w400),
-                  )
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF323741),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 45, vertical: 25),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                    ),
+                    onPressed: (() {
+                      String numePacient = person.fullName;
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UploadPDF(
+                                    numePacient: numePacient,
+                                  )));
+                    }),
+                    child: Text('Incarca fisa medicala',
+                        style: GoogleFonts.roboto(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          letterSpacing: 2,
+                          fontSize: 20,
+                        )),
+                  ),
                 ],
               ),
             ),
