@@ -1,10 +1,17 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:searchfield/searchfield.dart';
 import 'package:flutter/material.dart';
 import 'package:health_hub/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class SignInPage_medic extends StatefulWidget {
   const SignInPage_medic({super.key});
@@ -39,6 +46,51 @@ class Appointment {
 }
 
 class _SignInPage_medicState extends State<SignInPage_medic> {
+  String filename = '';
+  Future<firebase_storage.UploadTask?> uploadFile(
+      Uint8List? file, String filename) async {
+    if (file == null) {
+      print('No file has been printed');
+      return null;
+    }
+
+    firebase_storage.UploadTask uploadTask;
+    String numePacient = 'medic';
+    // Create a Reference to the file
+    firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
+        .ref()
+        .child('avatarURL')
+        .child('/${filename}');
+
+    final metadata = firebase_storage.SettableMetadata(
+      contentType: 'file/pdf',
+      //customMetadata: {'picked-file-path': file.path});
+    );
+    print("Uploading..!");
+
+    uploadTask = ref.putData(await file, metadata);
+
+    print("done..!");
+    await Future.delayed(const Duration(seconds: 2), () async {
+      String downloadURL = await firebase_storage.FirebaseStorage.instance
+          .ref('files/${filename}')
+          .getDownloadURL();
+      print(downloadURL);
+      await adaugaMedicProof(downloadURL, numePacient);
+    });
+    return Future.value(uploadTask);
+  }
+
+  Future adaugaMedicProof(String linkFisaMedicala, String numePacient) async {
+    var list = [linkFisaMedicala];
+
+    // var idPacient = await getPacientId(numePacient);
+    // FirebaseFirestore.instance
+    //     .collection('users')
+    //     .doc(idPacient)
+    //     .update({"fiseMedicale": FieldValue.arrayUnion(list)});
+  }
+
   late final TextEditingController _email;
   late final TextEditingController _password;
   late final TextEditingController _confirmPassword;
@@ -46,6 +98,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
   late final TextEditingController _lastName;
   late final TextEditingController _phone;
   late final TextEditingController _city;
+  String imageUrl = '';
 
   TextEditingController myController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -95,7 +148,8 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
       String phone,
       String city,
       List<String> pacienti,
-      List<Appointment> programari) async {
+      List<Appointment> programari,
+      String medicProof) async {
     await FirebaseFirestore.instance.collection('users').add({
       'first name': firstName,
       'last name': lastName,
@@ -106,6 +160,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
       'fullName': '$firstName $lastName',
       'pacienti': pacienti,
       'programari': programari,
+      'medifProof': medicProof
     });
   }
 
@@ -405,13 +460,68 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                       ),
                                       Container(
                                         padding: const EdgeInsets.all(10),
-                                        child: const TextField(
-                                          decoration: InputDecoration(
-                                              hintText:
-                                                  "Poza ce certifica ca sunteti medic",
-                                              hintStyle:
-                                                  TextStyle(color: Colors.grey),
-                                              border: InputBorder.none),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                                'Pozace certifica ca sunteti medic'),
+                                            IconButton(
+                                              icon: Icon(Icons.camera_alt),
+                                              onPressed: () async {
+                                                String uniqueFileName =
+                                                    DateTime.now()
+                                                        .microsecondsSinceEpoch
+                                                        .toString();
+                                                // ImagePicker imagePicer =
+                                                //     ImagePicker();
+                                                // XFile? file =
+                                                //     await imagePicer.pickImage(
+                                                //         source:
+                                                //             ImageSource.gallery);
+
+                                                // Reference referenceRoot =
+                                                //     FirebaseStorage.instance.ref();
+                                                // Reference referenceDirImages =
+                                                //     referenceRoot
+                                                //         .child('medicProof');
+                                                // if (file == null) return;
+
+                                                // Reference referenceImageToUpload =
+                                                //     referenceDirImages
+                                                //         .child(uniqueFileName);
+
+                                                FilePickerResult? result =
+                                                    await FilePicker.platform
+                                                        .pickFiles();
+                                                if (result != null) {
+                                                  filename =
+                                                      '${result.files.single.name}-${uniqueFileName}';
+                                                  if (kIsWeb) {
+                                                    Uint8List? uploadfile =
+                                                        result
+                                                            .files.single.bytes;
+                                                    //var ceva = result.files.single.path;
+                                                    //if (ceva != null) {
+                                                    //File file = File(ceva);
+                                                    firebase_storage.UploadTask?
+                                                        task = await uploadFile(
+                                                            uploadfile,
+                                                            filename);
+
+                                                    //}
+                                                  }
+                                                }
+                                                // try {
+                                                //   await referenceImageToUpload
+                                                //       .putFile(File(file.path));
+                                                //   imageUrl =
+                                                //       await referenceImageToUpload
+                                                //           .getDownloadURL();
+                                                // } catch (err) {
+                                                //   print('eroare la upload $err');
+                                                // }
+                                              },
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ],
@@ -431,8 +541,6 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                       borderRadius: BorderRadius.circular(50)),
                                 ),
                                 onPressed: () async {
-                                  // print(cities);
-
                                   /// TODO: Initializare la inceput + future builder
                                   if (passwordConfirmed() &&
                                       formKey.currentState!.validate()) {
@@ -453,7 +561,10 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                         _lastName.text.trim(),
                                         _email.text.trim(),
                                         _phone.text.trim(),
-                                        _city.text.trim(), [], []);
+                                        _city.text.trim(),
+                                        [],
+                                        [],
+                                        filename);
 
                                     ScaffoldMessenger.of(context).showSnackBar(
                                         const SnackBar(
@@ -759,13 +870,66 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                     ),
                                     Container(
                                       padding: const EdgeInsets.all(10),
-                                      child: const TextField(
-                                        decoration: InputDecoration(
-                                            hintText:
-                                                "Poza ce certifica ca sunteti medic",
-                                            hintStyle:
-                                                TextStyle(color: Colors.grey),
-                                            border: InputBorder.none),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                              'Poza ce certifica ca sunteti medic'),
+                                          IconButton(
+                                            icon: Icon(Icons.camera_alt),
+                                            onPressed: () async {
+                                              String uniqueFileName =
+                                                  DateTime.now()
+                                                      .microsecondsSinceEpoch
+                                                      .toString();
+                                              // ImagePicker imagePicer =
+                                              //     ImagePicker();
+                                              // XFile? file =
+                                              //     await imagePicer.pickImage(
+                                              //         source:
+                                              //             ImageSource.gallery);
+
+                                              // Reference referenceRoot =
+                                              //     FirebaseStorage.instance.ref();
+                                              // Reference referenceDirImages =
+                                              //     referenceRoot
+                                              //         .child('medicProof');
+                                              // if (file == null) return;
+
+                                              // Reference referenceImageToUpload =
+                                              //     referenceDirImages
+                                              //         .child(uniqueFileName);
+
+                                              FilePickerResult? result =
+                                                  await FilePicker.platform
+                                                      .pickFiles();
+                                              if (result != null) {
+                                                filename =
+                                                    '${result.files.single.name}-${uniqueFileName}';
+                                                if (kIsWeb) {
+                                                  Uint8List? uploadfile =
+                                                      result.files.single.bytes;
+                                                  //var ceva = result.files.single.path;
+                                                  //if (ceva != null) {
+                                                  //File file = File(ceva);
+                                                  firebase_storage.UploadTask?
+                                                      task = await uploadFile(
+                                                          uploadfile, filename);
+
+                                                  //}
+                                                }
+                                              }
+                                              // try {
+                                              //   await referenceImageToUpload
+                                              //       .putFile(File(file.path));
+                                              //   imageUrl =
+                                              //       await referenceImageToUpload
+                                              //           .getDownloadURL();
+                                              // } catch (err) {
+                                              //   print('eroare la upload $err');
+                                              // }
+                                            },
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
@@ -814,7 +978,10 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                       _lastName.text.trim(),
                                       _email.text.trim(),
                                       _phone.text.trim(),
-                                      _city.text.trim(), [], []);
+                                      _city.text.trim(),
+                                      [],
+                                      [],
+                                      filename);
 
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
@@ -1120,13 +1287,66 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                     ),
                                     Container(
                                       padding: const EdgeInsets.all(10),
-                                      child: const TextField(
-                                        decoration: InputDecoration(
-                                            hintText:
-                                                "Poza ce certifica ca sunteti medic",
-                                            hintStyle:
-                                                TextStyle(color: Colors.grey),
-                                            border: InputBorder.none),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                              'Pozac ce certifca ca sunteti medic'),
+                                          IconButton(
+                                            icon: Icon(Icons.camera_alt),
+                                            onPressed: () async {
+                                              String uniqueFileName =
+                                                  DateTime.now()
+                                                      .microsecondsSinceEpoch
+                                                      .toString();
+                                              // ImagePicker imagePicer =
+                                              //     ImagePicker();
+                                              // XFile? file =
+                                              //     await imagePicer.pickImage(
+                                              //         source:
+                                              //             ImageSource.gallery);
+
+                                              // Reference referenceRoot =
+                                              //     FirebaseStorage.instance.ref();
+                                              // Reference referenceDirImages =
+                                              //     referenceRoot
+                                              //         .child('medicProof');
+                                              // if (file == null) return;
+
+                                              // Reference referenceImageToUpload =
+                                              //     referenceDirImages
+                                              //         .child(uniqueFileName);
+
+                                              FilePickerResult? result =
+                                                  await FilePicker.platform
+                                                      .pickFiles();
+                                              if (result != null) {
+                                                filename =
+                                                    '${result.files.single.name}-${uniqueFileName}';
+                                                if (kIsWeb) {
+                                                  Uint8List? uploadfile =
+                                                      result.files.single.bytes;
+                                                  //var ceva = result.files.single.path;
+                                                  //if (ceva != null) {
+                                                  //File file = File(ceva);
+                                                  firebase_storage.UploadTask?
+                                                      task = await uploadFile(
+                                                          uploadfile, filename);
+
+                                                  //}
+                                                }
+                                              }
+                                              // try {
+                                              //   await referenceImageToUpload
+                                              //       .putFile(File(file.path));
+                                              //   imageUrl =
+                                              //       await referenceImageToUpload
+                                              //           .getDownloadURL();
+                                              // } catch (err) {
+                                              //   print('eroare la upload $err');
+                                              // }
+                                            },
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
@@ -1175,7 +1395,10 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                       _lastName.text.trim(),
                                       _email.text.trim(),
                                       _phone.text.trim(),
-                                      _city.text.trim(), [], []);
+                                      _city.text.trim(),
+                                      [],
+                                      [],
+                                      filename);
 
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
