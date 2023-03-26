@@ -152,12 +152,15 @@ Future getPatients() async {
       print("Successfully completed");
       if (fetchPatients == false) {
         for (var docSnapshot in querySnapshot.docs) {
-          for (int i = 0; i <= querySnapshot.docs.length; i++)
-            pacienti.add(docSnapshot.data()['pacienti'][i]);
+          for (int i = 0; i <= docSnapshot.data().length; i++) {
+            print(docSnapshot.data()['pacienti'].length);
+            if (docSnapshot.data()['pacienti'][i] != null)
+              pacienti.add(docSnapshot.data()['pacienti'][i]);
+          }
         }
         print('AM FACUT FETCH LA PACIENTI');
       }
-      print(pacienti);
+
       fetchPatients = true;
     },
     onError: (e) => print("Error completing: $e"),
