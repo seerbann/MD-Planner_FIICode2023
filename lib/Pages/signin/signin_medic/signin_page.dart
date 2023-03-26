@@ -91,6 +91,37 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
     //     .update({"fiseMedicale": FieldValue.arrayUnion(list)});
   }
 
+  Future<firebase_storage.UploadTask?> uploadFileMobile(
+      File? file, String filename) async {
+    if (file == null) {
+      print('No file has been printed');
+      return null;
+    }
+
+    firebase_storage.UploadTask uploadTask;
+
+    // Create a Reference to the file
+    firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
+        .ref()
+        .child('avatarURL')
+        .child('/${filename}');
+
+    final metadata = firebase_storage.SettableMetadata(
+        contentType: 'file/pdf',
+        customMetadata: {'picked-file-path': file.path});
+
+    print("Uploading..!");
+
+    uploadTask = ref.putData(await file.readAsBytesSync(), metadata);
+
+    print("done..!");
+    await Future.delayed(const Duration(seconds: 2), () async {
+      String downloadURL = await firebase_storage.FirebaseStorage.instance
+          .ref('files/${filename}')
+          .getDownloadURL();
+    });
+  }
+
   late final TextEditingController _email;
   late final TextEditingController _password;
   late final TextEditingController _confirmPassword;
@@ -463,7 +494,7 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                         child: Row(
                                           children: [
                                             Text(
-                                                'Pozace certifica ca sunteti medic'),
+                                                'Poza ce certifica ca sunteti medic'),
                                             IconButton(
                                               icon: Icon(Icons.camera_alt),
                                               onPressed: () async {
@@ -471,23 +502,6 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                                     DateTime.now()
                                                         .microsecondsSinceEpoch
                                                         .toString();
-                                                // ImagePicker imagePicer =
-                                                //     ImagePicker();
-                                                // XFile? file =
-                                                //     await imagePicer.pickImage(
-                                                //         source:
-                                                //             ImageSource.gallery);
-
-                                                // Reference referenceRoot =
-                                                //     FirebaseStorage.instance.ref();
-                                                // Reference referenceDirImages =
-                                                //     referenceRoot
-                                                //         .child('medicProof');
-                                                // if (file == null) return;
-
-                                                // Reference referenceImageToUpload =
-                                                //     referenceDirImages
-                                                //         .child(uniqueFileName);
 
                                                 FilePickerResult? result =
                                                     await FilePicker.platform
@@ -508,6 +522,19 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                                             filename);
 
                                                     //}
+                                                  } else {
+                                                    var ceva = result
+                                                        .files.single.path;
+                                                    filename =
+                                                        '${result.files.single.name}-${uniqueFileName}';
+                                                    if (ceva != null) {
+                                                      File file = File(ceva);
+                                                      firebase_storage
+                                                              .UploadTask?
+                                                          task =
+                                                          await uploadFileMobile(
+                                                              file, filename);
+                                                    }
                                                   }
                                                 }
                                                 // try {
@@ -916,6 +943,18 @@ class _SignInPage_medicState extends State<SignInPage_medic> {
                                                           uploadfile, filename);
 
                                                   //}
+                                                } else {
+                                                  var ceva =
+                                                      result.files.single.path;
+                                                  filename =
+                                                      '${result.files.single.name}-${uniqueFileName}';
+                                                  if (ceva != null) {
+                                                    File file = File(ceva);
+                                                    firebase_storage.UploadTask?
+                                                        task =
+                                                        await uploadFileMobile(
+                                                            file, filename);
+                                                  }
                                                 }
                                               }
                                               // try {
