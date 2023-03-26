@@ -239,123 +239,127 @@ class _LoginPageState extends State<LoginPage> {
               ],
             )),
             child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Text("Autentificare",
-                        style: GoogleFonts.roboto(
-                          color: const Color.fromARGB(255, 255, 255, 255),
-                          letterSpacing: 2,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w500,
-                        )),
-                  ),
-                  const SizedBox(height: 5),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Text("Bine ai revenit",
-                        style: GoogleFonts.outfit(
-                          color: const Color.fromARGB(255, 255, 255, 255),
-                          //letterSpacing: 2,
-                          fontSize: 18,
-                        )),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30),
+                      child: Text("Autentificare",
+                          style: GoogleFonts.roboto(
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                            letterSpacing: 2,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w500,
+                          )),
+                    ),
+                    const SizedBox(height: 5),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30),
+                      child: Text("Bine ai revenit",
+                          style: GoogleFonts.outfit(
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                            //letterSpacing: 2,
+                            fontSize: 18,
+                          )),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.white,
+                        ),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(25)),
                         color: Colors.white,
                       ),
-                      borderRadius: const BorderRadius.all(Radius.circular(25)),
-                      color: Colors.white,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 30, right: 30, top: 50, bottom: 30),
-                      child: Column(
-                        children: [
-                          Container(
-                            width: 500,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Color.fromRGBO(122, 162, 255, 0.5),
-                                      blurRadius: 20,
-                                      offset: Offset(0, 10))
-                                ]),
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: const BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              color: Color.fromRGBO(
-                                                  240, 240, 240, 1)))),
-                                  child: TextField(
-                                    controller: _emailController,
-                                    decoration: InputDecoration(
-                                        hintText: "Email",
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey),
-                                        border: InputBorder.none),
-                                  ),
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.all(10),
-                                  child: TextField(
-                                    controller: _passwordController,
-                                    obscureText: true,
-                                    decoration: InputDecoration(
-                                        hintText: "Parola",
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey),
-                                        border: InputBorder.none),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          const Text(
-                            "Ai uitat parola?",
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromRGBO(67, 123, 255, 1),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 25, vertical: 20),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)),
-                            ),
-                            onPressed: (() => signIn()),
-                            child: Text('Autentificare',
-                                style: GoogleFonts.roboto(
-                                  fontWeight: FontWeight.bold,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 30, right: 30, top: 50, bottom: 30),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: 500,
+                              decoration: BoxDecoration(
                                   color: Colors.white,
-                                  letterSpacing: 2,
-                                  fontSize: 20,
-                                )),
-                          ),
-                        ],
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        color:
+                                            Color.fromRGBO(122, 162, 255, 0.5),
+                                        blurRadius: 20,
+                                        offset: Offset(0, 10))
+                                  ]),
+                              child: Column(
+                                children: <Widget>[
+                                  Container(
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: const BoxDecoration(
+                                        border: Border(
+                                            bottom: BorderSide(
+                                                color: Color.fromRGBO(
+                                                    240, 240, 240, 1)))),
+                                    child: TextField(
+                                      controller: _emailController,
+                                      decoration: InputDecoration(
+                                          hintText: "Email",
+                                          hintStyle:
+                                              TextStyle(color: Colors.grey),
+                                          border: InputBorder.none),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.all(10),
+                                    child: TextField(
+                                      controller: _passwordController,
+                                      obscureText: true,
+                                      decoration: InputDecoration(
+                                          hintText: "Parola",
+                                          hintStyle:
+                                              TextStyle(color: Colors.grey),
+                                          border: InputBorder.none),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 40,
+                            ),
+                            const Text(
+                              "Ai uitat parola?",
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                            const SizedBox(
+                              height: 40,
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    const Color.fromRGBO(67, 123, 255, 1),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 25, vertical: 20),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50)),
+                              ),
+                              onPressed: (() => signIn()),
+                              child: Text('Autentificare',
+                                  style: GoogleFonts.roboto(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    letterSpacing: 2,
+                                    fontSize: 20,
+                                  )),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           )),
