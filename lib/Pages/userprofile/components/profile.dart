@@ -26,6 +26,7 @@ class _ProfileState extends State<Profile> {
   String city = "";
   String cnp = "";
   String email = "";
+  String medic = "";
   Future getInfo() async {
     bool procesTerminat = false;
     await FirebaseFirestore.instance
@@ -42,6 +43,7 @@ class _ProfileState extends State<Profile> {
             cnp = data['cnp'];
             email = data['email'];
             phone = data['phone'];
+            medic = data['medic'];
             procesTerminat = true;
             fullName = firstname + ' ' + lastname;
           }),
@@ -83,21 +85,24 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
               Align(
-                alignment: Alignment(0.3, -0.4),
-                child: ClipPath(
-                  clipper: BlueVector_center(),
-                  child: Container(
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                      begin: Alignment.centerRight,
-                      end: Alignment.centerLeft,
-                      colors: [
-                        Color.fromRGBO(51, 112, 255, 1).withOpacity(0.7),
-                        Color.fromRGBO(122, 162, 255, 1).withOpacity(0.7),
-                      ],
-                    )),
+                alignment: Alignment(0.3, 0.4),
+                child: RotatedBox(
+                  quarterTurns: 2,
+                  child: ClipPath(
+                    clipper: BlueVector_center(),
+                    child: Container(
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                        begin: Alignment.centerRight,
+                        end: Alignment.centerLeft,
+                        colors: [
+                          Color.fromRGBO(51, 112, 255, 1).withOpacity(0.7),
+                          Color.fromRGBO(122, 162, 255, 1).withOpacity(0.7),
+                        ],
+                      )),
+                    ),
                   ),
                 ),
               ),
@@ -416,6 +421,46 @@ class _ProfileState extends State<Profile> {
                                                 if (snapshot.hasData) {
                                                   return Text(
                                                     cnp,
+                                                    style: TextStyle(
+                                                        fontSize: 20,
+                                                        fontFamily: 'Outfit',
+                                                        color: Colors.black
+                                                            .withOpacity(0.7)),
+                                                  );
+                                                } else {
+                                                  return Center(
+                                                      child:
+                                                          CircularProgressIndicator());
+                                                }
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        height: 50,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Medic',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontFamily: 'Outfit',
+                                                  color: Colors.black),
+                                            ),
+                                            FutureBuilder(
+                                              future: getInfo(),
+                                              builder: (context, snapshot) {
+                                                if (snapshot.hasData) {
+                                                  return Text(
+                                                    medic,
                                                     style: TextStyle(
                                                         fontSize: 20,
                                                         fontFamily: 'Outfit',
@@ -807,6 +852,46 @@ class _ProfileState extends State<Profile> {
                                                 if (snapshot.hasData) {
                                                   return Text(
                                                     cnp,
+                                                    style: TextStyle(
+                                                        fontSize: 20,
+                                                        fontFamily: 'Outfit',
+                                                        color: Colors.black
+                                                            .withOpacity(0.7)),
+                                                  );
+                                                } else {
+                                                  return Center(
+                                                      child:
+                                                          CircularProgressIndicator());
+                                                }
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        height: 50,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Medic',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontFamily: 'Outfit',
+                                                  color: Colors.black),
+                                            ),
+                                            FutureBuilder(
+                                              future: getInfo(),
+                                              builder: (context, snapshot) {
+                                                if (snapshot.hasData) {
+                                                  return Text(
+                                                    medic,
                                                     style: TextStyle(
                                                         fontSize: 20,
                                                         fontFamily: 'Outfit',
