@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:health_hub/Pages/listpage/components/ListAndPacientDetails.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -110,6 +111,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           Text("Logout", style: TextStyle(color: Colors.white)),
                       onTap: () {
                         setState(() {
+                          fetchPatients = false;
                           FirebaseAuth.instance.signOut();
                           Navigator.pushNamed(context, '/');
                         });

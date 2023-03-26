@@ -27,6 +27,31 @@ class Medic {
   });
 }
 
+class FiseMedicale {
+  final String? nume;
+  final String? link;
+  final String? day;
+  final String? month;
+  final String? year;
+
+  FiseMedicale({
+    required this.nume,
+    required this.link,
+    required this.day,
+    required this.month,
+    required this.year,
+  });
+  Map<String, dynamic> toMap() {
+    return {
+      "nume": nume,
+      "link": link,
+      "day": day,
+      "month": month,
+      "year": year
+    };
+  }
+}
+
 class SignInPage_user extends StatefulWidget {
   const SignInPage_user({super.key});
 
@@ -101,7 +126,7 @@ class _SignInPage_userState extends State<SignInPage_user> {
     String cnp,
     String city,
     String medic,
-    List<String> fiseMedicale,
+    List<FiseMedicale> fiseMedicale,
   ) async {
     await FirebaseFirestore.instance.collection('users').add({
       'first name': firstName,
