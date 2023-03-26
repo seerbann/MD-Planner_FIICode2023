@@ -157,7 +157,7 @@ Future getPatients() async {
         }
         print('AM FACUT FETCH LA PACIENTI');
       }
-      print(pacienti[0]);
+      print(pacienti);
       fetchPatients = true;
     },
     onError: (e) => print("Error completing: $e"),

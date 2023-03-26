@@ -15,6 +15,31 @@ class UploadPDF extends StatefulWidget {
   State<UploadPDF> createState() => _UploadPDFState();
 }
 
+class FiseMedicale {
+  final String? nume;
+  final String? link;
+  final String? day;
+  final String? month;
+  final String? year;
+
+  FiseMedicale({
+    required this.nume,
+    required this.link,
+    required this.day,
+    required this.month,
+    required this.year,
+  });
+  Map<String, dynamic> toMap() {
+    return {
+      "nume": nume,
+      "link": link,
+      "day": day,
+      "month": month,
+      "year": year
+    };
+  }
+}
+
 class _UploadPDFState extends State<UploadPDF> {
   Future<String> getPacientId(String numePacient) async {
     String idPacient = "aaaa";
@@ -30,8 +55,9 @@ class _UploadPDFState extends State<UploadPDF> {
     return idPacient;
   }
 
-  Future adaugaFisaMedicala(String linkFisaMedicala, String numePacient) async {
-    var list = [linkFisaMedicala];
+  Future adaugaFisaMedicala(
+      FiseMedicale linkFisaMedicala, String numePacient) async {
+    List list = [linkFisaMedicala.toMap()];
     var idPacient = await getPacientId(numePacient);
     FirebaseFirestore.instance
         .collection('users')
@@ -68,7 +94,19 @@ class _UploadPDFState extends State<UploadPDF> {
           .ref('files/${filename}')
           .getDownloadURL();
       print(downloadURL);
-      await adaugaFisaMedicala(downloadURL, numePacient);
+      var today = DateTime.now();
+      String day = today.day.toString();
+      String month = today.month.toString();
+      String year = today.year.toString();
+
+      FiseMedicale fisaMedicalaDeAdaugat = FiseMedicale(
+        nume: filename.toString(),
+        link: downloadURL.toString(),
+        day: day,
+        month: month,
+        year: year,
+      );
+      await adaugaFisaMedicala(fisaMedicalaDeAdaugat, numePacient);
     });
     return Future.value(uploadTask);
   }
@@ -102,7 +140,19 @@ class _UploadPDFState extends State<UploadPDF> {
           .ref('files/${filename}')
           .getDownloadURL();
       print(downloadURL);
-      await adaugaFisaMedicala(downloadURL, numePacient);
+      var today = DateTime.now();
+      String day = today.day.toString();
+      String month = today.month.toString();
+      String year = today.year.toString();
+
+      FiseMedicale fisaMedicalaDeAdaugat = FiseMedicale(
+        nume: filename.toString(),
+        link: downloadURL.toString(),
+        day: day,
+        month: month,
+        year: year,
+      );
+      await adaugaFisaMedicala(fisaMedicalaDeAdaugat, numePacient);
     });
 
     return Future.value(uploadTask);
