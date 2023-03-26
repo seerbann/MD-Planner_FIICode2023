@@ -686,6 +686,7 @@ class _MedicDetailState extends State<MedicDetail> {
                                 ),
                                 duration: Duration(milliseconds: 1000),
                               ));
+                              random = false;
                             },
                           )
                         ],
