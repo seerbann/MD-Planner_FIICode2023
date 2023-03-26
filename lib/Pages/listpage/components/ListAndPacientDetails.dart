@@ -497,12 +497,14 @@ class MedicList extends StatelessWidget {
                         for (int i = 0; i < medicList.length; i++)
                           TextButton(
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.only(top: 8, bottom: 8),
                               child: Container(
                                 height: 70,
                                 decoration: BoxDecoration(
-                                    color: Color(0xFF9DBAFE),
-                                    border: Border.all(color: Colors.black)),
+                                    color: Color(0xFF9DBAFE).withOpacity(0.6),
+                                    border: Border.all(color: Colors.black),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(25))),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -666,32 +668,13 @@ class _MedicDetailState extends State<MedicDetail> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Column(
-                        children: [
-                          Image.asset('assets/images/defaultUser.png'),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          TextButton(
-                            child: Text('schimba medic'),
-                            onPressed: () async {
-                              id = await getCurrUserId(currentUsersName);
-                              updateMedic(widget.medic.fullName);
-                              print(widget.medic.fullName);
-
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                                content: Text(
-                                  'Medic schimbat cu succes',
-                                ),
-                                duration: Duration(milliseconds: 1000),
-                              ));
-                              random = false;
-                            },
-                          )
-                        ],
+                      Image.asset('assets/images/defaultUser.png'),
+                      SizedBox(
+                        width: 15,
                       ),
                       Column(
+                        // mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             widget.medic.fullName,
@@ -700,11 +683,46 @@ class _MedicDetailState extends State<MedicDetail> {
                                 fontSize: 35,
                                 fontWeight: FontWeight.bold),
                           ),
-                          Text(widget.medic.phone)
+                          Text(
+                            widget.medic.city,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          SelectableText(widget.medic.email),
+                          SelectableText(widget.medic.phone),
                         ],
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(67, 123, 255, 1),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 25, vertical: 20),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50)),
+                      textStyle: const TextStyle(fontSize: 20),
+                      foregroundColor: Colors.blue,
+                    ),
+                    child: Text(
+                      'schimba medic',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () async {
+                      id = await getCurrUserId(currentUsersName);
+                      updateMedic(widget.medic.fullName);
+
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text(
+                          'Medic schimbat cu succes',
+                        ),
+                        duration: Duration(milliseconds: 1000),
+                      ));
+                      random = false;
+                    },
+                  )
                 ],
               ),
             ),
@@ -727,7 +745,7 @@ class _WideLayoutwithMedicsState extends State<WideLayoutwithMedics> {
     return Row(
       children: [
         Expanded(
-            flex: 2,
+            flex: 3,
             child: MedicList(
                 onMedicTap: (medic) => setState(() {
                       _medic = medic;
