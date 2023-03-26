@@ -243,16 +243,16 @@ class _SignInPage_userState extends State<SignInPage_user> {
                       const SizedBox(height: 5),
                       Row(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 30),
-                            child: Text("Ai fost invitat de catre \$medic",
-                                style: GoogleFonts.outfit(
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255),
-                                  //letterSpacing: 2,
-                                  fontSize: 18,
-                                )),
-                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(left: 30),
+                          //   child: Text("Ai fost invitat de catre \$medic",
+                          //       style: GoogleFonts.outfit(
+                          //         color:
+                          //             const Color.fromARGB(255, 255, 255, 255),
+                          //         //letterSpacing: 2,
+                          //         fontSize: 18,
+                          //       )),
+                          // ),
                         ],
                       ),
                       const SizedBox(height: 40),
@@ -653,15 +653,15 @@ class _SignInPage_userState extends State<SignInPage_user> {
                           )),
                     ),
                     const SizedBox(height: 5),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30),
-                      child: Text("Ai fost invitat de catre numemedic",
-                          style: GoogleFonts.outfit(
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            //letterSpacing: 2,
-                            fontSize: 18,
-                          )),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 30),
+                    //   child: Text("Ai fost invitat de catre numemedic",
+                    //       style: GoogleFonts.outfit(
+                    //         color: const Color.fromARGB(255, 255, 255, 255),
+                    //         //letterSpacing: 2,
+                    //         fontSize: 18,
+                    //       )),
+                    // ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -1059,15 +1059,15 @@ class _SignInPage_userState extends State<SignInPage_user> {
                           )),
                     ),
                     const SizedBox(height: 5),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30),
-                      child: Text("Ai fost invitat de catre numemedic",
-                          style: GoogleFonts.outfit(
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            //letterSpacing: 2,
-                            fontSize: 18,
-                          )),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 30),
+                    //   child: Text("Ai fost invitat de catre numemedic",
+                    //       style: GoogleFonts.outfit(
+                    //         color: const Color.fromARGB(255, 255, 255, 255),
+                    //         //letterSpacing: 2,
+                    //         fontSize: 18,
+                    //       )),
+                    // ),
                     const SizedBox(
                       height: 20,
                     ),
