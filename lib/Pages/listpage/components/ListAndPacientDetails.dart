@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:health_hub/profileDecider.dart';
+import '../../../commonComponents/vectors/vector_center_right.dart';
 import '../../../read data/get_medic_info.dart';
 
 class ListAndPacientDetails extends StatefulWidget {
@@ -256,7 +257,10 @@ class PeopleList extends StatelessWidget {
                                   child: Container(
                                     height: 70,
                                     decoration: BoxDecoration(
-                                        color: Color(0xFF9DBAFE),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(25)),
+                                        color:
+                                            Color(0xFF9DBAFE).withOpacity(0.6),
                                         border:
                                             Border.all(color: Colors.black)),
                                     child: Row(
@@ -656,80 +660,126 @@ class _MedicDetailState extends State<MedicDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              color: Color(0xFFFAFBFF),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset('assets/images/defaultUser.png'),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Column(
-                        // mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.medic.fullName,
-                            style: TextStyle(
-                                fontFamily: 'Outfit',
-                                fontSize: 35,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            widget.medic.city,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          SelectableText(widget.medic.email),
-                          SelectableText(widget.medic.phone),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(67, 123, 255, 1),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 25, vertical: 20),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50)),
-                      textStyle: const TextStyle(fontSize: 20),
-                      foregroundColor: Colors.blue,
-                    ),
-                    child: Text(
-                      'schimba medic',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () async {
-                      id = await getCurrUserId(currentUsersName);
-                      updateMedic(widget.medic.fullName);
-
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text(
-                          'Medic schimbat cu succes',
-                        ),
-                        duration: Duration(milliseconds: 1000),
-                      ));
-                      random = false;
-                    },
-                  )
+    return Stack(children: [
+      Align(
+        alignment: Alignment(-0.9, -1.1),
+        child: RotatedBox(
+          quarterTurns: 2,
+          child: ClipPath(
+            clipper: BlueVector_center(),
+            child: Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                begin: Alignment.centerRight,
+                end: Alignment.centerLeft,
+                colors: [
+                  Color.fromRGBO(51, 112, 255, 1).withOpacity(0.7),
+                  Color.fromRGBO(122, 162, 255, 1).withOpacity(0.7),
                 ],
-              ),
+              )),
             ),
-          ],
+          ),
         ),
       ),
-    );
+      Align(
+        alignment: Alignment(0.9, 1.1),
+        child: RotatedBox(
+          quarterTurns: 4,
+          child: ClipPath(
+            clipper: BlueVector_center(),
+            child: Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                begin: Alignment.centerRight,
+                end: Alignment.centerLeft,
+                colors: [
+                  Color.fromRGBO(51, 112, 255, 1).withOpacity(0.7),
+                  Color.fromRGBO(122, 162, 255, 1).withOpacity(0.7),
+                ],
+              )),
+            ),
+          ),
+        ),
+      ),
+      Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/images/defaultUser.png'),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Column(
+                          // mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.medic.fullName,
+                              style: TextStyle(
+                                  fontFamily: 'Outfit',
+                                  fontSize: 35,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              widget.medic.city,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            SelectableText(widget.medic.email),
+                            SelectableText(widget.medic.phone),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(67, 123, 255, 1),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 25, vertical: 20),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                        textStyle: const TextStyle(fontSize: 20),
+                        foregroundColor: Colors.blue,
+                      ),
+                      child: Text(
+                        'muta-te la acest medic',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () async {
+                        id = await getCurrUserId(currentUsersName);
+                        updateMedic(widget.medic.fullName);
+
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text(
+                            'Medic schimbat cu succes',
+                          ),
+                          duration: Duration(milliseconds: 1000),
+                        ));
+                        random = false;
+                      },
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ]);
   }
 }
 
