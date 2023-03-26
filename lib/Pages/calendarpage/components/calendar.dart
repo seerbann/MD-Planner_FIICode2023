@@ -495,86 +495,128 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(35.0),
-              child: Container(
-                height: 500,
-                decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.4),
-                    border: Border.all(
-                      color: Colors.grey.withOpacity(0.4),
+          child: Row(
+        children: [
+          Spacer(
+            flex: 1,
+          ),
+          Expanded(
+            flex: 5,
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 45),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Calendar',
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Roboto',
+                                fontSize: 35,
+                                color: Colors.black)),
+                        Text(
+                            'Apasa pe o data pentru a vedea programarile din ziua respectiva',
+                            style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontSize: 20,
+                                color: Colors.black.withOpacity(0.8))),
+                      ],
                     ),
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-                child: SfDateRangePicker(
-                  onSelectionChanged: _onSelectionChanged,
-                  controller: _controller,
-                  minDate: _minDate,
-                  enablePastDates: false,
-                  monthCellStyle: DateRangePickerMonthCellStyle(
-                    blackoutDatesDecoration: BoxDecoration(
-                        color: Colors.red,
-                        border: Border.all(
-                            color: const Color(0xFFF44436), width: 1),
-                        shape: BoxShape.circle),
-                    weekendDatesDecoration: BoxDecoration(
-                        color: const Color(0xFFDFDFDF),
-                        border: Border.all(
-                            color: const Color(0xFFB6B6B6), width: 1),
-                        shape: BoxShape.circle),
-                    specialDatesDecoration: BoxDecoration(
-                        color: Colors.green,
-                        border: Border.all(
-                            color: const Color(0xFF2B732F), width: 1),
-                        shape: BoxShape.circle),
-                    blackoutDateTextStyle: TextStyle(
-                        color: Colors.white,
-                        decoration: TextDecoration.lineThrough),
-                    specialDatesTextStyle: const TextStyle(color: Colors.white),
                   ),
-                  monthViewSettings: DateRangePickerMonthViewSettings(
-                      specialDates: _specialDates),
-                ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Container(
+                        // decoration: BoxDecoration(
+                        //     color: Colors.grey.withOpacity(0.4),
+                        //     border: Border.all(
+                        //       color: Colors.grey.withOpacity(0.4),
+                        //     ),
+                        //     borderRadius: BorderRadius.all(Radius.circular(20))),
+                        child: SfDateRangePicker(
+                          onSelectionChanged: _onSelectionChanged,
+                          controller: _controller,
+                          minDate: _minDate,
+                          enablePastDates: false,
+                          monthCellStyle: DateRangePickerMonthCellStyle(
+                            blackoutDatesDecoration: BoxDecoration(
+                                color: Colors.red,
+                                border: Border.all(
+                                    color: const Color(0xFFF44436), width: 1),
+                                shape: BoxShape.circle),
+                            weekendDatesDecoration: BoxDecoration(
+                                color: const Color(0xFFDFDFDF),
+                                border: Border.all(
+                                    color: const Color(0xFFB6B6B6), width: 1),
+                                shape: BoxShape.circle),
+                            specialDatesDecoration: BoxDecoration(
+                                color: Colors.green,
+                                border: Border.all(
+                                    color: const Color(0xFF2B732F), width: 1),
+                                shape: BoxShape.circle),
+                            blackoutDateTextStyle: TextStyle(
+                                color: Colors.white,
+                                decoration: TextDecoration.lineThrough),
+                            specialDatesTextStyle:
+                                const TextStyle(color: Colors.white),
+                          ),
+                          monthViewSettings: DateRangePickerMonthViewSettings(
+                              specialDates: _specialDates),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Icon(
+                            Icons.refresh,
+                          ),
+                          TextButton(
+                              style: TextButton.styleFrom(
+                                textStyle: const TextStyle(fontSize: 15),
+                                foregroundColor: Colors.blue,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _specialDates = [];
+                                  for (int i = 0; i < appList.length; i++) {
+                                    _specialDates.add(DateTime(
+                                      int.parse(appList[i].year ?? "1"),
+                                      int.parse(appList[i].month ?? "1"),
+                                      int.parse(appList[i].day ?? "1"),
+                                    ));
+                                    print(_specialDates);
+                                  }
+                                });
+                              },
+                              child: Text(
+                                'Refresh',
+                                style: TextStyle(
+                                    color: Color.fromRGBO(67, 123, 255, 1)),
+                              )),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Container(
+                        child: Center(child: personList),
+                      )
+                    ],
+                  ),
+                ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Icon(
-                  Icons.refresh,
-                ),
-                TextButton(
-                    style: TextButton.styleFrom(
-                      textStyle: const TextStyle(fontSize: 15),
-                      foregroundColor: Colors.blue,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _specialDates = [];
-                        for (int i = 0; i < appList.length; i++) {
-                          _specialDates.add(DateTime(
-                            int.parse(appList[i].year ?? "1"),
-                            int.parse(appList[i].month ?? "1"),
-                            int.parse(appList[i].day ?? "1"),
-                          ));
-                          print(_specialDates);
-                        }
-                      });
-                    },
-                    child: Text('Refresh appointments')),
-              ],
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Container(
-              child: Center(child: personList),
-            )
-          ],
-        ),
+          ),
+          Spacer(
+            flex: 1,
+          )
+        ],
       )),
     );
   }
