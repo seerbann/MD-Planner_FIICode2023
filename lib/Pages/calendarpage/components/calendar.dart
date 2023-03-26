@@ -182,210 +182,221 @@ class _CalendarForUserState extends State<CalendarForUser> {
           ),
           Expanded(
             flex: 5,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 35),
-                          child: RichText(
-                            text: TextSpan(
-                              // Note: Styles for TextSpans must be explicitly defined.
-                              // Child text spans will inherit styles from parent
-                              style: const TextStyle(
-                                fontSize: 14.0,
-                                color: Colors.black,
-                              ),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: 'Alege ',
-                                    style: TextStyle(fontSize: 35)),
-                                TextSpan(
-                                    text: 'data si ora ',
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 35,
-                                        color:
-                                            Color.fromRGBO(67, 123, 255, 1))),
-                                TextSpan(
-                                    text: 'potrivite pentru tine',
-                                    style: TextStyle(
-                                      fontSize: 35,
-                                    )),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '1.Alege data',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 23),
-                          ),
-                          Container(
-                            // decoration: BoxDecoration(
-                            //     border: Border.all(
-                            //       color: Color.fromRGBO(67, 123, 255, 1),
-                            //     ),
-                            //     borderRadius: BorderRadius.all(Radius.circular(20))),
-                            child: SfDateRangePicker(
-                              controller: _controller,
-                              view: DateRangePickerView.month,
-                              minDate: _minDate,
-                              onSelectionChanged: _onDateChanged,
-                              selectionMode:
-                                  DateRangePickerSelectionMode.single,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            '2.Alege ora',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 23),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            width: 150,
-                            height: 70,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).selectedRowColor,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Theme.of(context).shadowColor,
-                                  blurRadius: 2,
+            child: Center(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 35),
+                            child: RichText(
+                              text: TextSpan(
+                                // Note: Styles for TextSpans must be explicitly defined.
+                                // Child text spans will inherit styles from parent
+                                style: const TextStyle(
+                                  fontSize: 14.0,
+                                  color: Colors.black,
                                 ),
-                              ],
-                              borderRadius: BorderRadius.circular(16),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: 'Alege ',
+                                      style: TextStyle(fontSize: 35)),
+                                  TextSpan(
+                                      text: 'data si ora ',
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 35,
+                                          color:
+                                              Color.fromRGBO(67, 123, 255, 1))),
+                                  TextSpan(
+                                      text: 'potrivite pentru tine',
+                                      style: TextStyle(
+                                        fontSize: 35,
+                                      )),
+                                ],
+                              ),
                             ),
-                            child: _meetingHour == null
-                                ? InkWell(
-                                    focusColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    splashColor: Colors.transparent,
-                                    onTap: _selectStartTime,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 16.0),
-                                          child: Text(
-                                            'Selecteaza ora inceput',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText2!
-                                                .copyWith(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 16),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                : InkWell(
-                                    focusColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    splashColor: Colors.transparent,
-                                    onTap: _selectStartTime,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 8.0,
-                                              left: 15.0,
-                                              top: 8.0),
-                                          child: Icon(
-                                            Icons.access_time,
-                                            color:
-                                                Color.fromRGBO(67, 123, 255, 1),
-                                            size: 28,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        Expanded(
-                                          child: Text(
-                                            '${_meetingHour!.hour.toString().padLeft(2, '0')}:${_meetingHour!.minute.toString().padLeft(2, '0')}',
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 1,
-                                            style: const TextStyle(
-                                              fontSize: 20,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(67, 123, 255, 1),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 25, vertical: 20),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50)),
-                      textStyle: const TextStyle(fontSize: 20),
-                      foregroundColor: Colors.blue,
-                    ),
-                    onPressed: () {
-                      selectedDate = _controller.selectedDate;
-
-                      Appointment appointmentToAdd = Appointment(
-                          email: currentUserEmail,
-                          day: _meetingDate?.day.toString(),
-                          month: _meetingDate?.month.toString(),
-                          year: _meetingDate?.year.toString(),
-                          hour: _meetingHour?.hour.toString(),
-                          minutes: _meetingHour?.minute.toString());
-
-                      print(appointmentToAdd.day);
-                      print(appointmentToAdd.month);
-                      print(appointmentToAdd.hour);
-                      print(currentUserEmail);
-
-                      addProgramareToMedic(appointmentToAdd, currentUsersMedic);
-
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text(
-                          'Programare realizata cu succes',
                         ),
-                        duration: Duration(milliseconds: 1000),
-                      ));
-                    },
-                    child: Text(
-                      "Programeaza-ma",
-                      style: TextStyle(color: Colors.white),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '1.Alege data',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 23),
+                            ),
+                            Container(
+                              // decoration: BoxDecoration(
+                              //     border: Border.all(
+                              //       color: Color.fromRGBO(67, 123, 255, 1),
+                              //     ),
+                              //     borderRadius: BorderRadius.all(Radius.circular(20))),
+                              child: SfDateRangePicker(
+                                controller: _controller,
+                                view: DateRangePickerView.month,
+                                minDate: _minDate,
+                                onSelectionChanged: _onDateChanged,
+                                selectionMode:
+                                    DateRangePickerSelectionMode.single,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '2.Alege ora',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 23),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Container(
+                                width: 150,
+                                height: 70,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).selectedRowColor,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Theme.of(context).shadowColor,
+                                      blurRadius: 2,
+                                    ),
+                                  ],
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                child: _meetingHour == null
+                                    ? InkWell(
+                                        focusColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        splashColor: Colors.transparent,
+                                        onTap: _selectStartTime,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 16.0),
+                                              child: Text(
+                                                'Selecteaza ora inceput',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText2!
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        fontSize: 16),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    : InkWell(
+                                        focusColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        splashColor: Colors.transparent,
+                                        onTap: _selectStartTime,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 8.0,
+                                                  left: 15.0,
+                                                  top: 8.0),
+                                              child: Icon(
+                                                Icons.access_time,
+                                                color: Color.fromRGBO(
+                                                    67, 123, 255, 1),
+                                                size: 28,
+                                              ),
+                                            ),
+                                            const SizedBox(width: 8),
+                                            Expanded(
+                                              child: Text(
+                                                '${_meetingHour!.hour.toString().padLeft(2, '0')}:${_meetingHour!.minute.toString().padLeft(2, '0')}',
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 1,
+                                                style: const TextStyle(
+                                                  fontSize: 20,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 15,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(67, 123, 255, 1),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 25, vertical: 20),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                        textStyle: const TextStyle(fontSize: 20),
+                        foregroundColor: Colors.blue,
+                      ),
+                      onPressed: () {
+                        selectedDate = _controller.selectedDate;
+
+                        Appointment appointmentToAdd = Appointment(
+                            email: currentUserEmail,
+                            day: _meetingDate?.day.toString(),
+                            month: _meetingDate?.month.toString(),
+                            year: _meetingDate?.year.toString(),
+                            hour: _meetingHour?.hour.toString(),
+                            minutes: _meetingHour?.minute.toString());
+
+                        print(appointmentToAdd.day);
+                        print(appointmentToAdd.month);
+                        print(appointmentToAdd.hour);
+                        print(currentUserEmail);
+
+                        addProgramareToMedic(
+                            appointmentToAdd, currentUsersMedic);
+
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text(
+                            'Programare realizata cu succes',
+                          ),
+                          duration: Duration(milliseconds: 1000),
+                        ));
+                      },
+                      child: Text(
+                        "Programeaza-ma",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
