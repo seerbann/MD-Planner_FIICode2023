@@ -678,6 +678,14 @@ class _MedicDetailState extends State<MedicDetail> {
                               id = await getCurrUserId(currentUsersName);
                               updateMedic(widget.medic.fullName);
                               print(widget.medic.fullName);
+
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text(
+                                  'Medic schimbat cu succes',
+                                ),
+                                duration: Duration(milliseconds: 1000),
+                              ));
                             },
                           )
                         ],
