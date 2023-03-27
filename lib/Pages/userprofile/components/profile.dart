@@ -149,8 +149,33 @@ class _ProfileState extends State<Profile> {
                                                     height: 5,
                                                   ),
                                                   ElevatedButton(
+                                                      style:
+                                                          TextButton.styleFrom(
+                                                        backgroundColor:
+                                                            const Color
+                                                                    .fromRGBO(
+                                                                67,
+                                                                123,
+                                                                255,
+                                                                1),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                horizontal: 25,
+                                                                vertical: 20),
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        50)),
+                                                        textStyle:
+                                                            const TextStyle(
+                                                                fontSize: 10),
+                                                        foregroundColor:
+                                                            Colors.blue,
+                                                      ),
                                                       child: Text(
-                                                          'editeaza date user',
+                                                          'editeaza date',
                                                           style: TextStyle(
                                                               fontFamily:
                                                                   'Roboto',
@@ -159,7 +184,7 @@ class _ProfileState extends State<Profile> {
                                                                       .bold,
                                                               fontSize: 17,
                                                               color: Colors
-                                                                  .black)),
+                                                                  .white)),
                                                       onPressed: () async {
                                                         Navigator.push(
                                                             context,
@@ -599,6 +624,31 @@ class _ProfileState extends State<Profile> {
                                                     height: 5,
                                                   ),
                                                   ElevatedButton(
+                                                      style:
+                                                          TextButton.styleFrom(
+                                                        backgroundColor:
+                                                            const Color
+                                                                    .fromRGBO(
+                                                                67,
+                                                                123,
+                                                                255,
+                                                                1),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                horizontal: 25,
+                                                                vertical: 20),
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        50)),
+                                                        textStyle:
+                                                            const TextStyle(
+                                                                fontSize: 10),
+                                                        foregroundColor:
+                                                            Colors.blue,
+                                                      ),
                                                       child: Text(
                                                           'editeaza date',
                                                           style: TextStyle(
@@ -609,8 +659,21 @@ class _ProfileState extends State<Profile> {
                                                                       .bold,
                                                               fontSize: 17,
                                                               color: Colors
-                                                                  .black)),
-                                                      onPressed: () async {}),
+                                                                  .white)),
+                                                      onPressed: () async {
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder: (context) => Update_user(
+                                                                    prenume:
+                                                                        firstName,
+                                                                    nume:
+                                                                        lastName,
+                                                                    telefon:
+                                                                        phone,
+                                                                    oras:
+                                                                        city)));
+                                                      }),
                                                 ],
                                               ),
                                             ),
