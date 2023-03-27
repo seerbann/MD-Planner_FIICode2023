@@ -222,6 +222,8 @@ Future getCurrMedicsPatients() async {
   return random;
 }
 
+Widget? fmWIDGET;
+
 class PeopleList extends StatelessWidget {
   final void Function(Medic) onPersonTap;
 
@@ -319,7 +321,7 @@ class PeopleList extends StatelessWidget {
                                   onPressed: () async {
                                     String numePacient =
                                         patientList[i].fullName;
-                                    await iaFiseMedicala(numePacient);
+                                    //await iaFiseMedicala(numePacient);
                                     return onPersonTap(patientList[i]);
                                   },
                                 ),
@@ -369,43 +371,48 @@ class PeopleList extends StatelessWidget {
       ),
     );
   }
+}
 
-  List<FiseMedicale> fmList = [];
-  var fisa;
-  Future iaFiseMedicala(String numePacient) async {
-    String idPacient = await getPacientId(numePacient);
-    print(idPacient);
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(idPacient)
-        .get()
-        .then((value) {
-      fisa = value['fiseMedicale'];
-      for (var f in fisa) {
-        FiseMedicale fmToAdd = FiseMedicale(
-            nume: f['nume'],
-            link: f['link'],
-            day: f['day'],
-            month: f['month'],
-            year: f['year']);
-        fmList.add(fmToAdd);
-      }
-      print(fmList[0].year);
-    });
-  }
+List<FiseMedicale> fmList = [];
+var fisa;
 
-  Future<String> getPacientId(String numePacient) async {
-    String idPacient = "aaaa";
+buildListFM() {}
 
-    await FirebaseFirestore.instance
-        .collection('users')
-        .where('fullName', isEqualTo: numePacient)
-        .get()
-        .then((snapshot) => snapshot.docs.forEach((document) {
-              idPacient = document.id;
-            }));
-    return idPacient;
-  }
+Future iaFiseMedicala(String numePacient) async {
+  String idPacient = await getPacientId(numePacient);
+  fmList = [];
+  await FirebaseFirestore.instance
+      .collection('users')
+      .doc(idPacient)
+      .get()
+      .then((value) {
+    fisa = value['fiseMedicale'];
+    for (var f in fisa) {
+      FiseMedicale fmToAdd = FiseMedicale(
+          nume: f['nume'],
+          link: f['link'],
+          day: f['day'],
+          month: f['month'],
+          year: f['year']);
+      fmList.add(fmToAdd);
+    }
+    print(fmList[0].year);
+    buildListFM();
+    return true;
+  });
+}
+
+Future<String> getPacientId(String numePacient) async {
+  String idPacient = "aaaa";
+
+  await FirebaseFirestore.instance
+      .collection('users')
+      .where('fullName', isEqualTo: numePacient)
+      .get()
+      .then((snapshot) => snapshot.docs.forEach((document) {
+            idPacient = document.id;
+          }));
+  return idPacient;
 }
 
 class PersonDetail extends StatelessWidget {
@@ -477,6 +484,30 @@ class PersonDetail extends StatelessWidget {
                           fontSize: 20,
                         )),
                   ),
+                  FutureBuilder(
+                      future: iaFiseMedicala(person.fullName),
+                      builder: ((context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return Center(
+                              child: Container(
+                            height: 350,
+                            child: ListView.builder(
+                              itemCount: fmList.length,
+                              itemBuilder: (context, index) {
+                                final item = fmList[index];
+                                return ListTile(
+                                  title: Text(
+                                      'Data: ${item.day}/${item.month}/${item.year}'),
+                                  subtitle: Text(item.link ?? ""),
+                                  leading: Text(item.nume ?? ""),
+                                );
+                              },
+                            ),
+                          ));
+                        } else {
+                          return Center(child: CircularProgressIndicator());
+                        }
+                      }))
                 ],
               ),
             ),
