@@ -9,6 +9,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../commonComponents/vectors/vector_center_right.dart';
+import '../../../editUser.dart';
 
 class MedicProfile extends StatefulWidget {
   const MedicProfile({super.key});
@@ -21,6 +22,9 @@ final user = FirebaseAuth.instance.currentUser;
 
 class _MedicProfileState extends State<MedicProfile> {
   FirebaseAuth auth = FirebaseAuth.instance;
+  String firstNameMedic = "";
+  String lastNameMedic = "";
+
   String fullNameMedic = "";
   String phoneMedic = "";
   String cityMedic = "";
@@ -38,6 +42,8 @@ class _MedicProfileState extends State<MedicProfile> {
             Map<String, dynamic> data = document.data();
             String firstname = data['first name'];
             String lastname = data['last name'];
+            firstNameMedic = data['first name'];
+            lastNameMedic = data['last name'];
             cityMedic = data['city'];
             emailMedic = data['email'];
             phoneMedic = data['phone'];
@@ -188,7 +194,61 @@ class _MedicProfileState extends State<MedicProfile> {
                                                                 color: Colors
                                                                     .black
                                                                     .withOpacity(
-                                                                        0.7)))
+                                                                        0.7))),
+                                                        ElevatedButton(
+                                                            style: TextButton
+                                                                .styleFrom(
+                                                              backgroundColor:
+                                                                  const Color
+                                                                          .fromRGBO(
+                                                                      67,
+                                                                      123,
+                                                                      255,
+                                                                      1),
+                                                              padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      25,
+                                                                  vertical: 20),
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              50)),
+                                                              textStyle:
+                                                                  const TextStyle(
+                                                                      fontSize:
+                                                                          10),
+                                                              foregroundColor:
+                                                                  Colors.blue,
+                                                            ),
+                                                            child: Text(
+                                                                'editeaza date',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Roboto',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        17,
+                                                                    color: Colors
+                                                                        .white)),
+                                                            onPressed:
+                                                                () async {
+                                                              Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder: (context) => Update_user(
+                                                                          prenume:
+                                                                              firstNameMedic,
+                                                                          nume:
+                                                                              lastNameMedic,
+                                                                          telefon:
+                                                                              phoneMedic,
+                                                                          oras:
+                                                                              cityMedic)));
+                                                            }),
                                                       ],
                                                     )
                                                   ],
@@ -554,7 +614,58 @@ class _MedicProfileState extends State<MedicProfile> {
                                                           fontSize: 20,
                                                           color: Colors.black
                                                               .withOpacity(
-                                                                  0.7)))
+                                                                  0.7))),
+                                                  ElevatedButton(
+                                                      style:
+                                                          TextButton.styleFrom(
+                                                        backgroundColor:
+                                                            const Color
+                                                                    .fromRGBO(
+                                                                67,
+                                                                123,
+                                                                255,
+                                                                1),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                horizontal: 25,
+                                                                vertical: 20),
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        50)),
+                                                        textStyle:
+                                                            const TextStyle(
+                                                                fontSize: 10),
+                                                        foregroundColor:
+                                                            Colors.blue,
+                                                      ),
+                                                      child: Text(
+                                                          'editeaza date',
+                                                          style: TextStyle(
+                                                              fontFamily:
+                                                                  'Roboto',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize: 17,
+                                                              color: Colors
+                                                                  .white)),
+                                                      onPressed: () async {
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder: (context) => Update_user(
+                                                                    prenume:
+                                                                        firstNameMedic,
+                                                                    nume:
+                                                                        lastNameMedic,
+                                                                    telefon:
+                                                                        phoneMedic,
+                                                                    oras:
+                                                                        cityMedic)));
+                                                      }),
                                                 ],
                                               ),
                                             ),
