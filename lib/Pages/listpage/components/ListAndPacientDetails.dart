@@ -363,7 +363,12 @@ class PersonDetail extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset('assets/images/defaultUser.png'),
+                      SizedBox(
+                        width: 15,
+                      ),
                       Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             person.firstName,
@@ -372,14 +377,15 @@ class PersonDetail extends StatelessWidget {
                                 fontSize: 35,
                                 fontWeight: FontWeight.bold),
                           ),
-                          Text(person.email)
+                          Text(
+                            person.city,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          SelectableText(person.email),
+                          SelectableText(person.phone)
                         ],
                       ),
                     ],
-                  ),
-                  Text(
-                    'trimite altui medic',
-                    style: TextStyle(fontWeight: FontWeight.w400),
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -408,18 +414,6 @@ class PersonDetail extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            SizedBox(
-              height: 200,
-            ),
-            Container(
-              color: Color(0xFFFAFBFF),
-              child: Text('Fisa Medicala'),
-            ),
-            SizedBox(height: 400),
-            Container(
-              color: Color(0xFFFAFBFF),
-              child: Text('Istoric Medical'),
             ),
           ],
         ),
