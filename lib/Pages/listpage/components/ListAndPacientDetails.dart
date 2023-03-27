@@ -309,12 +309,15 @@ class PeopleList extends StatelessWidget {
                                         SizedBox(
                                           width: 15,
                                         ),
-                                        Text(
-                                          patientList[i].fullName,
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontFamily: 'Outfit',
-                                              color: Colors.black),
+                                        Flexible(
+                                          child: Text(
+                                            overflow: TextOverflow.fade,
+                                            patientList[i].fullName,
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontFamily: 'Outfit',
+                                                color: Colors.black),
+                                          ),
                                         )
                                       ],
                                     ),
@@ -477,34 +480,65 @@ class PersonDetail extends StatelessWidget {
                 color: Color(0xFFFAFBFF),
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset('assets/images/defaultUser.png'),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              person.fullName,
-                              style: TextStyle(
-                                  fontFamily: 'Outfit',
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              person.city,
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            SelectableText(person.email),
-                            SelectableText(person.phone)
-                          ],
-                        ),
-                      ],
-                    ),
+                    (MediaQuery.of(context).size.width > 750)
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset('assets/images/defaultUser.png'),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    person.fullName,
+                                    style: TextStyle(
+                                        fontFamily: 'Outfit',
+                                        fontSize: 35,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    person.city,
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  SelectableText(person.email),
+                                  SelectableText(person.phone)
+                                ],
+                              )
+                            ],
+                          )
+                        : Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset('assets/images/defaultUser.png'),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    person.fullName,
+                                    style: TextStyle(
+                                        fontFamily: 'Outfit',
+                                        fontSize: 35,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    person.city,
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  SelectableText(person.email),
+                                  SelectableText(person.phone)
+                                ],
+                              )
+                            ],
+                          ),
                     SizedBox(
                       height: 20,
                     ),
