@@ -58,7 +58,10 @@ class _loadPdfState extends State<loadPdf> {
       );
     }
     return Scaffold(
-      appBar: AppBar(title: const Text('Syncfusion Flutter PDF Viewer')),
+      appBar: AppBar(
+        title: const Text('Fisa Medicala'),
+        backgroundColor: Colors.black,
+      ),
       body: child,
     );
   }
