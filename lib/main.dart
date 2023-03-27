@@ -7,6 +7,7 @@ import 'package:health_hub/Pages/listpage/components/ListAndPacientDetails.dart'
 import 'package:health_hub/Pages/login/login_page.dart';
 import 'package:health_hub/Pages/sidePages/about.dart';
 import 'package:health_hub/Pages/sidePages/contact.dart';
+import 'package:health_hub/editUser.dart';
 import 'package:health_hub/main_page.dart';
 import 'package:health_hub/profileDecider.dart';
 import 'package:health_hub/Pages/signin/pending.dart';
@@ -91,7 +92,7 @@ class _MyAppState extends State<MyApp> {
         //'/profile': (context) => ProfileDecider(),
         '/main': (context) => MainPage(),
         '/about': (context) => AboutPage(),
-        '/contact': (context) => ContactPage()
+        '/contact': (context) => ContactPage(),
       },
       theme: ThemeData(
         pageTransitionsTheme: PageTransitionsTheme(
