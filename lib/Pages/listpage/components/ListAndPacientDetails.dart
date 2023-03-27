@@ -7,6 +7,31 @@ import '../../../commonComponents/vectors/vector_center_right.dart';
 import '../../../read data/get_medic_info.dart';
 import '../../../uploadpdf.dart';
 
+class FiseMedicale {
+  final String? nume;
+  final String? link;
+  final String? day;
+  final String? month;
+  final String? year;
+
+  FiseMedicale({
+    required this.nume,
+    required this.link,
+    required this.day,
+    required this.month,
+    required this.year,
+  });
+  Map<String, dynamic> toMap() {
+    return {
+      "nume": nume,
+      "link": link,
+      "day": day,
+      "month": month,
+      "year": year
+    };
+  }
+}
+
 class ListAndPacientDetails extends StatefulWidget {
   ListAndPacientDetails({
     Key? key,
@@ -291,7 +316,10 @@ class PeopleList extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                  onPressed: () {
+                                  onPressed: () async {
+                                    String numePacient =
+                                        patientList[i].fullName;
+                                    await iaFiseMedicala(numePacient);
                                     return onPersonTap(patientList[i]);
                                   },
                                 ),
@@ -340,6 +368,43 @@ class PeopleList extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  List<FiseMedicale> fmList = [];
+  var fisa;
+  Future iaFiseMedicala(String numePacient) async {
+    String idPacient = await getPacientId(numePacient);
+    print(idPacient);
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(idPacient)
+        .get()
+        .then((value) {
+      fisa = value['fiseMedicale'];
+      for (var f in fisa) {
+        FiseMedicale fmToAdd = FiseMedicale(
+            nume: f['nume'],
+            link: f['link'],
+            day: f['day'],
+            month: f['month'],
+            year: f['year']);
+        fmList.add(fmToAdd);
+      }
+      print(fmList[0].year);
+    });
+  }
+
+  Future<String> getPacientId(String numePacient) async {
+    String idPacient = "aaaa";
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .where('fullName', isEqualTo: numePacient)
+        .get()
+        .then((snapshot) => snapshot.docs.forEach((document) {
+              idPacient = document.id;
+            }));
+    return idPacient;
   }
 }
 
