@@ -489,6 +489,7 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
 
   void buildList() {
     personList = null;
+    var count = 0;
     print(appoitnemtsChosenDate.length);
     personList = Container(
       child: Column(
@@ -528,7 +529,12 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Email: ${item.email}"),
+                    Row(
+                      children: [
+                        Text((index + 1).toString() + '. '),
+                        Text("Email: ${item.email}"),
+                      ],
+                    ),
                     Text("Ora: ${item.hour}"),
                     SizedBox(
                       height: 5,
