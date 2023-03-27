@@ -163,16 +163,34 @@ class _MedicProfileState extends State<MedicProfile> {
                                                         }
                                                       },
                                                     ),
-                                                    Text('Orar',
-                                                        style: TextStyle(
-                                                            fontFamily:
-                                                                'Roboto',
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 20,
-                                                            color: Colors.black
-                                                                .withOpacity(
-                                                                    0.7)))
+                                                    Column(
+                                                      children: [
+                                                        Text('Orar',
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                    'Roboto',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 20,
+                                                                color: Colors
+                                                                    .black
+                                                                    .withOpacity(
+                                                                        0.7))),
+                                                        Text('8-16',
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                    'Roboto',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 20,
+                                                                color: Colors
+                                                                    .black
+                                                                    .withOpacity(
+                                                                        0.7)))
+                                                      ],
+                                                    )
                                                   ],
                                                 ),
                                               ),
@@ -208,35 +226,6 @@ class _MedicProfileState extends State<MedicProfile> {
                                   ),
                                   SizedBox(
                                     height: 5,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        height: 50,
-                                        width: 90,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.grey, width: 1),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(20)),
-                                        ),
-                                        child: Center(
-                                            child: const Text('Pacienti')),
-                                      ),
-                                      Container(
-                                        height: 50,
-                                        width: 90,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.grey, width: 1),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(20)),
-                                        ),
-                                        child: Center(
-                                            child: const Text('Asistenti')),
-                                      ),
-                                    ],
                                   ),
                                 ],
                               ),
@@ -601,35 +590,6 @@ class _MedicProfileState extends State<MedicProfile> {
                                 ),
                                 SizedBox(
                                   height: 5,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      height: 50,
-                                      width: 90,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Colors.grey, width: 1),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
-                                      ),
-                                      child:
-                                          Center(child: const Text('Pacienti')),
-                                    ),
-                                    Container(
-                                      height: 50,
-                                      width: 90,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Colors.grey, width: 1),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
-                                      ),
-                                      child: Center(
-                                          child: const Text('Asistenti')),
-                                    ),
-                                  ],
                                 ),
                               ],
                             ),
