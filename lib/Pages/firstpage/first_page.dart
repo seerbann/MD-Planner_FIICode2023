@@ -129,26 +129,26 @@ class _FirstPageState extends State<FirstPage> {
                     //         fontSize: 20,
                     //       )),
                     // ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(67, 123, 255, 1),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 25, vertical: 20),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)),
-                      ),
-                      onPressed: (() {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => loadPdf()));
-                      }),
-                      child: Text('View PDF',
-                          style: GoogleFonts.roboto(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            letterSpacing: 2,
-                            fontSize: 20,
-                          )),
-                    ),
+                    // ElevatedButton(
+                    //   style: ElevatedButton.styleFrom(
+                    //     backgroundColor: const Color.fromRGBO(67, 123, 255, 1),
+                    //     padding: const EdgeInsets.symmetric(
+                    //         horizontal: 25, vertical: 20),
+                    //     shape: RoundedRectangleBorder(
+                    //         borderRadius: BorderRadius.circular(50)),
+                    //   ),
+                    //   onPressed: (() {
+                    //     Navigator.push(context,
+                    //         MaterialPageRoute(builder: (context) => loadPdf(path: "aa")));
+                    //   }),
+                    //   child: Text('View PDF',
+                    //       style: GoogleFonts.roboto(
+                    //         fontWeight: FontWeight.bold,
+                    //         color: Colors.white,
+                    //         letterSpacing: 2,
+                    //         fontSize: 20,
+                    //       )),
+                    // ),
                     //Container(
                     //  height: 300,
                     //child: SfPdfViewer.network(

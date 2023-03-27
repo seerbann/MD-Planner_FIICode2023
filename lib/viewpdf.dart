@@ -9,7 +9,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class loadPdf extends StatefulWidget {
-  const loadPdf({super.key});
+  loadPdf({Key? key, required this.path}) : super(key: key);
+  final String path;
 
   @override
   State<loadPdf> createState() => _loadPdfState();
@@ -17,12 +18,13 @@ class loadPdf extends StatefulWidget {
 
 class _loadPdfState extends State<loadPdf> {
   Uint8List? _documentBytes;
-  String path =
-      //'https://firebasestorage.googleapis.com/v0/b/flutterfirebase-6c279.appspot.com/o/GIS.pdf?alt=media&token=51654170-c140-4ffa-ae1a-9fb431d0dee2';
-      //'https://firebasestorage.googleapis.com/v0/b/my-notes-vlad-flutter.appspot.com/o/files%2F02-complexity.pdf?alt=media&token=a48d2c77-ca26-4aff-8dc0-8f20ebe52d8b';
-      'https://firebasestorage.googleapis.com/v0/b/my-notes-vlad-flutter.appspot.com/o/files%2Fsome-file.pdf?alt=media&token=3479dd85-3214-4ac3-97f8-805fd961d9da';
+  String path2 = "";
+  //'https://firebasestorage.googleapis.com/v0/b/flutterfirebase-6c279.appspot.com/o/GIS.pdf?alt=media&token=51654170-c140-4ffa-ae1a-9fb431d0dee2';
+  //'https://firebasestorage.googleapis.com/v0/b/my-notes-vlad-flutter.appspot.com/o/files%2F02-complexity.pdf?alt=media&token=a48d2c77-ca26-4aff-8dc0-8f20ebe52d8b';
+  //'https://firebasestorage.googleapis.com/v0/b/my-notes-vlad-flutter.appspot.com/o/files%2Fsome-file.pdf?alt=media&token=3479dd85-3214-4ac3-97f8-805fd961d9da';
   @override
   void initState() {
+    path2 = widget.path;
     getPdfBytes();
     super.initState();
   }
@@ -31,7 +33,7 @@ class _loadPdfState extends State<loadPdf> {
     if (kIsWeb) {
       firebase_storage.Reference pdfRef =
           firebase_storage.FirebaseStorage.instanceFor(bucket: '')
-              .refFromURL(path);
+              .refFromURL(path2);
       //size mentioned here is max size to download from firebase.
       await pdfRef.getData(104857600).then((value) {
         _documentBytes = value;
@@ -39,7 +41,7 @@ class _loadPdfState extends State<loadPdf> {
       });
     } else {
       HttpClient client = HttpClient();
-      final Uri url = Uri.base.resolve(path);
+      final Uri url = Uri.base.resolve(path2);
       final HttpClientRequest request = await client.getUrl(url);
       final HttpClientResponse response = await request.close();
       _documentBytes = await consolidateHttpClientResponseBytes(response);

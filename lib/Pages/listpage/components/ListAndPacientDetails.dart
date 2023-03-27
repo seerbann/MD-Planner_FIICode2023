@@ -6,13 +6,14 @@ import 'package:health_hub/profileDecider.dart';
 import '../../../commonComponents/vectors/vector_center_right.dart';
 import '../../../read data/get_medic_info.dart';
 import '../../../uploadpdf.dart';
+import '../../../viewpdf.dart';
 
 class FiseMedicale {
-  final String? nume;
-  final String? link;
-  final String? day;
-  final String? month;
-  final String? year;
+  final String nume;
+  final String link;
+  final String day;
+  final String month;
+  final String year;
 
   FiseMedicale({
     required this.nume,
@@ -495,11 +496,40 @@ class PersonDetail extends StatelessWidget {
                               itemCount: fmList.length,
                               itemBuilder: (context, index) {
                                 final item = fmList[index];
-                                return ListTile(
-                                  title: Text(
-                                      'Data: ${item.day}/${item.month}/${item.year}'),
-                                  subtitle: Text(item.link ?? ""),
-                                  leading: Text(item.nume ?? ""),
+                                return Column(
+                                  children: [
+                                    ListTile(
+                                      title: Text(
+                                          'Data: ${item.day}/${item.month}/${item.year}'),
+                                      subtitle: Text(item.link),
+                                      leading: Text(item.nume),
+                                    ),
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            const Color(0xFF323741),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 15),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                      ),
+                                      onPressed: (() {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    loadPdf(path: item.link)));
+                                      }),
+                                      child: Text('Vezi Fisa Medicala',
+                                          style: GoogleFonts.roboto(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                            letterSpacing: 2,
+                                            fontSize: 10,
+                                          )),
+                                    ),
+                                  ],
                                 );
                               },
                             ),
