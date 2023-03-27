@@ -169,88 +169,37 @@ class _MedicProfileState extends State<MedicProfile> {
                                                         }
                                                       },
                                                     ),
-                                                    Column(
-                                                      children: [
-                                                        Text('Orar',
+                                                    ElevatedButton(
+                                                        style: TextButton
+                                                            .styleFrom(
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .white),
+                                                        child: Text(
+                                                            'editeaza date',
                                                             style: TextStyle(
                                                                 fontFamily:
                                                                     'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                fontSize: 20,
+                                                                fontSize: 17,
                                                                 color: Colors
-                                                                    .black
-                                                                    .withOpacity(
-                                                                        0.7))),
-                                                        Text('8-16',
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                    'Roboto',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontSize: 20,
-                                                                color: Colors
-                                                                    .black
-                                                                    .withOpacity(
-                                                                        0.7))),
-                                                        ElevatedButton(
-                                                            style: TextButton
-                                                                .styleFrom(
-                                                              backgroundColor:
-                                                                  const Color
-                                                                          .fromRGBO(
-                                                                      67,
-                                                                      123,
-                                                                      255,
-                                                                      1),
-                                                              padding: const EdgeInsets
-                                                                      .symmetric(
-                                                                  horizontal:
-                                                                      25,
-                                                                  vertical: 20),
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              50)),
-                                                              textStyle:
-                                                                  const TextStyle(
-                                                                      fontSize:
-                                                                          10),
-                                                              foregroundColor:
-                                                                  Colors.blue,
-                                                            ),
-                                                            child: Text(
-                                                                'editeaza date',
-                                                                style: TextStyle(
-                                                                    fontFamily:
-                                                                        'Roboto',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontSize:
-                                                                        17,
-                                                                    color: Colors
-                                                                        .white)),
-                                                            onPressed:
-                                                                () async {
-                                                              Navigator.push(
-                                                                  context,
-                                                                  MaterialPageRoute(
-                                                                      builder: (context) => Update_user(
-                                                                          prenume:
-                                                                              firstNameMedic,
-                                                                          nume:
-                                                                              lastNameMedic,
-                                                                          telefon:
-                                                                              phoneMedic,
-                                                                          oras:
-                                                                              cityMedic)));
-                                                            }),
-                                                      ],
-                                                    )
+                                                                    .black)),
+                                                        onPressed: () async {
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (context) => Update_user(
+                                                                      prenume:
+                                                                          firstNameMedic,
+                                                                      nume:
+                                                                          lastNameMedic,
+                                                                      telefon:
+                                                                          phoneMedic,
+                                                                      oras:
+                                                                          cityMedic)));
+                                                        })
                                                   ],
                                                 ),
                                               ),
@@ -261,32 +210,8 @@ class _MedicProfileState extends State<MedicProfile> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 15,
-                                  ),
-                                  Container(
-                                    width: 350,
-                                    height: 150,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Color(0xFFE2E3E3), width: 5),
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(20)),
-                                      color: Colors.white,
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        'Consultatii recente',
-                                        style: TextStyle(
-                                          fontFamily: 'Outfit',
-                                          fontSize: 25,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
+                                    height: 70,
+                                  )
                                 ],
                               ),
                               SizedBox(
@@ -562,142 +487,96 @@ class _MedicProfileState extends State<MedicProfile> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Color(0xFFE2E3E3), width: 5),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
-                                    color: Colors.white,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(25.0),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Image.asset(
-                                                'assets/images/defaultUser.png'),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Column(
-                                                children: [
-                                                  FutureBuilder(
-                                                    future: getInfoMedic(),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      if (snapshot.hasData) {
-                                                        return Text(
-                                                            fullNameMedic,
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 35, right: 35),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Color(0xFFE2E3E3), width: 5),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(20)),
+                                      color: Colors.white,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(25.0),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Image.asset(
+                                                  'assets/images/defaultUser.png'),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Column(
+                                                  children: [
+                                                    FutureBuilder(
+                                                      future: getInfoMedic(),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        if (snapshot.hasData) {
+                                                          return Text(
+                                                              fullNameMedic,
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      'Roboto',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 20,
+                                                                  color: Colors
+                                                                      .black));
+                                                        } else {
+                                                          return Center(
+                                                              child:
+                                                                  CircularProgressIndicator());
+                                                        }
+                                                      },
+                                                    ),
+                                                    ElevatedButton(
+                                                        style: TextButton
+                                                            .styleFrom(
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .white),
+                                                        child: Text(
+                                                            'editeaza date',
                                                             style: TextStyle(
                                                                 fontFamily:
                                                                     'Roboto',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                fontSize: 20,
+                                                                fontSize: 17,
                                                                 color: Colors
-                                                                    .black));
-                                                      } else {
-                                                        return Center(
-                                                            child:
-                                                                CircularProgressIndicator());
-                                                      }
-                                                    },
-                                                  ),
-                                                  Text('Orar',
-                                                      style: TextStyle(
-                                                          fontFamily: 'Roboto',
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 20,
-                                                          color: Colors.black
-                                                              .withOpacity(
-                                                                  0.7))),
-                                                  ElevatedButton(
-                                                      style:
-                                                          TextButton.styleFrom(
-                                                        backgroundColor:
-                                                            const Color
-                                                                    .fromRGBO(
-                                                                67,
-                                                                123,
-                                                                255,
-                                                                1),
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                horizontal: 25,
-                                                                vertical: 20),
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        50)),
-                                                        textStyle:
-                                                            const TextStyle(
-                                                                fontSize: 10),
-                                                        foregroundColor:
-                                                            Colors.blue,
-                                                      ),
-                                                      child: Text(
-                                                          'editeaza date',
-                                                          style: TextStyle(
-                                                              fontFamily:
-                                                                  'Roboto',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize: 17,
-                                                              color: Colors
-                                                                  .white)),
-                                                      onPressed: () async {
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder: (context) => Update_user(
-                                                                    prenume:
-                                                                        firstNameMedic,
-                                                                    nume:
-                                                                        lastNameMedic,
-                                                                    telefon:
-                                                                        phoneMedic,
-                                                                    oras:
-                                                                        cityMedic)));
-                                                      }),
-                                                ],
+                                                                    .black)),
+                                                        onPressed: () async {
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (context) => Update_user(
+                                                                      prenume:
+                                                                          firstNameMedic,
+                                                                      nume:
+                                                                          lastNameMedic,
+                                                                      telefon:
+                                                                          phoneMedic,
+                                                                      oras:
+                                                                          cityMedic)));
+                                                        }),
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                                 SizedBox(
                                   height: 15,
-                                ),
-                                Container(
-                                  width: 350,
-                                  height: 150,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Color(0xFFE2E3E3), width: 5),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
-                                    color: Colors.white,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      'Consultatii recente',
-                                      style: TextStyle(
-                                        fontFamily: 'Outfit',
-                                        fontSize: 25,
-                                      ),
-                                    ),
-                                  ),
                                 ),
                                 SizedBox(
                                   height: 5,
