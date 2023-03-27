@@ -491,16 +491,54 @@ class _CalendarForMedicState extends State<CalendarForMedic> {
     personList = null;
     print(appoitnemtsChosenDate.length);
     personList = Container(
-      height: 350,
-      child: ListView.builder(
-        itemCount: appoitnemtsChosenDate.length,
-        itemBuilder: (context, index) {
-          final item = appoitnemtsChosenDate[index];
-          return ListTile(
-            title: Text(item.email ?? ""),
-            subtitle: Text("Ora: ${item.hour}"),
-          );
-        },
+      child: Column(
+        children: [
+          RichText(
+            text: TextSpan(
+              // Note: Styles for TextSpans must be explicitly defined.
+              // Child text spans will inherit styles from parent
+              style: const TextStyle(
+                fontSize: 14.0,
+                color: Colors.black,
+              ),
+              children: <TextSpan>[
+                TextSpan(text: 'Aveti ', style: TextStyle(fontSize: 25)),
+                TextSpan(
+                    text: '${appoitnemtsChosenDate.length} ',
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                        color: Color.fromRGBO(67, 123, 255, 1))),
+                TextSpan(
+                    text: 'programari',
+                    style: TextStyle(
+                      fontSize: 25,
+                    )),
+              ],
+            ),
+          ),
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: appoitnemtsChosenDate.length,
+            itemBuilder: (context, index) {
+              final item = appoitnemtsChosenDate[index];
+              return ListTile(
+                title: Center(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Email: ${item.email}"),
+                    Text("Ora: ${item.hour}"),
+                    SizedBox(
+                      height: 5,
+                    ),
+                  ],
+                )),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
