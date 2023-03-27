@@ -423,128 +423,207 @@ class PersonDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              color: Color(0xFFFAFBFF),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset('assets/images/defaultUser.png'),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            person.firstName,
-                            style: TextStyle(
-                                fontFamily: 'Outfit',
-                                fontSize: 35,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            person.city,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          SelectableText(person.email),
-                          SelectableText(person.phone)
-                        ],
-                      ),
-                    ],
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF323741),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 45, vertical: 25),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                    ),
-                    onPressed: (() {
-                      String numePacient = person.fullName;
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => UploadPDF(
-                                    numePacient: numePacient,
-                                  )));
-                    }),
-                    child: Text('Incarca fisa medicala',
-                        style: GoogleFonts.roboto(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          letterSpacing: 2,
-                          fontSize: 20,
-                        )),
-                  ),
-                  FutureBuilder(
-                      future: iaFiseMedicala(person.fullName),
-                      builder: ((context, snapshot) {
-                        if (!snapshot.hasData) {
-                          return Center(
-                              child: Container(
-                            height: 350,
-                            child: ListView.builder(
-                              itemCount: fmList.length,
-                              itemBuilder: (context, index) {
-                                final item = fmList[index];
-                                return Column(
-                                  children: [
-                                    ListTile(
-                                      title: Text(
-                                          'Data: ${item.day}/${item.month}/${item.year}'),
-                                      subtitle: Text(item.link),
-                                      leading: Text(item.nume),
-                                    ),
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            const Color(0xFF323741),
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 20, vertical: 15),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                      ),
-                                      onPressed: (() {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    loadPdf(path: item.link)));
-                                      }),
-                                      child: Text('Vezi Fisa Medicala',
-                                          style: GoogleFonts.roboto(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                            letterSpacing: 2,
-                                            fontSize: 10,
-                                          )),
-                                    ),
-                                  ],
-                                );
-                              },
-                            ),
-                          ));
-                        } else {
-                          return Center(child: CircularProgressIndicator());
-                        }
-                      }))
+    return Stack(children: [
+      Align(
+        alignment: Alignment(-0.9, -1.1),
+        child: RotatedBox(
+          quarterTurns: 2,
+          child: ClipPath(
+            clipper: BlueVector_center(),
+            child: Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                begin: Alignment.centerRight,
+                end: Alignment.centerLeft,
+                colors: [
+                  Color.fromRGBO(51, 112, 255, 1).withOpacity(0.7),
+                  Color.fromRGBO(122, 162, 255, 1).withOpacity(0.7),
                 ],
-              ),
+              )),
             ),
-          ],
+          ),
         ),
       ),
-    );
+      Align(
+        alignment: Alignment(0.9, 1.1),
+        child: RotatedBox(
+          quarterTurns: 4,
+          child: ClipPath(
+            clipper: BlueVector_center(),
+            child: Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                begin: Alignment.centerRight,
+                end: Alignment.centerLeft,
+                colors: [
+                  Color.fromRGBO(51, 112, 255, 1).withOpacity(0.7),
+                  Color.fromRGBO(122, 162, 255, 1).withOpacity(0.7),
+                ],
+              )),
+            ),
+          ),
+        ),
+      ),
+      Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                color: Color(0xFFFAFBFF),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/images/defaultUser.png'),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              person.fullName,
+                              style: TextStyle(
+                                  fontFamily: 'Outfit',
+                                  fontSize: 35,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              person.city,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            SelectableText(person.email),
+                            SelectableText(person.phone)
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(67, 123, 255, 1),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 25, vertical: 20),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                        textStyle: const TextStyle(fontSize: 20),
+                        foregroundColor: Colors.blue,
+                      ),
+                      onPressed: (() {
+                        String numePacient = person.fullName;
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => UploadPDF(
+                                      numePacient: numePacient,
+                                    )));
+                      }),
+                      child: Text('Incarca o fisa medicala noua',
+                          style: GoogleFonts.roboto(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            letterSpacing: 2,
+                            fontSize: 20,
+                          )),
+                    ),
+                    FutureBuilder(
+                        future: iaFiseMedicala(person.fullName),
+                        builder: ((context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return Center(
+                                child: Container(
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: fmList.length,
+                                itemBuilder: (context, index) {
+                                  final item = fmList[index];
+                                  return Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: ListTile(
+                                          title: Center(
+                                              child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Column(
+                                                children: [
+                                                  Text(
+                                                    item.nume,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  Text(
+                                                      'Data: ${item.day}/${item.month}/${item.year}')
+                                                ],
+                                              ),
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      const Color(0xFF323741),
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 20,
+                                                      vertical: 15),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15)),
+                                                ),
+                                                onPressed: (() {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              loadPdf(
+                                                                  path: item
+                                                                      .link)));
+                                                }),
+                                                child: Text(
+                                                    'Vezi Fisa Medicala',
+                                                    style: GoogleFonts.roboto(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white,
+                                                      letterSpacing: 2,
+                                                      fontSize: 10,
+                                                    )),
+                                              ),
+                                            ],
+                                          )),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
+                            ));
+                          } else {
+                            return Center(child: CircularProgressIndicator());
+                          }
+                        }))
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ]);
   }
 }
 
