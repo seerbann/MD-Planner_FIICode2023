@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:health_hub/editUser.dart';
 import '../../../commonComponents/vectors/vector_center_right.dart';
 import '../../../commonComponents/vectors/vector_top_right.dart';
 import '../../../responsive.dart';
@@ -20,6 +21,9 @@ final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
 
 class _ProfileState extends State<Profile> {
   FirebaseAuth auth = FirebaseAuth.instance;
+
+  String firstName = "";
+  String lastName = "";
 
   String fullName = "";
   String phone = "";
@@ -39,6 +43,8 @@ class _ProfileState extends State<Profile> {
             Map<String, dynamic> data = document.data();
             String firstname = data['first name'];
             String lastname = data['last name'];
+            firstName = data['first name'];
+            lastName = data['last name'];
             city = data['city'];
             cnp = data['cnp'];
             email = data['email'];
@@ -142,13 +148,32 @@ class _ProfileState extends State<Profile> {
                                                   SizedBox(
                                                     height: 5,
                                                   ),
-                                                  Text('editeaza date',
-                                                      style: TextStyle(
-                                                          fontFamily: 'Roboto',
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 17,
-                                                          color: Colors.black))
+                                                  ElevatedButton(
+                                                      child: Text(
+                                                          'editeaza date user',
+                                                          style: TextStyle(
+                                                              fontFamily:
+                                                                  'Roboto',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize: 17,
+                                                              color: Colors
+                                                                  .black)),
+                                                      onPressed: () async {
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder: (context) => Update_user(
+                                                                    prenume:
+                                                                        firstName,
+                                                                    nume:
+                                                                        lastName,
+                                                                    telefon:
+                                                                        phone,
+                                                                    oras:
+                                                                        city)));
+                                                      }),
                                                 ],
                                               ),
                                             ),
@@ -573,13 +598,19 @@ class _ProfileState extends State<Profile> {
                                                   SizedBox(
                                                     height: 5,
                                                   ),
-                                                  Text('editeaza date',
-                                                      style: TextStyle(
-                                                          fontFamily: 'Roboto',
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 17,
-                                                          color: Colors.black))
+                                                  ElevatedButton(
+                                                      child: Text(
+                                                          'editeaza date',
+                                                          style: TextStyle(
+                                                              fontFamily:
+                                                                  'Roboto',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize: 17,
+                                                              color: Colors
+                                                                  .black)),
+                                                      onPressed: () async {}),
                                                 ],
                                               ),
                                             ),
