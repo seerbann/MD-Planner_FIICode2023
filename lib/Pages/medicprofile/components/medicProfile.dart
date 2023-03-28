@@ -489,7 +489,7 @@ class _MedicProfileState extends State<MedicProfile> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 35, right: 35),
+                                      left: 15, right: 15),
                                   child: Container(
                                     decoration: BoxDecoration(
                                       border: Border.all(
@@ -507,8 +507,8 @@ class _MedicProfileState extends State<MedicProfile> {
                                               Image.asset(
                                                   'assets/images/defaultUser.png'),
                                               Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
+                                                padding: const EdgeInsets.only(
+                                                    left: 5),
                                                 child: Column(
                                                   children: [
                                                     FutureBuilder(
@@ -517,6 +517,11 @@ class _MedicProfileState extends State<MedicProfile> {
                                                           (context, snapshot) {
                                                         if (snapshot.hasData) {
                                                           return Text(
+                                                              // overflow:
+                                                              //     TextOverflow
+                                                              //         .ellipsis,
+                                                              // maxLines: 1,
+
                                                               fullNameMedic,
                                                               style: TextStyle(
                                                                   fontFamily:
