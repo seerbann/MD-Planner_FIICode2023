@@ -153,14 +153,14 @@ Echipa formata din **Chiriac Serban-Mihail** & **Stefan Vlad**
 
 ## :bookmark_tabs: Meniu
 
-* [Tehnologii folosite](#tehnologii)
+* [Tehnologii folosite](#tehnologiiro)
 * [Inregistrare & Autentificare](#inregistrare)
 * [Invitatie pentru user](#invitatie)
 * [Aplicatia medicului](#medic)
 * [Aplicația pacientului](#pacient)
 * [Cerinte design](#design)
 
-<div id="tehnologii"></div>
+<div id="tehnologiiro"></div>
 
 ## 🖥️ Tehnologii folosite
 
