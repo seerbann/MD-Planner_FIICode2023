@@ -1,5 +1,10 @@
 # MD Planeer
 
+## :bookmark_tabs: Choose your language
+
+* [En](#tehnologii)
+* [Ro](#inregistrare)
+
 ## Team Name : fluTTeam
 
 ![logo2](https://user-images.githubusercontent.com/72700839/228325427-73e8158b-8870-407e-a133-103f5406686b.jpg)
