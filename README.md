@@ -154,11 +154,11 @@ Echipa formata din **Chiriac Serban-Mihail** & **Stefan Vlad**
 ## :bookmark_tabs: Meniu
 
 * [Tehnologii folosite](#tehnologiiro)
-* [Inregistrare & Autentificare](#inregistrare)
-* [Invitatie pentru user](#invitatie)
-* [Aplicatia medicului](#medic)
-* [Aplicația pacientului](#pacient)
-* [Cerinte design](#design)
+* [Inregistrare & Autentificare](#inregistrarero)
+* [Invitatie pentru user](#invitatiero)
+* [Aplicatia medicului](#medicro)
+* [Aplicația pacientului](#pacientro)
+* [Cerinte design](#designro)
 
 <div id="tehnologiiro"></div>
 
@@ -167,7 +167,7 @@ Echipa formata din **Chiriac Serban-Mihail** & **Stefan Vlad**
 In dezvoltarea aplicatiei am folosit pentru frontend **Flutter**, cu ajutorul caruia am putut realiza atat un **site web**, cat si o **aplicatie pentru mobil**.
 Pentru backend am folosit **firebase**.
 
-<div id="inregistrare"></div>
+<div id="inregistrarero"></div>
 
 ## :closed_lock_with_key: Inregistrare & Autentificare
 
@@ -184,7 +184,7 @@ Atat medicii cat si pacientii se pot autentifica utilizand urmatoarea pagina:
 ![auten](https://user-images.githubusercontent.com/72700839/228335574-7a792ec0-ca62-46e4-a14b-9506eac11ca9.png)
 
 
-<div id="invitatie"></div>
+<div id="invitatiero"></div>
 
 
 ## :email: Invitatie pentru user
@@ -208,7 +208,7 @@ Ambele link-uri vor redirectiona catre pagina de inregistrare
 ![inregistrare](https://user-images.githubusercontent.com/72700839/228339794-f465e905-06ae-4abe-8878-96990c2c4a3b.png)
 
 
-<div id="medic"></div>
+<div id="medicro"></div>
 
 ## :syringe: Aplicatia medicului
 
@@ -233,7 +233,7 @@ Calendar: Aici medicul poate vedea in ce zile are programari, cat si informatii 
 ![calendarMedic](https://user-images.githubusercontent.com/72700839/228348572-10b1e254-b278-4804-b365-15e1b7132079.png)
 
 
-<div id="pacient"></div>
+<div id="pacientro"></div>
 
 ## :mask: Aplicatia pacientului
 
@@ -254,7 +254,7 @@ Calendar: Pacientul poate alege o zi si o ora in care sa se programeze la medicu
 ![programareUser](https://user-images.githubusercontent.com/72700839/228349261-fcfc753c-603e-4652-89c6-aef7b40e7a31.png)
 
 
-<div id="design"></div>
+<div id="designro"></div>
 
 ## :art: Cerinte design
 
