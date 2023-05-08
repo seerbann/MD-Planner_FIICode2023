@@ -1,13 +1,13 @@
 # MD Planeer
 
-## :bookmark_tabs: Choose your language
+## 👌 Choose a language
 
 * [En](#engleza)
 * [Ro](#romana)
 
 <div id="engleza"></div>
 
-## :bookmark_tabs: Meniu
+## :bookmark_tabs: Menu
 
 * [Tehnologii folosite](#tehnologii)
 * [Inregistrare & Autentificare](#inregistrare)
