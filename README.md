@@ -4,6 +4,8 @@
 
 * [En](#engleza) 
 * [Ro](#romana)
+ 
+Project done by **Chiriac Serban-Mihail** & **Stefan Vlad** 
 
 <div id="engleza"></div>
 
@@ -133,7 +135,7 @@ Calendar: The patient can choose a day and time to make an appointment with the 
 
 
 
-
+-romanian part
 
 
 ## Team Name : fluTTeam
