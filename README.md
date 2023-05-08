@@ -2,7 +2,8 @@
 
 ## 👌 Choose a language
 
-* [En](#engleza)   [Ro](#romana)
+* [En](#engleza) 
+* [Ro](#romana)
 
 <div id="engleza"></div>
 
